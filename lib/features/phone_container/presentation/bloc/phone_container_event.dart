@@ -11,11 +11,7 @@ class PhoneAnimationStartEvent extends PhoneContainerEvent {}
 
 class PhoneAnimationEndEvent extends PhoneContainerEvent {}
 
-class ScreenshotChosenEvent extends PhoneContainerEvent {
-  final List<String> screenshots;
-
-  ScreenshotChosenEvent(this.screenshots);
-
-  @override
-  List<Object> get props => [screenshots];
+class ShowProfessionalCategoriesEvent extends PhoneContainerEvent {
+  int category;
+  ShowProfessionalCategoriesEvent({required this.category});
 }

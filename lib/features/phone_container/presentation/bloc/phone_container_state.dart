@@ -11,11 +11,18 @@ class PhoneContainerInitial extends PhoneContainerState {}
 
 class PhoneAnimationOngoing extends PhoneContainerState {}
 
-class ShowScreenshotState extends PhoneContainerState {
-  final List<String> screenshots;
-
-  ShowScreenshotState(this.screenshots);
+class ShowProfessionalCategoriesState extends PhoneContainerState {
+  final int category;
+  ShowProfessionalCategoriesState({required this.category});
 
   @override
-  List<Object> get props => [screenshots];
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is ShowProfessionalCategoriesState &&
+        other.category == category;
+  }
+
+  @override
+  int get hashCode => category.hashCode;
 }

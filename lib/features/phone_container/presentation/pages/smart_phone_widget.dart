@@ -2,6 +2,7 @@ import 'package:dicquemare_solution/core/injection.dart';
 import 'package:dicquemare_solution/core/utils.dart';
 import 'package:dicquemare_solution/features/home/domain/entities/project.dart';
 import 'package:dicquemare_solution/features/phone_container/presentation/bloc/phone_container_bloc.dart';
+import 'package:dicquemare_solution/features/phone_container/presentation/widgets/professional_categories_widget.dart';
 import 'package:dicquemare_solution/features/phone_container/presentation/widgets/screenshot_phone_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -43,9 +44,11 @@ class SmartphoneWidget extends StatelessWidget {
                         return ScreenshotPhoneWidget(
                             screenshots: project!.screenshots,
                             selected: selected);
-                      } else if (state is ShowScreenshotState) {
-                        return ScreenshotPhoneWidget(
-                            screenshots: state.screenshots, selected: selected);
+                      } else if (state is ShowProfessionalCategoriesState) {
+                        print('state.category ${state.category}');
+                        return ProfessionalCategoriesWidget(
+                          category: state.category,
+                        );
                       } else {
                         return const SizedBox();
                       }

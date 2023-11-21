@@ -22,6 +22,7 @@ class _HomePageState extends State<HomePage>
   double widthPhone = 350;
   bool isPhoneVisible = true;
   AlignmentGeometry? _lastAlignment;
+  int selectedProfessionalCategory = 1;
 
   @override
   void initState() {
@@ -69,6 +70,15 @@ class _HomePageState extends State<HomePage>
         create: (blocContext) => sl<PhoneContainerBloc>(),
         child: BlocBuilder<PhoneContainerBloc, PhoneContainerState>(
             builder: (blocContext, state) {
+          if (state is ShowProfessionalCategoriesState) {
+            print('state.category home ${state.category}');
+            selectedProfessionalCategory = state.category;
+          }
+          if (index == 1) {
+            BlocProvider.of<PhoneContainerBloc>(blocContext).add(
+                ShowProfessionalCategoriesEvent(
+                    category: selectedProfessionalCategory));
+          }
           return Stack(
             children: [
               extraContentDependingOnScreen(index),
@@ -89,7 +99,11 @@ class _HomePageState extends State<HomePage>
       return Positioned.fill(
         child: Padding(
           padding: EdgeInsets.only(left: widthPhone + 24),
-          child: Container(color: Colors.green, child: CourseContentWidget()),
+          child: Container(
+              color: Colors.green,
+              child: CourseContentWidget(
+                selectedCategory: selectedProfessionalCategory,
+              )),
         ),
       );
     } else if (index == 2) {

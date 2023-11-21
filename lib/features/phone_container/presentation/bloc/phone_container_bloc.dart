@@ -9,8 +9,9 @@ part 'phone_container_state.dart';
 class PhoneContainerBloc
     extends Bloc<PhoneContainerEvent, PhoneContainerState> {
   PhoneContainerBloc() : super(PhoneContainerInitial()) {
-    on<ScreenshotChosenEvent>((event, emit) {
-      // emit(ShowScreenshotState(event.screenshots));
+    on<ShowProfessionalCategoriesEvent>((event, emit) {
+      print('Bloc state emit ${event.category}');
+      emit(ShowProfessionalCategoriesState(category: event.category));
     });
     on<PhoneAnimationStartEvent>((event, emit) {
       emit(PhoneAnimationOngoing());
