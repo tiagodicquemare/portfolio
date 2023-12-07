@@ -50,6 +50,9 @@ dependencies:
   # Http requests
   url_launcher: ^6.1.4
 
+  # Document handling
+  syncfusion_flutter_pdfviewer: ^23.2.6
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

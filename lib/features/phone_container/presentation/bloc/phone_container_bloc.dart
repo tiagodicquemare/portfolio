@@ -10,7 +10,6 @@ class PhoneContainerBloc
     extends Bloc<PhoneContainerEvent, PhoneContainerState> {
   PhoneContainerBloc() : super(PhoneContainerInitial()) {
     on<ShowProfessionalCategoriesEvent>((event, emit) {
-      print('Bloc state emit ${event.category}');
       emit(ShowProfessionalCategoriesState(category: event.category));
     });
     on<PhoneAnimationStartEvent>((event, emit) {

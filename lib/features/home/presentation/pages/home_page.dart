@@ -71,7 +71,6 @@ class _HomePageState extends State<HomePage>
         child: BlocBuilder<PhoneContainerBloc, PhoneContainerState>(
             builder: (blocContext, state) {
           if (state is ShowProfessionalCategoriesState) {
-            print('state.category home ${state.category}');
             selectedProfessionalCategory = state.category;
           }
           if (index == 1) {

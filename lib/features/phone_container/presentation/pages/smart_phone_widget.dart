@@ -45,7 +45,6 @@ class SmartphoneWidget extends StatelessWidget {
                             screenshots: project!.screenshots,
                             selected: selected);
                       } else if (state is ShowProfessionalCategoriesState) {
-                        print('state.category ${state.category}');
                         return ProfessionalCategoriesWidget(
                           category: state.category,
                         );
