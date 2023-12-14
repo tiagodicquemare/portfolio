@@ -12,6 +12,9 @@ class PhoneContainerBloc
     on<ShowProfessionalCategoriesEvent>((event, emit) {
       emit(ShowProfessionalCategoriesState(category: event.category));
     });
+    on<ShowAdditionalContactInfoEvent>((event, emit) {
+      emit(ShowAdditionalContactInfoState());
+    });
     on<PhoneAnimationStartEvent>((event, emit) {
       emit(PhoneAnimationOngoing());
     });

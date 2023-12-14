@@ -14,7 +14,7 @@ class ProfessionalCategoriesWidget extends StatefulWidget {
 
 class _ProfessionalCategoriesWidgetState
     extends State<ProfessionalCategoriesWidget> {
-  final categories = ['Bio', 'CV', 'Stack technique', 'Recommandation'];
+  final categories = ['Bio', 'CV', 'Stack technique', 'Recommandations'];
   @override
   Widget build(BuildContext context) {
     return Column(

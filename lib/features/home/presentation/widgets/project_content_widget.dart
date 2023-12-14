@@ -36,12 +36,12 @@ class _ProjectContentWidgetState extends State<ProjectContentWidget> {
     /*BlocProvider.of<PhoneContainerBloc>(context)
         .add(ScreenshotChosenEvent(projects[selectedProjectIndex].screenshots));*/
     return Container(
-      color: Colors.yellow,
       child: Stack(
         children: [
           Positioned(
               left: widthContent - widthPhone / 1.33,
-              bottom: 10,
+              top: 32,
+              bottom: 32,
               child: SwipeableProjectsCarousel(
                 projects: projects,
                 onProjectSelected: (index) {

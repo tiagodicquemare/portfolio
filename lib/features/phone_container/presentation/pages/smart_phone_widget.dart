@@ -2,6 +2,7 @@ import 'package:dicquemare_solution/core/injection.dart';
 import 'package:dicquemare_solution/core/utils.dart';
 import 'package:dicquemare_solution/features/home/domain/entities/project.dart';
 import 'package:dicquemare_solution/features/phone_container/presentation/bloc/phone_container_bloc.dart';
+import 'package:dicquemare_solution/features/phone_container/presentation/widgets/contact_additional_info.dart';
 import 'package:dicquemare_solution/features/phone_container/presentation/widgets/professional_categories_widget.dart';
 import 'package:dicquemare_solution/features/phone_container/presentation/widgets/screenshot_phone_widget.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +27,7 @@ class SmartphoneWidget extends StatelessWidget {
               color: Colors.black.withOpacity(0.2),
               spreadRadius: 1,
               blurRadius: 10,
-              offset: const Offset(0, 5), // changes position of shadow
+              offset: const Offset(0, 5),
             ),
           ],
         ),
@@ -48,6 +49,8 @@ class SmartphoneWidget extends StatelessWidget {
                         return ProfessionalCategoriesWidget(
                           category: state.category,
                         );
+                      } else if (state is ShowAdditionalContactInfoState) {
+                        return ContactAdditionalInfoWidget();
                       } else {
                         return const SizedBox();
                       }

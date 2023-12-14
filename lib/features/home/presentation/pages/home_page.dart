@@ -1,4 +1,5 @@
 import 'package:dicquemare_solution/core/injection.dart';
+import 'package:dicquemare_solution/core/ui/green_gradient_background.dart';
 import 'package:dicquemare_solution/core/utils.dart';
 import 'package:dicquemare_solution/features/home/presentation/widgets/contact_me_widget.dart';
 import 'package:dicquemare_solution/features/home/presentation/widgets/course_content_widget.dart';
@@ -50,18 +51,26 @@ class _HomePageState extends State<HomePage>
     heightPhone = CoreUtils.getPhoneScreenHeight(context);
     widthPhone = CoreUtils.getPhoneScreenWidth(context);
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Dicquemare Solution'),
-        bottom: TabBar(
-          controller: _tabController,
-          tabs: const [
-            Tab(text: 'Parcours'),
-            Tab(text: 'Projets'),
-            Tab(text: 'Contact'),
-          ],
-        ),
+      body: Column(
+        children: <Widget>[
+          Material(
+            // Create a Material widget to get the visual design for Tabs
+            color: Colors.blue, // Give a color to the TabBar
+            child: TabBar(
+              controller: _tabController,
+              tabs: [
+                Tab(text: 'Parcours'),
+                Tab(text: 'Projets'),
+                Tab(text: 'Contact'),
+              ],
+            ),
+          ),
+          Expanded(
+            child: GreenGradientBackground(
+                child: containerHomeContent(_tabController.index + 1)),
+          ),
+        ],
       ),
-      body: containerHomeContent(_tabController.index + 1),
     );
   }
 
@@ -77,6 +86,9 @@ class _HomePageState extends State<HomePage>
             BlocProvider.of<PhoneContainerBloc>(blocContext).add(
                 ShowProfessionalCategoriesEvent(
                     category: selectedProfessionalCategory));
+          } else if (index == 3) {
+            BlocProvider.of<PhoneContainerBloc>(blocContext)
+                .add(ShowAdditionalContactInfoEvent());
           }
           return Stack(
             children: [
@@ -99,10 +111,9 @@ class _HomePageState extends State<HomePage>
         child: Padding(
           padding: EdgeInsets.only(left: widthPhone + 24),
           child: Container(
-              color: Colors.green,
               child: CourseContentWidget(
-                selectedCategory: selectedProfessionalCategory,
-              )),
+            selectedCategory: selectedProfessionalCategory,
+          )),
         ),
       );
     } else if (index == 2) {

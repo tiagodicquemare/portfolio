@@ -11,6 +11,8 @@ class PhoneContainerInitial extends PhoneContainerState {}
 
 class PhoneAnimationOngoing extends PhoneContainerState {}
 
+class ShowAdditionalContactInfoState extends PhoneContainerState {}
+
 class ShowProfessionalCategoriesState extends PhoneContainerState {
   final int category;
   ShowProfessionalCategoriesState({required this.category});

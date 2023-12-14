@@ -1,6 +1,33 @@
 import 'package:dicquemare_solution/assets.dart';
 import 'package:dicquemare_solution/features/home/domain/entities/project.dart';
 
+Map<String, Technologie> mapOfTechnologies = {
+  "Android": Technologie(
+      "Android",
+      "Android est un système d'exploitation mobile fondé sur le noyau Linux et développé par Google.",
+      "https://fr.wikipedia.org/wiki/Android"),
+  "Kotlin": Technologie(
+      "Kotlin",
+      "Kotlin est un langage de programmation orienté objet et fonctionnel, multiplateforme, concis et sûr de type statique développé par JetBrains en 2011 qui compile pour la machine virtuelle Java et qui peut aussi compiler vers le code source JavaScript ou LLVM.",
+      "https://kotlinlang.org/"),
+  "Flutter": Technologie(
+      "Flutter",
+      "Flutter est un kit de développement de logiciels d'interface utilisateur open-source créé par Google. Il est utilisé pour développer des applications pour Android, iOS, Linux, Mac, Windows, Google Fuchsia et le Web à partir d'une seule base de code.",
+      "https://flutter.dev/"),
+  "Dart": Technologie(
+      "Dart",
+      "Dart est un langage de programmation orienté objet développé par Google. Il est utilisé pour le développement d'applications mobiles, de serveurs et de sites web. Il est open source et multiplateforme.",
+      "https://dart.dev/"),
+  "UI/UX Design": Technologie(
+      "UI/UX Design",
+      "Android est un système d'exploitation mobile fondé sur le noyau Linux et développé par Google.",
+      "https://www.figma.com/"),
+  "Management": Technologie(
+      "Management",
+      "Android est un système d'exploitation mobile fondé sur le noyau Linux et développé par Google.",
+      "https://www.figma.com/"),
+};
+
 List<Project> projects = [
   Project(
       assetLogo: MyAssets.lydiaLogo,
@@ -12,10 +39,7 @@ List<Project> projects = [
       playStoreUrl: "https://play.google.com/store/apps/details?id=com.lydia",
       appStoreUrl:
           "https://apps.apple.com/fr/app/lydia-paiement-mobile/id927139382",
-      technologies: [
-        Technologie("Android", "https://fr.wikipedia.org/wiki/Android"),
-        Technologie("Kotlin", "https://kotlinlang.org/")
-      ],
+      technologies: [],
       screenshots: [
         "lydia-screenshots/lydia_screenshot_1.png",
         "lydia-screenshots/lydia_screenshot_2.png",
@@ -34,8 +58,10 @@ List<Project> projects = [
       appStoreUrl:
           "https://apps.apple.com/fr/app/lydia-paiement-mobile/id927139382",
       technologies: [
-        Technologie("Android", "https://fr.wikipedia.org/wiki/Android"),
-        Technologie("Kotlin", "https://kotlinlang.org/"),
+        mapOfTechnologies["Android"]!,
+        mapOfTechnologies["Kotlin"]!,
+        mapOfTechnologies["Flutter"]!,
+        mapOfTechnologies["Dart"]!,
       ],
       screenshots: [
         "pleko-screenshots/pleko_screenshot_1.png",
@@ -55,8 +81,10 @@ List<Project> projects = [
       appStoreUrl:
           "https://apps.apple.com/fr/app/lydia-paiement-mobile/id927139382",
       technologies: [
-        Technologie("Android", "https://fr.wikipedia.org/wiki/Android"),
-        Technologie("Kotlin", "https://kotlinlang.org/")
+        mapOfTechnologies["Android"]!,
+        mapOfTechnologies["Kotlin"]!,
+        mapOfTechnologies["Flutter"]!,
+        mapOfTechnologies["Dart"]!,
       ],
       screenshots: [
         "delupay-screenshots/delupay_screenshot_1.png",

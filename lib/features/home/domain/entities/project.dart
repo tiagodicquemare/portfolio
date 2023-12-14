@@ -26,6 +26,7 @@ class Project {
 
 class Technologie {
   String name;
+  String description;
   String url;
-  Technologie(this.name, this.url);
+  Technologie(this.name, this.description, this.url);
 }
