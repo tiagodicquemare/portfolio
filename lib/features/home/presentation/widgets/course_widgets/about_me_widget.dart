@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:dicquemare_solution/assets.dart';
+import 'package:dicquemare_solution/core/ui/text_styles.dart';
 import 'package:flutter/material.dart';
 
 class AboutMeWidget extends StatelessWidget {
@@ -14,7 +15,7 @@ class AboutMeWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Flexible(
+              Flexible(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -22,20 +23,14 @@ class AboutMeWidget extends StatelessWidget {
                   children: [
                     Text(
                       "Développeur mobile Android et Flutter Freelance",
-                      style: TextStyle(
-                        fontSize: 42,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: AppTextStyles.textTitle32(color: Colors.black),
                     ),
                     SizedBox(
                       height: 32,
                     ),
                     Text(
                       "I am a backend developer with expertise in Node.js. I have experience in building scalable, secure and reliable web applications using various frameworks and technologies. I enjoy solving complex problems and learning new skills. I am passionate about creating high-quality code that follows best practices and industry standards. I am always looking for new challenges and opportunities to grow as a developer.",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.normal,
-                      ),
+                      style: AppTextStyles.textLRegular(color: Colors.black),
                     ),
                   ],
                 ),

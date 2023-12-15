@@ -18,46 +18,97 @@ class SmartphoneWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final widthPhone = CoreUtils.getPhoneScreenWidth(context);
-    return Container(
-        decoration: BoxDecoration(
-          color: Colors.red,
-          borderRadius: BorderRadius.circular(38.0),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.2),
-              spreadRadius: 1,
-              blurRadius: 10,
-              offset: const Offset(0, 5),
-            ),
-          ],
-        ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(38.0),
-          child: Column(
-            children: <Widget>[
-              Expanded(
-                child: Container(
-                    width: widthPhone,
-                    color: Colors.white,
-                    child: BlocBuilder<PhoneContainerBloc, PhoneContainerState>(
-                        builder: (context, state) {
-                      if (project != null) {
-                        return ScreenshotPhoneWidget(
-                            screenshots: project!.screenshots,
-                            selected: selected);
-                      } else if (state is ShowProfessionalCategoriesState) {
-                        return ProfessionalCategoriesWidget(
-                          category: state.category,
-                        );
-                      } else if (state is ShowAdditionalContactInfoState) {
-                        return ContactAdditionalInfoWidget();
-                      } else {
-                        return const SizedBox();
-                      }
-                    })),
+    final heightPhone = CoreUtils.getPhoneScreenHeight(context);
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          width: widthPhone,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12.0),
+            color: Colors.black,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.2),
+                spreadRadius: 1,
+                blurRadius: 10,
+                offset: const Offset(0, 0),
               ),
             ],
           ),
-        ));
+          child: Padding(
+            padding:
+                const EdgeInsets.only(left: 6, right: 6, top: 6, bottom: 12),
+            child: Stack(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(12.0),
+                  child: Container(
+                    width: widthPhone - 12,
+                    height: heightPhone - 12,
+                    color: Colors.white,
+                    child: BlocBuilder<PhoneContainerBloc, PhoneContainerState>(
+                      builder: (context, state) {
+                        if (project != null) {
+                          return ScreenshotPhoneWidget(
+                              screenshots: project!.screenshots,
+                              selected: selected);
+                        } else if (state is ShowProfessionalCategoriesState) {
+                          return ProfessionalCategoriesWidget(
+                            category: state.category,
+                          );
+                        } else if (state is ShowAdditionalContactInfoState) {
+                          return ContactAdditionalInfoWidget();
+                        } else {
+                          return const SizedBox();
+                        }
+                      },
+                    ),
+                  ),
+                ),
+                Positioned(
+                    left: 0,
+                    right: 0,
+                    top: 12,
+                    child: Container(
+                      width: 12,
+                      height: 12,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle, color: Colors.black),
+                    ))
+              ],
+            ),
+          ),
+        ),
+        Column(
+          children: [
+            SizedBox(
+              height: heightPhone / 4,
+            ),
+            Container(
+              height: heightPhone / 16,
+              width: 3,
+              decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(4),
+                      bottomRight: Radius.circular(4)),
+                  color: Colors.black),
+            ),
+            SizedBox(
+              height: heightPhone / 24,
+            ),
+            Container(
+              height: heightPhone / 8,
+              width: 3,
+              decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(4),
+                      bottomRight: Radius.circular(4)),
+                  color: Colors.black),
+            )
+          ],
+        )
+      ],
+    );
   }
 }

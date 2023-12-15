@@ -70,6 +70,14 @@ flutter:
   generate: true
   uses-material-design: true
 
+fonts:
+    - family: ProximaNova
+      fonts:
+        - asset: fonts/ProximaNova-Light.ttf
+        - asset: fonts/ProximaNova-Regular.ttf
+        - asset: fonts/ProximaNova-Semibold.ttf
+        - asset: fonts/ProximaNova-Bold.ttf
+       
 assets:
 - assets/
 - assets/lydia-screenshots

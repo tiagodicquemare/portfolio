@@ -1,4 +1,5 @@
 import 'package:dicquemare_solution/core/injection.dart';
+import 'package:dicquemare_solution/core/ui/animated_tab_bar.dart';
 import 'package:dicquemare_solution/core/ui/green_gradient_background.dart';
 import 'package:dicquemare_solution/core/utils.dart';
 import 'package:dicquemare_solution/features/home/presentation/widgets/contact_me_widget.dart';
@@ -53,18 +54,7 @@ class _HomePageState extends State<HomePage>
     return Scaffold(
       body: Column(
         children: <Widget>[
-          Material(
-            // Create a Material widget to get the visual design for Tabs
-            color: Colors.blue, // Give a color to the TabBar
-            child: TabBar(
-              controller: _tabController,
-              tabs: [
-                Tab(text: 'Parcours'),
-                Tab(text: 'Projets'),
-                Tab(text: 'Contact'),
-              ],
-            ),
-          ),
+          MyTabBar(tabController: _tabController),
           Expanded(
             child: GreenGradientBackground(
                 child: containerHomeContent(_tabController.index + 1)),
@@ -149,7 +139,7 @@ class _HomePageState extends State<HomePage>
     _lastAlignment = alignment;
     return AnimatedAlign(
         alignment: getAlignment(),
-        duration: const Duration(seconds: 1),
+        duration: const Duration(milliseconds: 800),
         curve: Curves.easeInOut,
         onEnd: () {
           setState(() {
@@ -161,7 +151,7 @@ class _HomePageState extends State<HomePage>
         child: Visibility(
           visible: isPhoneVisible,
           child: SizedBox(
-              width: widthPhone,
+              width: widthPhone + 3,
               height: heightPhone,
               child: SmartphoneWidget()),
         ));

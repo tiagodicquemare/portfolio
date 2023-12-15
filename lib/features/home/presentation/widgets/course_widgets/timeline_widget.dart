@@ -76,10 +76,11 @@ class TimeLineState extends State<TimeLineWidget> {
           ),
           buildTimeline(availableWidth, [
             DotDateEvent(DateTime(2015, 09),
-                linkDot: true, color: Colors.green, textToShow: "09/2015"),
+                linkDot: true, color: Colors.green, dotText: "09/2015"),
             DotDateEvent(DateTime(2017, 09),
                 linkDot: true,
                 color: Colors.green,
+                lineText: "DUT Informatique",
                 titleBody: "DUT Informatique",
                 descriptionBody: "Réalisation de mon DUT avec stage de 3 mois",
                 dateBody: "Septembre 2015 à Juillet 2017",
@@ -87,33 +88,40 @@ class TimeLineState extends State<TimeLineWidget> {
             DotDateEvent(DateTime(2018, 09),
                 linkDot: true, color: Colors.green),
             DotDateEvent(DateTime(2020, 09),
-                linkDot: true, color: Colors.green, textToShow: "09/2020"),
+                linkDot: true, color: Colors.green, dotText: "09/2020"),
           ]),
           buildTimeline(availableWidth, [
             DotDateEvent(DateTime(2015, 07), linkDot: false, showDot: false),
-            DotDateEvent(DateTime(2017, 04),
-                linkDot: false, textToShow: "04/2017"),
-            DotDateEvent(DateTime(2017, 07), linkDot: true),
+            DotDateEvent(
+              DateTime(2017, 04),
+              linkDot: false,
+              dotText: "04/2017",
+            ),
+            DotDateEvent(
+              DateTime(2017, 07),
+              linkDot: true,
+              reverse: true,
+              lineText: "Stage BHTech",
+            ),
             DotDateEvent(DateTime(2018, 04), linkDot: false),
             DotDateEvent(DateTime(2020, 09), linkDot: true),
             DotDateEvent(DateTime(2021, 09), linkDot: true),
             DotDateEvent(DateTime(2022, 09), linkDot: true),
             DotDateEvent(DateTime(2023, 01), linkDot: false),
-            DotDateEvent(DateTime(2024, 01),
-                linkDot: true, textToShow: "01/2024"),
+            DotDateEvent(DateTime(2024, 01), linkDot: true, dotText: "01/2024"),
           ]),
           const SizedBox(height: 24),
           buildTimeline(availableWidth, [
             DotDateEvent(DateTime(2015, 07),
                 linkDot: false, showDot: false, color: Colors.red),
             DotDateEvent(DateTime(2018, 01),
-                linkDot: false, color: Colors.red, textToShow: "01/2018"),
+                linkDot: false, color: Colors.red, dotText: "01/2018"),
             DotDateEvent(DateTime(2020, 03),
-                linkDot: true, color: Colors.red, textToShow: ""),
+                linkDot: true, color: Colors.red, dotText: ""),
             DotDateEvent(DateTime(2021, 09),
-                linkDot: false, color: Colors.red, textToShow: ""),
+                linkDot: false, color: Colors.red, dotText: ""),
             DotDateEvent(DateTime(2023, 11),
-                linkDot: true, color: Colors.red, textToShow: "11/2023"),
+                linkDot: true, color: Colors.red, dotText: "11/2023"),
           ]),
           const SizedBox(height: 24),
           Row(
@@ -167,6 +175,8 @@ class TimeLineState extends State<TimeLineWidget> {
           "positionInTimeline -> $positionInTimeline /// widthLine -> $widthLine");
       if (index != 0 && dateEvent.linkDot) {
         listWidgets.add(buildHorizontalSolidLine(widthLine,
+            reverse: dateEvent.reverse,
+            text: dateEvent.lineText,
             color: dateEvent.color, onTap: () {
           setState(() {
             titleBody = dateEvent.titleBody;
@@ -183,7 +193,7 @@ class TimeLineState extends State<TimeLineWidget> {
 
       if (dateEvent.showDot) {
         listWidgets
-            .add(buildDot(color: dateEvent.color, date: dateEvent.textToShow));
+            .add(buildDot(color: dateEvent.color, date: dateEvent.dotText));
       } else {
         listWidgets.add(const SizedBox(
           width: 18,
@@ -239,23 +249,39 @@ class TimeLineState extends State<TimeLineWidget> {
       {String text = "",
       Color color = Colors.blue,
       bool textOnTop = true,
+      bool reverse = false,
       Function()? onTap}) {
     return SizedBox(
       width: width,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Flexible(child: Text(text)),
+          UnconstrainedBox(
+              child: Flexible(
+            child: Text(text,
+                maxLines: 2,
+                style: TextStyle(
+                    color: reverse ? Colors.transparent : Colors.black)),
+          )),
+          const SizedBox(
+            height: 8,
+          ),
           HoverContainer(
             width: width,
             color: color,
             onTap: onTap,
           ),
-          Flexible(
-              child: Text(
+          const SizedBox(
+            height: 8,
+          ),
+          UnconstrainedBox(
+              child: Flexible(
+                  child: Text(
             text,
-            style: TextStyle(color: Colors.transparent),
-          )),
+            maxLines: 2,
+            style:
+                TextStyle(color: !reverse ? Colors.transparent : Colors.black),
+          ))),
         ],
       ),
     );
@@ -264,9 +290,11 @@ class TimeLineState extends State<TimeLineWidget> {
 
 class DotDateEvent {
   DateTime date;
-  String textToShow = "";
+  String dotText = "";
+  String lineText = "";
   bool linkDot = true;
   bool showDot = true;
+  bool reverse = false;
   Color color = Colors.blue;
   String titleBody = "";
   String dateBody = "";
@@ -274,9 +302,11 @@ class DotDateEvent {
   AssetImage? bodyImage;
 
   DotDateEvent(this.date,
-      {this.textToShow = "",
+      {this.dotText = "",
+      this.lineText = "",
       this.linkDot = true,
       this.showDot = true,
+      this.reverse = false,
       this.color = Colors.blue,
       this.titleBody = "",
       this.dateBody = "",

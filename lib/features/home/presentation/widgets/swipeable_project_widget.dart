@@ -39,7 +39,7 @@ class _SwipeableCardsCarouselState extends State<SwipeableProjectsCarousel> {
         listProjectCards = getProjectsWidgets(false);
       }
       return SizedBox(
-        width: widthPhone * 2 + widthPhone / 2,
+        width: (widthPhone + 3) * 2 + (widthPhone + 3) / 2,
         child: CarouselSlider(
             carouselController: _carouselController,
             options: CarouselOptions(
