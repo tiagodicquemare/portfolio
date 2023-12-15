@@ -1,3 +1,4 @@
+import 'package:dicquemare_solution/assets.dart';
 import 'package:dicquemare_solution/core/ui/text_styles.dart';
 import 'package:dicquemare_solution/features/phone_container/presentation/bloc/phone_container_bloc.dart';
 import 'package:flutter/material.dart';
@@ -15,12 +16,27 @@ class ProfessionalCategoriesWidget extends StatefulWidget {
 
 class _ProfessionalCategoriesWidgetState
     extends State<ProfessionalCategoriesWidget> {
+  int selectedCategory = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedCategory = widget.category - 1;
+  }
+
   final categories = [
     'Introduction',
     'Chronologie',
     'Curriculum Vitae',
     'Stack technique',
     'Recommandations'
+  ];
+  final assets = [
+    AssetImage(MyAssets.icProfile),
+    AssetImage(MyAssets.icCalendar),
+    AssetImage(MyAssets.icScroll),
+    AssetImage(MyAssets.icCog),
+    AssetImage(MyAssets.icRecommendation)
   ];
   @override
   Widget build(BuildContext context) {
@@ -32,17 +48,28 @@ class _ProfessionalCategoriesWidgetState
           const SizedBox(
             height: 48,
           ),
-          Text(" Catégories",
-              style: AppTextStyles.textXXLSemiBold(color: Colors.black)),
+          Text("Bienvenue !",
+              style: AppTextStyles.textTitle26Bold(color: Colors.black)),
           const SizedBox(
             height: 24,
+          ),
+          Text(
+              "Voici mon CV interactif, cliquez sur une catégorie pour en savoir plus.",
+              style: AppTextStyles.textLRegular(color: Colors.black)),
+          const SizedBox(
+            height: 48,
           ),
           ListView.separated(
             physics: ClampingScrollPhysics(),
             shrinkWrap: true,
             itemCount: categories.length,
             itemBuilder: ((context, index) {
-              return newCategoryWidget(categories[index], index);
+              return categoryWidget(
+                categories[index],
+                index,
+                assets[index],
+                selectedCategory == index,
+              );
             }),
             separatorBuilder: ((context, index) {
               return const SizedBox(
@@ -55,11 +82,13 @@ class _ProfessionalCategoriesWidgetState
     );
   }
 
-  Widget newCategoryWidget(String category, int index) {
+  Widget categoryWidget(
+      String category, int index, AssetImage image, bool selected) {
     return InkWell(
       onTap: () {
         BlocProvider.of<PhoneContainerBloc>(context)
             .add(ShowProfessionalCategoriesEvent(category: index + 1));
+        selectedCategory = index;
       },
       child: Container(
         height: 50,
@@ -78,60 +107,32 @@ class _ProfessionalCategoriesWidgetState
         child: Row(
           children: [
             const SizedBox(
-              width: 32,
+              width: 12,
+            ),
+            Image(
+              image: image,
+              width: 24,
+              height: 24,
+            ),
+            const SizedBox(
+              width: 12,
             ),
             Text(
               category,
               style: AppTextStyles.textLRegular(color: Colors.black),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget categoryWidget(String category, int index) {
-    return InkWell(
-      onTap: () {
-        BlocProvider.of<PhoneContainerBloc>(context)
-            .add(ShowProfessionalCategoriesEvent(category: index + 1));
-      },
-      child: Container(
-        height: 80,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          border: const Border(
-            top: BorderSide(
-              color: Colors.grey,
-              width: 1.0,
             ),
-            bottom: BorderSide(
-              color: Colors.grey,
-              width: 1.0,
-            ),
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.1),
-              spreadRadius: 1,
-              blurRadius: 5,
-              offset: Offset(0, 3),
-            ),
-          ],
-        ),
-        alignment: Alignment.centerLeft,
-        child: Row(
-          children: [
+            const Spacer(),
+            selected
+                ? Container(
+                    width: 12,
+                    height: 12,
+                    decoration: const BoxDecoration(
+                        shape: BoxShape.circle, color: Colors.green),
+                  )
+                : const SizedBox(),
             const SizedBox(
-              width: 32,
+              width: 12,
             ),
-            Text(
-              category,
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            )
           ],
         ),
       ),
