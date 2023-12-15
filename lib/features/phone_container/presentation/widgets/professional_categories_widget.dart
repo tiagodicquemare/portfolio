@@ -14,7 +14,13 @@ class ProfessionalCategoriesWidget extends StatefulWidget {
 
 class _ProfessionalCategoriesWidgetState
     extends State<ProfessionalCategoriesWidget> {
-  final categories = ['Bio', 'CV', 'Stack technique', 'Recommandations'];
+  final categories = [
+    'Bio',
+    'Chronologie',
+    'CV',
+    'Stack technique',
+    'Recommandations'
+  ];
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -39,7 +45,7 @@ class _ProfessionalCategoriesWidgetState
             }),
             separatorBuilder: ((context, index) {
               return const SizedBox(
-                height: 24,
+                height: 16,
               );
             })),
       ],
@@ -53,7 +59,7 @@ class _ProfessionalCategoriesWidgetState
             .add(ShowProfessionalCategoriesEvent(category: index + 1));
       },
       child: Container(
-        height: 100,
+        height: 80,
         decoration: BoxDecoration(
           color: Colors.white,
           border: const Border(

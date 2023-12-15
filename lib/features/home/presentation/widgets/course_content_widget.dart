@@ -2,6 +2,7 @@ import 'package:dicquemare_solution/features/home/presentation/widgets/course_wi
 import 'package:dicquemare_solution/features/home/presentation/widgets/course_widgets/cv_widget.dart';
 import 'package:dicquemare_solution/features/home/presentation/widgets/course_widgets/recommendations_widget.dart';
 import 'package:dicquemare_solution/features/home/presentation/widgets/course_widgets/technical_stack_widget.dart';
+import 'package:dicquemare_solution/features/home/presentation/widgets/course_widgets/timeline_widget.dart';
 import 'package:flutter/material.dart';
 
 class CourseContentWidget extends StatefulWidget {
@@ -17,10 +18,12 @@ class _CourseContentWidgetState extends State<CourseContentWidget> {
     if (widget.selectedCategory == 1) {
       return AboutMeWidget();
     } else if (widget.selectedCategory == 2) {
-      return CVWidget();
+      return TimeLineWidget();
     } else if (widget.selectedCategory == 3) {
-      return TechnicalStackWidget();
+      return CVWidget();
     } else if (widget.selectedCategory == 4) {
+      return TechnicalStackWidget();
+    } else if (widget.selectedCategory == 5) {
       return RecommendationsWidget();
     } else {
       return Container();

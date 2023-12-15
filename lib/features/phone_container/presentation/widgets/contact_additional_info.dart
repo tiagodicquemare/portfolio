@@ -1,4 +1,5 @@
 import 'package:dicquemare_solution/assets.dart';
+import 'package:dicquemare_solution/core/utils.dart';
 import 'package:flutter/material.dart';
 
 class ContactAdditionalInfoWidget extends StatelessWidget {
@@ -10,39 +11,42 @@ class ContactAdditionalInfoWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildContactItem(
-            "tdicquemare@gmail.com",
-            AssetImage(MyAssets.icMail),
-          ),
+              "tdicquemare@gmail.com", AssetImage(MyAssets.icMail), () {
+            CoreUtils.copyToClipboard("tdicquemare@gmail.com");
+          }),
           const SizedBox(height: 16),
-          _buildContactItem(
-            "+33 6 38 25 92 79",
-            AssetImage(MyAssets.icPhone),
-          ),
+          _buildContactItem("+33 6 38 25 92 79", AssetImage(MyAssets.icPhone),
+              () {
+            CoreUtils.launchURL(
+                "https://api.whatsapp.com/send/?phone=33638259279&text&type=phone_number&app_absent=0");
+          }),
           const SizedBox(height: 8),
           Divider(),
           const SizedBox(height: 8),
           _buildContactItem(
-            "Suivez moi sur LinkedIn",
-            AssetImage(MyAssets.icLinkedin),
-          ),
+              "Suivez moi sur LinkedIn", AssetImage(MyAssets.icLinkedin), () {
+            CoreUtils.launchURL("https://www.linkedin.com/in/tdicquemare/");
+          }),
+          const SizedBox(height: 16),
+          _buildContactItem("Suivez moi sur Malt", AssetImage(MyAssets.icMalt),
+              () {
+            CoreUtils.launchURL("https://www.malt.fr/profile/tdicquemare");
+          }),
           const SizedBox(height: 16),
           _buildContactItem(
-            "Suivez moi sur Malt",
-            AssetImage(MyAssets.icMalt),
-          ),
-          const SizedBox(height: 16),
-          _buildContactItem(
-            "Suivez moi sur GitHub",
-            AssetImage(MyAssets.icGithub),
-          ),
+              "Suivez moi sur GitHub", AssetImage(MyAssets.icGithub), () {
+            CoreUtils.launchURL("https://github.com/tiagodicquemare");
+          }),
         ],
       ),
     );
   }
 
-  Widget _buildContactItem(String title, AssetImage image) {
+  Widget _buildContactItem(String title, AssetImage image, Function() onTap) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        onTap.call();
+      },
       child: Row(
         children: [
           Image(

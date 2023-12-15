@@ -154,7 +154,7 @@ class _ProjectContentSecondWidgetState
             children: widget.project.technologies
                 .map((tech) => ActionChip(
                       label: Text('#${tech.name}'),
-                      onPressed: () => _launchURL(tech.url),
+                      onPressed: () => CoreUtils.launchURL(tech.url),
                     ))
                 .toList(),
           ),
@@ -173,7 +173,7 @@ class _ProjectContentSecondWidgetState
         InkWell(
           onTap: () {
             if (widget.project.playStoreUrl != null) {
-              _launchURL(widget.project.playStoreUrl!);
+              CoreUtils.launchURL(widget.project.playStoreUrl!);
             }
           },
           child: Container(
@@ -205,7 +205,7 @@ class _ProjectContentSecondWidgetState
         InkWell(
           onTap: () {
             if (widget.project.appStoreUrl != null) {
-              _launchURL(widget.project.appStoreUrl!);
+              CoreUtils.launchURL(widget.project.appStoreUrl!);
             }
           },
           child: Container(
@@ -236,12 +236,5 @@ class _ProjectContentSecondWidgetState
         ),
       ],
     );
-  }
-
-  void _launchURL(String url) async {
-    if (!await launchUrl(Uri.parse(url),
-        mode: LaunchMode.externalApplication)) {
-      throw 'Could not launch $url';
-    }
   }
 }

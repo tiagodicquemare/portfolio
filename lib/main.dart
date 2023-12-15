@@ -2,10 +2,13 @@ import 'package:dicquemare_solution/NavigationRoutes.dart';
 import 'package:dicquemare_solution/core/injection.dart';
 import 'package:dicquemare_solution/features/home/presentation/pages/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() async {
+  debugPaintSizeEnabled = false;
+  debugDisableShadows = false;
   await configureDependencies();
   runApp(const MyApp());
 }
@@ -18,6 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
