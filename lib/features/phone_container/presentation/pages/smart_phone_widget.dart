@@ -1,3 +1,4 @@
+import 'package:dicquemare_solution/core/colors.dart';
 import 'package:dicquemare_solution/core/injection.dart';
 import 'package:dicquemare_solution/core/utils.dart';
 import 'package:dicquemare_solution/features/home/domain/entities/project.dart';
@@ -26,7 +27,7 @@ class SmartphoneWidget extends StatelessWidget {
           width: widthPhone,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12.0),
-            color: Colors.black,
+            color: myLightColorScheme.outline,
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withOpacity(0.2),
@@ -46,7 +47,7 @@ class SmartphoneWidget extends StatelessWidget {
                   child: Container(
                     width: widthPhone - 12,
                     height: heightPhone - 12,
-                    color: Colors.white,
+                    color: myLightColorScheme.surface,
                     child: BlocBuilder<PhoneContainerBloc, PhoneContainerState>(
                       builder: (context, state) {
                         if (project != null) {
@@ -88,11 +89,11 @@ class SmartphoneWidget extends StatelessWidget {
             Container(
               height: heightPhone / 16,
               width: 3,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
                       topRight: Radius.circular(4),
                       bottomRight: Radius.circular(4)),
-                  color: Colors.black),
+                  color: myLightColorScheme.outline),
             ),
             SizedBox(
               height: heightPhone / 24,
@@ -100,11 +101,11 @@ class SmartphoneWidget extends StatelessWidget {
             Container(
               height: heightPhone / 8,
               width: 3,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
                       topRight: Radius.circular(4),
                       bottomRight: Radius.circular(4)),
-                  color: Colors.black),
+                  color: myLightColorScheme.outline),
             )
           ],
         )

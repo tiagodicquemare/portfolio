@@ -108,7 +108,7 @@ class AppTextStyles {
     return TextStyle(
         fontFamily: fontFamily,
         color: color,
-        height: 1.2,
+        height: 1.6,
         fontSize: size,
         decoration: underline ? TextDecoration.underline : null,
         fontWeight: weight);

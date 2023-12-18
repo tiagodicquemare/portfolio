@@ -140,6 +140,7 @@ class TechnicalStackWidgetState extends State<TechnicalStackWidget> {
           curve: Curves.fastOutSlowIn,
           alignment: Alignment.center,
           decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
               image: DecorationImage(
                   image: section.backgroundImage, fit: BoxFit.cover)),
           height:

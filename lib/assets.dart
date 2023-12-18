@@ -26,6 +26,7 @@ class MyAssets {
   static const String icProfile = 'ic_profile.png';
   static const String icAndroidHello = 'ic_android_hello.png';
   static const String icCog = 'ic_cog.png';
+  static const String icWorld = 'ic_world.png';
 
   static const String icArrow = 'ic_arrow.png';
 

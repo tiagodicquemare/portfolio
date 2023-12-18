@@ -1,3 +1,4 @@
+import 'package:dicquemare_solution/core/colors.dart';
 import 'package:dicquemare_solution/core/ui/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/scheduler/ticker.dart';
@@ -52,7 +53,7 @@ class _MyTabBarState extends State<MyTabBar> with TickerProviderStateMixin {
         child: Stack(
           children: <Widget>[
             AppBar(
-              backgroundColor: Colors.green,
+              backgroundColor: myLightColorScheme.primary,
               bottom: TabBar(
                 controller: widget.tabController,
                 indicatorColor: Colors.transparent,
@@ -90,7 +91,8 @@ class _MyTabBarState extends State<MyTabBar> with TickerProviderStateMixin {
                       height: 42,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Colors.white.withOpacity(0.2)))),
+                          color:
+                              myLightColorScheme.onPrimary.withOpacity(0.2)))),
             ),
           ],
         ));

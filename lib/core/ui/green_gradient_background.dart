@@ -1,3 +1,4 @@
+import 'package:dicquemare_solution/core/colors.dart';
 import 'package:flutter/material.dart';
 
 class GreenGradientBackground extends StatelessWidget {
@@ -6,6 +7,17 @@ class GreenGradientBackground extends StatelessWidget {
   GreenGradientBackground({required this.child});
   @override
   Widget build(BuildContext context) {
+    return buildWhiteBackground();
+  }
+
+  Widget buildWhiteBackground() {
+    return Container(
+      color: myLightColorScheme.background,
+      child: child,
+    );
+  }
+
+  Widget buildGreenGradient() {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(

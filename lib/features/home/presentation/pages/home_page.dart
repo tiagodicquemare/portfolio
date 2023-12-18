@@ -1,3 +1,4 @@
+import 'package:dicquemare_solution/core/colors.dart';
 import 'package:dicquemare_solution/core/injection.dart';
 import 'package:dicquemare_solution/core/ui/animated_tab_bar.dart';
 import 'package:dicquemare_solution/core/ui/green_gradient_background.dart';

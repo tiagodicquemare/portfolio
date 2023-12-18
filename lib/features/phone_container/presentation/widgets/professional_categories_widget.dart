@@ -1,4 +1,5 @@
 import 'package:dicquemare_solution/assets.dart';
+import 'package:dicquemare_solution/core/colors.dart';
 import 'package:dicquemare_solution/core/ui/text_styles.dart';
 import 'package:dicquemare_solution/features/phone_container/presentation/bloc/phone_container_bloc.dart';
 import 'package:flutter/material.dart';
@@ -42,42 +43,47 @@ class _ProfessionalCategoriesWidgetState
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(
-            height: 48,
-          ),
-          Text("Bienvenue !",
-              style: AppTextStyles.textTitle26Bold(color: Colors.black)),
-          const SizedBox(
-            height: 24,
-          ),
-          Text(
-              "Voici mon CV interactif, cliquez sur une catégorie pour en savoir plus.",
-              style: AppTextStyles.textLRegular(color: Colors.black)),
-          const SizedBox(
-            height: 48,
-          ),
-          ListView.separated(
-            physics: ClampingScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: categories.length,
-            itemBuilder: ((context, index) {
-              return categoryWidget(
-                categories[index],
-                index,
-                assets[index],
-                selectedCategory == index,
-              );
-            }),
-            separatorBuilder: ((context, index) {
-              return const SizedBox(
-                height: 24,
-              );
-            }),
-          ),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const SizedBox(
+              height: 48,
+            ),
+            Text("Bienvenue !",
+                style: AppTextStyles.textTitle26Bold(
+                    color: myLightColorScheme.onSurface)),
+            const SizedBox(
+              height: 24,
+            ),
+            Text(
+                "Voici mon CV interactif, cliquez sur une catégorie pour en savoir plus.",
+                style: AppTextStyles.textLRegular(
+                    color: myLightColorScheme.onSurface)),
+            const SizedBox(
+              height: 48,
+            ),
+            ListView.separated(
+              physics: ClampingScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: categories.length,
+              itemBuilder: ((context, index) {
+                return categoryWidget(
+                  categories[index],
+                  index,
+                  assets[index],
+                  selectedCategory == index,
+                );
+              }),
+              separatorBuilder: ((context, index) {
+                return const SizedBox(
+                  height: 24,
+                );
+              }),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -119,7 +125,8 @@ class _ProfessionalCategoriesWidgetState
             ),
             Text(
               category,
-              style: AppTextStyles.textLRegular(color: Colors.black),
+              style: AppTextStyles.textLRegular(
+                  color: myLightColorScheme.onSurface),
             ),
             const Spacer(),
             selected

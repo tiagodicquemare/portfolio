@@ -1,42 +1,59 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:dicquemare_solution/assets.dart';
+import 'package:dicquemare_solution/core/colors.dart';
 import 'package:dicquemare_solution/core/ui/text_styles.dart';
 import 'package:flutter/material.dart';
 
 class AboutMeWidget extends StatelessWidget {
+  Map<String, AssetImage> mapServices = {
+    "Analyse du besoin": AssetImage(MyAssets.icScroll),
+    "Développement": AssetImage(MyAssets.icPhone),
+    "Déploiement": AssetImage(MyAssets.icWorld),
+    "Maintenance": AssetImage(MyAssets.icCog)
+  };
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(48),
+      padding: EdgeInsets.symmetric(horizontal: 48, vertical: 32),
       child: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Flexible(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      "Développeur mobile Android et Flutter Freelance",
-                      style: AppTextStyles.textTitle32(color: Colors.black),
+              Expanded(
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: myLightColorScheme.surfaceVariant,
+                      borderRadius: BorderRadius.circular(12)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          "Développeur mobile Android \net Flutter Freelance",
+                          style: AppTextStyles.textTitle32(
+                              color: myLightColorScheme.onBackground),
+                        ),
+                        SizedBox(
+                          height: 32,
+                        ),
+                        Text(
+                          "I am a backend developer with expertise in Node.js. I have experience in building scalable, secure and reliable web applications using various frameworks and technologies. I enjoy solving complex problems and learning new skills. I am passionate about creating high-quality code that follows best practices and industry standards. I am always looking for new challenges and opportunities to grow as a developer.",
+                          style: AppTextStyles.textLRegular(
+                              color: myLightColorScheme.onBackground),
+                        ),
+                      ],
                     ),
-                    SizedBox(
-                      height: 32,
-                    ),
-                    Text(
-                      "I am a backend developer with expertise in Node.js. I have experience in building scalable, secure and reliable web applications using various frameworks and technologies. I enjoy solving complex problems and learning new skills. I am passionate about creating high-quality code that follows best practices and industry standards. I am always looking for new challenges and opportunities to grow as a developer.",
-                      style: AppTextStyles.textLRegular(color: Colors.black),
-                    ),
-                  ],
+                  ),
                 ),
               ),
               const SizedBox(
-                width: 48,
+                width: 24,
               ),
               Container(
                 width: 420.0,
@@ -51,48 +68,56 @@ class AboutMeWidget extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(
-            height: 48,
+          const Spacer(),
+          const Divider(
+            thickness: 3,
           ),
+          const Spacer(),
           Container(
-            height: 180,
-            child: ListView.separated(
-              physics: ClampingScrollPhysics(),
-              scrollDirection: Axis.horizontal,
-              shrinkWrap: true,
-              itemCount: 4,
-              itemBuilder: ((context, index) {
-                return Container(
-                    width: 170.0,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15.0),
-                        color: Colors.black.withOpacity(0.7)),
-                    child: Padding(
-                        padding: EdgeInsets.all(8),
-                        child: Column(
-                          children: const [
-                            Image(
-                              image: AssetImage(MyAssets.appleLogo),
-                              width: 80,
-                            ),
-                            SizedBox(
-                              height: 32,
-                            ),
-                            Text(
-                              "Android",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.normal,
-                              ),
-                            ),
-                          ],
-                        )));
-              }),
-              separatorBuilder: (context, index) => SizedBox(width: 48.0),
-            ),
-          ),
+              height: 180,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  buildSkillItem(mapServices.entries.elementAt(0)),
+                  const SizedBox(width: 8),
+                  buildSkillItem(mapServices.entries.elementAt(1)),
+                  const SizedBox(width: 8),
+                  buildSkillItem(mapServices.entries.elementAt(2)),
+                  const SizedBox(width: 8),
+                  buildSkillItem(mapServices.entries.elementAt(3)),
+                ],
+              )),
         ],
+      ),
+    );
+  }
+
+  Widget buildSkillItem(MapEntry<String, AssetImage> entry) {
+    return Container(
+      width: 170.0,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15.0),
+          color: myLightColorScheme.tertiaryContainer),
+      child: Padding(
+        padding: EdgeInsets.all(8),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image(
+              image: entry.value,
+              width: 80,
+            ),
+            SizedBox(
+              height: 12,
+            ),
+            Text(
+              entry.key,
+              textAlign: TextAlign.center,
+              style: AppTextStyles.textLSemiBold(
+                  color: myLightColorScheme.onTertiaryContainer),
+            ),
+          ],
+        ),
       ),
     );
   }
