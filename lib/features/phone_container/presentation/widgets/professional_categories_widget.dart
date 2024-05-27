@@ -27,14 +27,14 @@ class _ProfessionalCategoriesWidgetState
 
   final categories = [
     'Introduction',
-    'Chronologie',
+    // 'Chronologie',
     'Curriculum Vitae',
     'Stack technique',
     'Recommandations'
   ];
   final assets = [
     AssetImage(MyAssets.icProfile),
-    AssetImage(MyAssets.icCalendar),
+    // AssetImage(MyAssets.icCalendar),
     AssetImage(MyAssets.icScroll),
     AssetImage(MyAssets.icCog),
     AssetImage(MyAssets.icRecommendation)

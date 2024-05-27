@@ -37,7 +37,7 @@ class AboutMeWidget extends StatelessWidget {
                         Text(
                           "Développeur mobile Android \net Flutter Freelance",
                           style: AppTextStyles.textTitle32(
-                              color: myLightColorScheme.onBackground),
+                              color: myLightColorScheme.primary),
                         ),
                         SizedBox(
                           height: 32,

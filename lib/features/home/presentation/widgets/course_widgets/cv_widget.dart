@@ -1,4 +1,5 @@
 import 'package:dicquemare_solution/assets.dart';
+import 'package:dicquemare_solution/core/colors.dart';
 import 'package:dicquemare_solution/core/pdf_utils.dart';
 import 'package:dicquemare_solution/core/utils.dart';
 import 'package:flutter/material.dart';
@@ -30,12 +31,17 @@ class _CVWidget extends State<CVWidget> {
         children: [
           Stack(
             children: [
-              Image.asset(
-                frenchCVSelected
-                    ? MyAssets.screenshotFrenchCV
-                    : MyAssets.screenshotEnglishCV,
-                width: widthDocument,
-                height: heightDocument,
+              InkWell(
+                onTap: () {
+                  _showFullScreenModal(context);
+                },
+                child: Image.asset(
+                  frenchCVSelected
+                      ? MyAssets.screenshotFrenchCV
+                      : MyAssets.screenshotEnglishCV,
+                  width: widthDocument,
+                  height: heightDocument,
+                ),
               ),
               Positioned(
                 top: 12,
@@ -75,7 +81,7 @@ class _CVWidget extends State<CVWidget> {
                       border: Border.all(color: Colors.blue, width: 4),
                       borderRadius: BorderRadius.circular(15.0),
                       color: frenchCVSelected
-                          ? Colors.blue.withOpacity(0.7)
+                          ? myLightColorScheme.primary.withOpacity(0.7)
                           : Colors.white),
                   child: Text(
                     "CV en français",
@@ -104,9 +110,9 @@ class _CVWidget extends State<CVWidget> {
                       borderRadius: BorderRadius.circular(15.0),
                       color: frenchCVSelected
                           ? Colors.white
-                          : Colors.blue.withOpacity(0.7)),
+                          : myLightColorScheme.primary.withOpacity(0.7)),
                   child: Text(
-                    "CV en anglais",
+                    "English CV",
                     style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -132,9 +138,9 @@ class _CVWidget extends State<CVWidget> {
                   decoration: BoxDecoration(
                       border: Border.all(color: Colors.blue, width: 4),
                       borderRadius: BorderRadius.circular(15.0),
-                      color: Colors.blueGrey),
+                      color: myLightColorScheme.tertiary.withOpacity(0.7)),
                   child: const Text(
-                    "Télécharger CV",
+                    "Télécharger le CV",
                     style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,

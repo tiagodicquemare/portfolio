@@ -18,12 +18,10 @@ class _CourseContentWidgetState extends State<CourseContentWidget> {
     if (widget.selectedCategory == 1) {
       return AboutMeWidget();
     } else if (widget.selectedCategory == 2) {
-      return TimeLineWidget();
-    } else if (widget.selectedCategory == 3) {
       return CVWidget();
-    } else if (widget.selectedCategory == 4) {
+    } else if (widget.selectedCategory == 3) {
       return TechnicalStackWidget();
-    } else if (widget.selectedCategory == 5) {
+    } else if (widget.selectedCategory == 4) {
       return RecommendationsWidget();
     } else {
       return Container();
