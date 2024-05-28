@@ -3,7 +3,7 @@ import 'package:dicquemare_solution/core/utils.dart';
 import 'package:dicquemare_solution/features/home/domain/entities/project.dart';
 import 'package:dicquemare_solution/features/home/presentation/bloc/home_bloc.dart';
 import 'package:dicquemare_solution/features/home/presentation/projects.dart';
-import 'package:dicquemare_solution/features/home/presentation/widgets/swipeable_project_widget.dart';
+import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/swipeable_project_widget.dart';
 import 'package:dicquemare_solution/features/phone_container/presentation/bloc/phone_container_bloc.dart';
 import 'package:dicquemare_solution/features/phone_container/presentation/pages/smart_phone_widget.dart';
 import 'package:flutter/material.dart';

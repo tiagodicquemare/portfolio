@@ -60,7 +60,8 @@ class MyHomePage extends StatelessWidget {
               GlobalCupertinoLocalizations.delegate,
             ],
             supportedLocales: const [
-              Locale('fr', ''), // French, no country code
+              Locale('fr'),
+              Locale('en'),
             ],
             initialRoute: '/',
             routes: {

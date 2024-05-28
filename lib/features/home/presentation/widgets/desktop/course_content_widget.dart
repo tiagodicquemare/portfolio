@@ -1,8 +1,8 @@
-import 'package:dicquemare_solution/features/home/presentation/widgets/course_widgets/about_me_widget.dart';
-import 'package:dicquemare_solution/features/home/presentation/widgets/course_widgets/cv_widget.dart';
-import 'package:dicquemare_solution/features/home/presentation/widgets/course_widgets/recommendations_widget.dart';
-import 'package:dicquemare_solution/features/home/presentation/widgets/course_widgets/technical_stack_widget.dart';
-import 'package:dicquemare_solution/features/home/presentation/widgets/course_widgets/timeline_widget.dart';
+import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/course_widgets/about_me_widget.dart';
+import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/course_widgets/cv_widget.dart';
+import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/course_widgets/recommendations_widget.dart';
+import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/course_widgets/technical_stack_widget.dart';
+import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/course_widgets/timeline_widget.dart';
 import 'package:flutter/material.dart';
 
 class CourseContentWidget extends StatefulWidget {

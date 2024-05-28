@@ -3,9 +3,10 @@ import 'package:dicquemare_solution/core/injection.dart';
 import 'package:dicquemare_solution/core/ui/animated_tab_bar.dart';
 import 'package:dicquemare_solution/core/ui/green_gradient_background.dart';
 import 'package:dicquemare_solution/core/utils.dart';
-import 'package:dicquemare_solution/features/home/presentation/widgets/contact_me_widget.dart';
-import 'package:dicquemare_solution/features/home/presentation/widgets/course_content_widget.dart';
-import 'package:dicquemare_solution/features/home/presentation/widgets/project_content_widget.dart';
+import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/contact_me_widget.dart';
+import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/course_content_widget.dart';
+import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/project_content_widget.dart';
+import 'package:dicquemare_solution/features/home/presentation/widgets/mobile/contact_me_mobile_widget.dart';
 import 'package:dicquemare_solution/features/phone_container/presentation/bloc/phone_container_bloc.dart';
 import 'package:dicquemare_solution/features/phone_container/presentation/pages/smart_phone_widget.dart';
 import 'package:flutter/material.dart';
@@ -50,22 +51,48 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
-    heightPhone = CoreUtils.getPhoneScreenHeight(context);
-    widthPhone = CoreUtils.getPhoneScreenWidth(context);
     return Scaffold(
-      body: Column(
-        children: <Widget>[
-          MyTabBar(tabController: _tabController),
-          Expanded(
-            child: GreenGradientBackground(
-                child: containerHomeContent(_tabController.index + 1)),
-          ),
-        ],
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          double minWidth = 1200;
+          double minHeight = 800;
+
+          return _buildContent(context, constraints.maxWidth < minWidth);
+        },
       ),
     );
   }
 
-  Widget containerHomeContent(int index) {
+  Widget _buildContent(BuildContext context, bool mobile) {
+    heightPhone = CoreUtils.getPhoneScreenHeight(context);
+    widthPhone = CoreUtils.getPhoneScreenWidth(context);
+    return Column(
+      children: <Widget>[
+        MyTabBar(tabController: _tabController),
+        Expanded(
+          child: GreenGradientBackground(
+            child: mobile
+                ? containerHomeMobileContent(_tabController.index + 1)
+                : containerHomeDesktopContent(_tabController.index + 1),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget containerHomeMobileContent(int index) {
+    if (index == 1) {
+      return CourseContentWidget(
+        selectedCategory: selectedProfessionalCategory,
+      );
+    } else if (index == 2) {
+      return ProjectContentWidget();
+    } else {
+      return SingleChildScrollView(child: ContactMeMobileWidget());
+    }
+  }
+
+  Widget containerHomeDesktopContent(int index) {
     return BlocProvider(
         create: (blocContext) => sl<PhoneContainerBloc>(),
         child: BlocBuilder<PhoneContainerBloc, PhoneContainerState>(

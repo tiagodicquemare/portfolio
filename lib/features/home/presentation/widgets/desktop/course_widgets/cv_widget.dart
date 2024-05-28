@@ -22,7 +22,7 @@ class _CVWidget extends State<CVWidget> {
   @override
   Widget build(BuildContext context) {
     final double heightDocument = CoreUtils.getPhoneScreenHeight(context) - 48;
-    final double widthDocument = heightDocument * 0.707; // ratio A4
+    final double widthDocument = heightDocument * 0.707;
 
     return Padding(
       padding: const EdgeInsets.all(24.0),
@@ -177,7 +177,6 @@ class _CVWidget extends State<CVWidget> {
                       color: Colors.black.withOpacity(0.5),
                     ),
                   )),
-              // Centered white blank page
               Container(
                 height: MediaQuery.of(context).size.height * 0.95,
                 width: MediaQuery.of(context).size.height * 0.95 * 0.707,
@@ -188,7 +187,6 @@ class _CVWidget extends State<CVWidget> {
                     print(details.description);
                   },
                 ),
-                // Your content here
               ),
             ],
           ),
