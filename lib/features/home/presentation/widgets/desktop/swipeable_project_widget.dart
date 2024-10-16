@@ -21,7 +21,7 @@ class SwipeableProjectsCarousel extends StatefulWidget {
 
 class _SwipeableCardsCarouselState extends State<SwipeableProjectsCarousel> {
   final PageController _pageController = PageController(viewportFraction: 0.4);
-  final CarouselController _carouselController = CarouselController();
+  final MyCarouselController _carouselController = MyCarouselController();
   int indexPageSelected = 0;
 
   @override
@@ -40,7 +40,7 @@ class _SwipeableCardsCarouselState extends State<SwipeableProjectsCarousel> {
       }
       return SizedBox(
         width: (widthPhone + 3) * 2 + (widthPhone + 3) / 2,
-        child: CarouselSlider(
+        child: MyCarouselSlider(
             carouselController: _carouselController,
             options: CarouselOptions(
                 autoPlay: false,

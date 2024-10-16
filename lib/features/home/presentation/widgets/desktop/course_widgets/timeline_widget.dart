@@ -29,27 +29,27 @@ class TimeLineState extends State<TimeLineWidget> {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
+              const Text(
                 "Chronologie",
                 style: TextStyle(fontSize: 32),
               ),
               const SizedBox(
                 width: 24,
               ),
-              Text(
+              const Text(
                 "Educatif",
                 style: TextStyle(fontSize: 16),
               ),
               const SizedBox(
                 width: 8,
               ),
-              buildDot(color: Colors.red),
-              buildHorizontalSolidLine(48, color: Colors.red),
-              buildDot(color: Colors.red),
+              buildDot(color: Colors.green),
+              buildHorizontalSolidLine(48, color: Colors.green),
+              buildDot(color: Colors.green),
               const SizedBox(
                 width: 24,
               ),
-              Text(
+              const Text(
                 "Professionnelle",
                 style: TextStyle(fontSize: 16),
               ),
@@ -62,18 +62,19 @@ class TimeLineState extends State<TimeLineWidget> {
               const SizedBox(
                 width: 24,
               ),
-              Text(
+              const Text(
                 "Entreprenariale",
                 style: TextStyle(fontSize: 16),
               ),
               const SizedBox(
                 width: 8,
               ),
-              buildDot(color: Colors.green),
-              buildHorizontalSolidLine(48, color: Colors.green),
-              buildDot(color: Colors.green),
+              buildDot(color: Colors.red),
+              buildHorizontalSolidLine(48, color: Colors.red),
+              buildDot(color: Colors.red),
             ],
           ),
+          const SizedBox(height: 32),
           buildTimeline(availableWidth, [
             DotDateEvent(DateTime(2015, 09),
                 linkDot: true, color: Colors.green, dotText: "09/2015"),
@@ -90,6 +91,7 @@ class TimeLineState extends State<TimeLineWidget> {
             DotDateEvent(DateTime(2020, 09),
                 linkDot: true, color: Colors.green, dotText: "09/2020"),
           ]),
+          const SizedBox(height: 24),
           buildTimeline(availableWidth, [
             DotDateEvent(DateTime(2015, 07), linkDot: false, showDot: false),
             DotDateEvent(
@@ -135,7 +137,7 @@ class TimeLineState extends State<TimeLineWidget> {
                   Text(dateBody)
                 ],
               ),
-              Spacer(),
+              const Spacer(),
               bodyImage != null
                   ? Image(
                       image: bodyImage!,
@@ -171,8 +173,7 @@ class TimeLineState extends State<TimeLineWidget> {
       final positionToCalculate = positionInTimeline - lastPosition;
       double widthLine = positionToCalculate * totalWidth / numberOfMonths;
       lastPosition = positionInTimeline;
-      print(
-          "positionInTimeline -> $positionInTimeline /// widthLine -> $widthLine");
+
       if (index != 0 && dateEvent.linkDot) {
         listWidgets.add(buildHorizontalSolidLine(widthLine,
             reverse: dateEvent.reverse,
@@ -211,17 +212,15 @@ class TimeLineState extends State<TimeLineWidget> {
   }
 
   Widget buildDot({String date = "", Color color = Colors.blue}) {
-    return SizedBox(
-      width: 18,
+    return SizedOverflowBox(
+      size: const Size(18, 50),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          UnconstrainedBox(
-            child: Text(
-              date,
-              maxLines: 1,
-              overflow: TextOverflow.visible,
-            ),
+          Text(
+            date,
+            maxLines: 1,
+            overflow: TextOverflow.visible,
           ),
           const SizedBox(
             height: 12,
@@ -251,18 +250,17 @@ class TimeLineState extends State<TimeLineWidget> {
       bool textOnTop = true,
       bool reverse = false,
       Function()? onTap}) {
-    return SizedBox(
-      width: width,
+    return SizedOverflowBox(
+      size: Size(width, 50),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          UnconstrainedBox(
-              child: Flexible(
+          Flexible(
             child: Text(text,
                 maxLines: 2,
                 style: TextStyle(
                     color: reverse ? Colors.transparent : Colors.black)),
-          )),
+          ),
           const SizedBox(
             height: 8,
           ),
@@ -274,14 +272,14 @@ class TimeLineState extends State<TimeLineWidget> {
           const SizedBox(
             height: 8,
           ),
-          UnconstrainedBox(
-              child: Flexible(
-                  child: Text(
-            text,
-            maxLines: 2,
-            style:
-                TextStyle(color: !reverse ? Colors.transparent : Colors.black),
-          ))),
+          Flexible(
+            child: Text(
+              text,
+              maxLines: 2,
+              style: TextStyle(
+                  color: !reverse ? Colors.transparent : Colors.black),
+            ),
+          ),
         ],
       ),
     );

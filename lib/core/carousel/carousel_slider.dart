@@ -16,7 +16,7 @@ export 'carousel_options.dart';
 typedef Widget ExtendedIndexedWidgetBuilder(
     BuildContext context, int index, int realIndex);
 
-class CarouselSlider extends StatefulWidget {
+class MyCarouselSlider extends StatefulWidget {
   /// [CarouselOptions] to create a [CarouselState] with
   final CarouselOptions options;
 
@@ -25,48 +25,44 @@ class CarouselSlider extends StatefulWidget {
   /// The widgets to be shown in the carousel of default constructor
   final List<Widget>? items;
 
-  /// The widget item builder that will be used to build item on demand
-  /// The third argument is the PageView's real index, can be used to cooperate
-  /// with Hero.
   final ExtendedIndexedWidgetBuilder? itemBuilder;
 
-  /// A [MapController], used to control the map.
   final CarouselControllerImpl _carouselController;
 
   final int? itemCount;
 
-  CarouselSlider(
+  MyCarouselSlider(
       {required this.items,
       required this.options,
       this.disableGesture,
-      CarouselController? carouselController,
+      MyCarouselController? carouselController,
       Key? key})
       : itemBuilder = null,
         itemCount = items != null ? items.length : 0,
         _carouselController = carouselController != null
             ? carouselController as CarouselControllerImpl
-            : CarouselController() as CarouselControllerImpl,
+            : MyCarouselController() as CarouselControllerImpl,
         super(key: key);
 
   /// The on demand item builder constructor
-  CarouselSlider.builder(
+  MyCarouselSlider.builder(
       {required this.itemCount,
       required this.itemBuilder,
       required this.options,
       this.disableGesture,
-      CarouselController? carouselController,
+      MyCarouselController? carouselController,
       Key? key})
       : items = null,
         _carouselController = carouselController != null
             ? carouselController as CarouselControllerImpl
-            : CarouselController() as CarouselControllerImpl,
+            : MyCarouselController() as CarouselControllerImpl,
         super(key: key);
 
   @override
   CarouselSliderState createState() => CarouselSliderState(_carouselController);
 }
 
-class CarouselSliderState extends State<CarouselSlider>
+class CarouselSliderState extends State<MyCarouselSlider>
     with TickerProviderStateMixin {
   final CarouselControllerImpl carouselController;
   Timer? timer;
@@ -87,7 +83,7 @@ class CarouselSliderState extends State<CarouselSlider>
   }
 
   @override
-  void didUpdateWidget(CarouselSlider oldWidget) {
+  void didUpdateWidget(MyCarouselSlider oldWidget) {
     carouselState!.options = options;
     carouselState!.itemCount = widget.itemCount;
 

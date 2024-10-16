@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'carousel_options.dart';
 import 'carousel_state.dart';
 
-abstract class CarouselController {
+abstract class MyCarouselController {
   bool get ready;
 
   Future<Null> get onReady;
@@ -23,10 +23,10 @@ abstract class CarouselController {
 
   void stopAutoPlay();
 
-  factory CarouselController() => CarouselControllerImpl();
+  factory MyCarouselController() => CarouselControllerImpl();
 }
 
-class CarouselControllerImpl implements CarouselController {
+class CarouselControllerImpl implements MyCarouselController {
   final Completer<Null> _readyCompleter = Completer<Null>();
 
   CarouselState? _state;

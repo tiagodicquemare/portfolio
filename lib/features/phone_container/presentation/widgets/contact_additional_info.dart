@@ -6,7 +6,7 @@ class ContactAdditionalInfoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(24),
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 48),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

@@ -61,6 +61,11 @@ class AppTextStyles {
     return _textStyle('ProximaNova', color, 22, FontWeight.w600, underline);
   }
 
+  static TextStyle textXXXLSemiBold(
+      {required Color color, bool underline = false}) {
+    return _textStyle('ProximaNova', color, 24, FontWeight.w600, underline);
+  }
+
   static TextStyle textXSBold({required Color color, bool underline = false}) {
     return _textStyle('ProximaNova', color, 12, FontWeight.w700, underline);
   }
@@ -100,6 +105,10 @@ class AppTextStyles {
   }
 
   static TextStyle textTitle32({required Color color, bool underline = false}) {
+    return _textStyle('ProximaNova', color, 32, FontWeight.w700, underline);
+  }
+
+  static TextStyle textTitle40({required Color color, bool underline = false}) {
     return _textStyle('ProximaNova', color, 32, FontWeight.w700, underline);
   }
 

@@ -15,7 +15,8 @@ class AboutMeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 48, vertical: 32),
+      padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.sizeOf(context).width * 0.05, vertical: 32),
       child: Column(
         children: [
           Row(
@@ -23,68 +24,77 @@ class AboutMeWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: myLightColorScheme.surfaceVariant,
-                      borderRadius: BorderRadius.circular(12)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(24),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          "Développeur mobile Android \net Flutter Freelance",
-                          style: AppTextStyles.textTitle32(
-                              color: myLightColorScheme.primary),
-                        ),
-                        SizedBox(
-                          height: 32,
-                        ),
-                        Text(
-                          "I am a backend developer with expertise in Node.js. I have experience in building scalable, secure and reliable web applications using various frameworks and technologies. I enjoy solving complex problems and learning new skills. I am passionate about creating high-quality code that follows best practices and industry standards. I am always looking for new challenges and opportunities to grow as a developer.",
-                          style: AppTextStyles.textLRegular(
-                              color: myLightColorScheme.onBackground),
-                        ),
-                      ],
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      "Tiago Dicquemare",
+                      textAlign: TextAlign.center,
+                      style: AppTextStyles.textTitle40(
+                          color: myLightColorScheme.primary),
                     ),
-                  ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    Text(
+                      "Développeur mobile freelance\nAndroid & Flutter",
+                      textAlign: TextAlign.center,
+                      style: AppTextStyles.textXXXLSemiBold(
+                          color: myLightColorScheme.onSurface),
+                    ),
+                    SizedBox(
+                      height: 24,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 48),
+                      child: Text(
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur hendrerit scelerisque turpis at aliquet. Curabitur egestas sem sit amet massa bibendum, at consequat nisl gravida. Nulla sed mollis velit. Fusce interdum interdum mi, at vehicula mauris porta sed.",
+                        textAlign: TextAlign.justify,
+                        style: AppTextStyles.textMRegular(
+                            color: myLightColorScheme.onBackground),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              const SizedBox(
-                width: 24,
-              ),
               Container(
-                width: 420.0,
-                height: 420.0,
+                width: 180.0,
+                height: 262.0,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15.0),
                   image: DecorationImage(
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fitHeight,
                     image: AssetImage(MyAssets.profilePhoto),
                   ),
                 ),
               ),
             ],
           ),
-          const Spacer(),
           const Divider(
             thickness: 3,
           ),
-          const Spacer(),
           Container(
-              height: 180,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+              height: MediaQuery.sizeOf(context).height * 0.5,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  buildSkillItem(mapServices.entries.elementAt(0)),
-                  const SizedBox(width: 8),
-                  buildSkillItem(mapServices.entries.elementAt(1)),
-                  const SizedBox(width: 8),
-                  buildSkillItem(mapServices.entries.elementAt(2)),
-                  const SizedBox(width: 8),
-                  buildSkillItem(mapServices.entries.elementAt(3)),
+                  Row(
+                    children: [
+                      buildSkillItem(context, mapServices.entries.elementAt(0)),
+                      buildSkillItem(context, mapServices.entries.elementAt(1)),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Row(
+                    children: [
+                      buildSkillItem(context, mapServices.entries.elementAt(2)),
+                      buildSkillItem(context, mapServices.entries.elementAt(3)),
+                    ],
+                  )
                 ],
               )),
         ],
@@ -92,32 +102,42 @@ class AboutMeWidget extends StatelessWidget {
     );
   }
 
-  Widget buildSkillItem(MapEntry<String, AssetImage> entry) {
-    return Container(
-      width: 170.0,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15.0),
-          color: myLightColorScheme.tertiaryContainer),
-      child: Padding(
-        padding: EdgeInsets.all(8),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image(
-              image: entry.value,
-              width: 80,
+  Widget buildSkillItem(
+      BuildContext context, MapEntry<String, AssetImage> entry) {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width * 0.3,
+      child: Row(
+        children: [
+          Image(
+            image: entry.value,
+            width: 80,
+          ),
+          const SizedBox(
+            width: 16,
+          ),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.3 - 96,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  entry.key,
+                  style: AppTextStyles.textXXXLSemiBold(
+                    color: myLightColorScheme.onTertiaryContainer,
+                  ),
+                ),
+                Flexible(
+                  child: Text(
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur hendrerit, nisl vel consequat dignissim, nulla nunc viverra enim, nec tincidunt nunc quam non mauris.",
+                    style: AppTextStyles.textMRegular(
+                        color: myLightColorScheme.onBackground),
+                  ),
+                )
+              ],
             ),
-            SizedBox(
-              height: 12,
-            ),
-            Text(
-              entry.key,
-              textAlign: TextAlign.center,
-              style: AppTextStyles.textLSemiBold(
-                  color: myLightColorScheme.onTertiaryContainer),
-            ),
-          ],
-        ),
+          )
+        ],
       ),
     );
   }
