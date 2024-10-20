@@ -30,7 +30,12 @@ class TechnicalStackWidgetState extends State<TechnicalStackWidget> {
     bool firstContainerExpanded = _expandedContainer == 0;
     bool secondContainerExpanded = _expandedContainer == 1;
     bool thirdContainerExpanded = _expandedContainer == 2;
-    bool fourthContainerExpanded = _expandedContainer == 3;
+
+    List<Widget> containers = [
+      _buildContainer(0, firstContainerExpanded, true, true, false),
+      _buildContainer(1, secondContainerExpanded, false, true, false),
+      _buildContainer(2, thirdContainerExpanded, true, false, true),
+    ];
 
     containers.sort((a, b) {
       int indexA = _getContainerIndex(a);
@@ -48,15 +53,13 @@ class TechnicalStackWidgetState extends State<TechnicalStackWidget> {
       setState(() {});
     }
 
-    print('last expanded container: $_lastExpandedContainer');
-    print("Last widget container: ${_getContainerIndex(containers.first)}");
     return Stack(
       children: containers,
     );
   }
 
-  Widget _buildContainer(
-      int index, bool isExpanded, bool left, bool top, ContentSection section) {
+  Widget _buildContainer(int index, bool isExpanded, bool left, bool top,
+      bool unexpandedWitdhFull) {
     double availableWidth = MediaQuery.of(context).size.width -
         CoreUtils.getPhoneScreenWidth(context) -
         24;
@@ -68,8 +71,9 @@ class TechnicalStackWidgetState extends State<TechnicalStackWidget> {
         availableHeight / 2 - spacingVertical / 2 - 16;
     double heightContainerExpanded = availableHeight - spacingVertical;
 
-    double widthContainerUnexpanded =
-        availableWidth / 2 - spacingHorizontal / 2 - 16;
+    double widthContainerUnexpanded = unexpandedWitdhFull
+        ? availableWidth - spacingHorizontal
+        : availableWidth / 2 - spacingHorizontal / 2 - 16;
     double widthContainerExpanded = availableWidth - spacingHorizontal;
     return Positioned(
       key: Key(index.toString()),
@@ -108,56 +112,13 @@ class TechnicalStackWidgetState extends State<TechnicalStackWidget> {
           width: isExpanded ? widthContainerExpanded : widthContainerUnexpanded,
           child: expandContent && isExpanded
               ? CategorySkillsSectionWidget(
-                  categorySkillsSection: mySkillsCategories[0],
+                  categorySkillsSection: mySkillsCategories[index],
                 )
-              : Text(section.title,
+              : Text(mySkillsCategories[index].title,
                   style: AppTextStyles.textXXLBold(
                       color: myLightColorScheme.primary)),
         ),
       ),
     );
   }
-
-  Widget expandedSectionItem(ContentSection section) {
-    return Padding(
-      padding: const EdgeInsets.all(24),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            section.title,
-            style: AppTextStyles.textXXLBold(color: myLightColorScheme.primary),
-          ),
-          const SizedBox(height: 32),
-          Text(
-            section.description,
-            style:
-                AppTextStyles.textXLSemiBold(color: myLightColorScheme.outline),
-          ),
-          const SizedBox(height: 32),
-          Expanded(
-            child: ListView.builder(
-                itemCount: section.listTechnologies.length,
-                itemBuilder: (context, index) {
-                  return Text(
-                    section.listTechnologies[index].name,
-                    style: AppTextStyles.textXLSemiBold(
-                        color: myLightColorScheme.outline),
-                  );
-                }),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class ContentSection {
-  String title;
-  String description;
-  AssetImage backgroundImage;
-  List<Technologie> listTechnologies;
-
-  ContentSection(this.title, this.backgroundImage,
-      {this.description = "", this.listTechnologies = const []});
 }

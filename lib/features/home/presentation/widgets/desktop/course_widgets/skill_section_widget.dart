@@ -29,41 +29,13 @@ class CategorySkillsSectionWidget extends StatelessWidget {
               itemBuilder: (context, index) {
                 SkillsSection skillsSection =
                     categorySkillsSection.skillsSection[index];
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Image(
-                          image: AssetImage(skillsSection.assetPath),
-                          width: 40,
-                        ),
-                        const SizedBox(
-                          width: 16,
-                        ),
-                        Text(
-                          skillsSection.title,
-                          textAlign: TextAlign.center,
-                          style: AppTextStyles.textXLSemiBold(
-                              color: myLightColorScheme.outline),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 24,
-                    ),
-                    Wrap(
-                      runSpacing: 12,
-                      spacing: 24,
-                      children: [
-                        ...skillsSection.skills.map((item) {
-                          return buildSkillItem(context, item);
-                        })
-                      ],
-                    )
-                  ],
-                );
+                if (skillsSection is SkillsSectionWithMultipleItems) {
+                  return buildSkillsMultipleItem(context, skillsSection);
+                } else if (skillsSection is SkillsSectionWithOnlyDescription) {
+                  return buildSkillWithOnlyDescription(context, skillsSection);
+                }
+
+                return const SizedBox();
               },
               separatorBuilder: (context, index) {
                 return const SizedBox(
@@ -76,19 +48,11 @@ class CategorySkillsSectionWidget extends StatelessWidget {
     );
   }
 
-  Widget buildSkillItem(BuildContext context, SkillItem item) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
+  Widget buildSkillWithOnlyDescription(
+      BuildContext context, SkillsSectionWithOnlyDescription item) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          width: 12,
-          height: 12,
-          decoration: BoxDecoration(
-              shape: BoxShape.circle, color: myLightColorScheme.outline),
-        ),
-        const SizedBox(
-          width: 12,
-        ),
         Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -108,6 +72,78 @@ class CategorySkillsSectionWidget extends StatelessWidget {
             )
           ],
         ),
+      ],
+    );
+  }
+
+  Widget buildSkillsMultipleItem(
+      BuildContext context, SkillsSectionWithMultipleItems item) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image(
+              image: AssetImage(item.assetPath),
+              width: 40,
+            ),
+            const SizedBox(
+              width: 16,
+            ),
+            Text(
+              item.title,
+              textAlign: TextAlign.center,
+              style: AppTextStyles.textXLSemiBold(
+                  color: myLightColorScheme.outline),
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 24,
+        ),
+        Wrap(
+          runSpacing: 12,
+          spacing: 24,
+          children: [
+            ...item.skills.map((skill) {
+              return Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    width: 12,
+                    height: 12,
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: myLightColorScheme.outline),
+                  ),
+                  const SizedBox(
+                    width: 12,
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        skill.title,
+                        style: AppTextStyles.textXLSemiBold(
+                          color: myLightColorScheme.onTertiaryContainer,
+                        ),
+                      ),
+                      Flexible(
+                        child: Text(
+                          skill.description,
+                          style: AppTextStyles.textMRegular(
+                              color: myLightColorScheme.outline),
+                        ),
+                      )
+                    ],
+                  ),
+                ],
+              );
+            })
+          ],
+        )
       ],
     );
   }
