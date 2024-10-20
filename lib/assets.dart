@@ -20,6 +20,7 @@ class MyAssets {
   static const String icLinkedin = 'ic_linkedin.png';
   static const String icGithub = 'ic_github.png';
 
+  static const String icDownload = 'ic_download.png';
   static const String icCalendar = 'ic_calendar.png';
   static const String icRecommendation = 'ic_recommendation.png';
   static const String icScroll = 'ic_scroll.png';

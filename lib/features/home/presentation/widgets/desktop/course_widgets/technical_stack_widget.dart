@@ -1,7 +1,11 @@
 import 'package:dicquemare_solution/assets.dart';
+import 'package:dicquemare_solution/core/colors.dart';
+import 'package:dicquemare_solution/core/ui/text_styles.dart';
 import 'package:dicquemare_solution/core/utils.dart';
+import 'package:dicquemare_solution/features/home/domain/entities/category_section_skills.dart';
 import 'package:dicquemare_solution/features/home/domain/entities/project.dart';
 import 'package:dicquemare_solution/features/home/presentation/projects.dart';
+import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/course_widgets/skill_section_widget.dart';
 import 'package:flutter/material.dart';
 
 class TechnicalStackWidget extends StatefulWidget {
@@ -12,6 +16,7 @@ class TechnicalStackWidget extends StatefulWidget {
 class TechnicalStackWidgetState extends State<TechnicalStackWidget> {
   int _expandedContainer = -1;
   int _lastExpandedContainer = -1;
+  bool expandContent = false;
 
   int _getContainerIndex(Widget container) {
     if (container.key != null && container.key is ValueKey<String>) {
@@ -26,60 +31,6 @@ class TechnicalStackWidgetState extends State<TechnicalStackWidget> {
     bool secondContainerExpanded = _expandedContainer == 1;
     bool thirdContainerExpanded = _expandedContainer == 2;
     bool fourthContainerExpanded = _expandedContainer == 3;
-
-    List<Widget> containers = [
-      _buildContainer(
-        0,
-        firstContainerExpanded,
-        true,
-        true,
-        ContentSection("Développement Android",
-            const AssetImage(MyAssets.androidContentBackground),
-            description:
-                "Je développe des applications Android depuis 2015. J'ai commencé avec Java et Kotlin, puis j'ai découvert Flutter en 2019. J'ai développé plusieurs applications Android natives, et je développe actuellement une application Flutter pour une startup. J'ai également développé des applications Android pour des clients en freelance.",
-            listTechnologies: [
-              mapOfTechnologies["Android"]!,
-              mapOfTechnologies["Android"]!,
-              mapOfTechnologies["Android"]!,
-            ]),
-      ),
-      _buildContainer(
-          1,
-          secondContainerExpanded,
-          false,
-          true,
-          ContentSection("Développement Flutter",
-              const AssetImage(MyAssets.flutterContentBackground),
-              description:
-                  "Je développe des applications Android depuis 2015. J'ai commencé avec Java et Kotlin, puis j'ai découvert Flutter en 2019. J'ai développé plusieurs applications Android natives, et je développe actuellement une application Flutter pour une startup. J'ai également développé des applications Android pour des clients en freelance.",
-              listTechnologies: [
-                mapOfTechnologies["Android"]!,
-              ])),
-      _buildContainer(
-          2,
-          thirdContainerExpanded,
-          true,
-          false,
-          ContentSection(
-              "UI/UX Design", const AssetImage(MyAssets.uiUxContentBackground),
-              description:
-                  "Je développe des applications Android depuis 2015. J'ai commencé avec Java et Kotlin, puis j'ai découvert Flutter en 2019. J'ai développé plusieurs applications Android natives, et je développe actuellement une application Flutter pour une startup. J'ai également développé des applications Android pour des clients en freelance.",
-              listTechnologies: [
-                mapOfTechnologies["Android"]!,
-              ])),
-      _buildContainer(
-          3,
-          fourthContainerExpanded,
-          false,
-          false,
-          ContentSection("Compétences managériales",
-              const AssetImage(MyAssets.softSkillsContentBackground),
-              description:
-                  "Je développe des applications Android depuis 2015. J'ai commencé avec Java et Kotlin, puis j'ai découvert Flutter en 2019. J'ai développé plusieurs applications Android natives, et je développe actuellement une application Flutter pour une startup. J'ai également développé des applications Android pour des clients en freelance.",
-              listTechnologies: [
-                mapOfTechnologies["Android"]!,
-              ])),
-    ];
 
     containers.sort((a, b) {
       int indexA = _getContainerIndex(a);
@@ -138,18 +89,30 @@ class TechnicalStackWidgetState extends State<TechnicalStackWidget> {
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 500),
           curve: Curves.fastOutSlowIn,
-          alignment: Alignment.center,
+          padding: const EdgeInsets.all(32),
+          alignment: isExpanded ? Alignment.topCenter : Alignment.center,
+          onEnd: () {
+            setState(() {
+              expandContent = isExpanded;
+            });
+          },
           decoration: BoxDecoration(
+              color: myLightColorScheme.surface,
               borderRadius: BorderRadius.circular(12),
-              image: DecorationImage(
-                  image: section.backgroundImage, fit: BoxFit.cover)),
+              border: Border.all(color: myLightColorScheme.primary, width: 2)
+              /*image: DecorationImage(
+                  image: section.backgroundImage, fit: BoxFit.cover)*/
+              ),
           height:
               isExpanded ? heightContainerExpanded : heightContainerUnexpanded,
           width: isExpanded ? widthContainerExpanded : widthContainerUnexpanded,
-          child: isExpanded
-              ? expandedSectionItem(section)
+          child: expandContent && isExpanded
+              ? CategorySkillsSectionWidget(
+                  categorySkillsSection: mySkillsCategories[0],
+                )
               : Text(section.title,
-                  style: TextStyle(color: Colors.white, fontSize: 24)),
+                  style: AppTextStyles.textXXLBold(
+                      color: myLightColorScheme.primary)),
         ),
       ),
     );
@@ -163,12 +126,13 @@ class TechnicalStackWidgetState extends State<TechnicalStackWidget> {
         children: [
           Text(
             section.title,
-            style: TextStyle(color: Colors.white, fontSize: 24),
+            style: AppTextStyles.textXXLBold(color: myLightColorScheme.primary),
           ),
           const SizedBox(height: 32),
           Text(
             section.description,
-            style: TextStyle(color: Colors.white, fontSize: 24),
+            style:
+                AppTextStyles.textXLSemiBold(color: myLightColorScheme.outline),
           ),
           const SizedBox(height: 32),
           Expanded(
@@ -177,7 +141,8 @@ class TechnicalStackWidgetState extends State<TechnicalStackWidget> {
                 itemBuilder: (context, index) {
                   return Text(
                     section.listTechnologies[index].name,
-                    style: TextStyle(color: Colors.white, fontSize: 24),
+                    style: AppTextStyles.textXLSemiBold(
+                        color: myLightColorScheme.outline),
                   );
                 }),
           )

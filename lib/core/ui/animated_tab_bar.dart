@@ -50,72 +50,86 @@ class _MyTabBarState extends State<MyTabBar> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     var widthAppBar = MediaQuery.of(context).size.width / 2.5;
-    return SizedBox(
-        height: 52,
-        child: Row(
-          children: [
-            Image.asset(MyAssets.lydiaLogo, height: 40),
-            const SizedBox(width: 16),
-            Text(
-              "Dicquemare Solution",
-              style: AppTextStyles.textLSemiBold(color: Colors.white),
-            ),
-            const Spacer(),
-            SizedBox(
-              width: widthAppBar,
-              child: Stack(
-                children: <Widget>[
-                  AppBar(
-                    backgroundColor: myLightColorScheme.primary,
-                    bottom: TabBar(
-                      controller: widget.tabController,
-                      indicatorColor: Colors.transparent,
-                      indicator: null,
-                      tabs: [
-                        Tab(
-                            height: 50,
-                            child: Text(
-                              "Parcours",
-                              style: AppTextStyles.textLSemiBold(
-                                  color: Colors.white),
-                            )),
-                        Tab(
-                            height: 50,
-                            child: Text(
-                              "Projets",
-                              style: AppTextStyles.textLSemiBold(
-                                  color: Colors.white),
-                            )),
-                        Tab(
-                            height: 50,
-                            child: Text(
-                              "Contact",
-                              style: AppTextStyles.textLSemiBold(
-                                  color: Colors.white),
-                            )),
-                      ],
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        SizedBox(
+          height: 52,
+          child: Row(
+            children: [
+              const SizedBox(width: 16),
+              Image.asset(MyAssets.onlyPlekoLogo, width: 52),
+              const SizedBox(width: 8),
+              Text(
+                "Dicquemare Solution",
+                style: AppTextStyles.textLSemiBold(
+                    color: myLightColorScheme.primary),
+              ),
+              const Spacer(),
+              SizedBox(
+                width: widthAppBar,
+                child: Stack(
+                  children: <Widget>[
+                    AppBar(
+                      backgroundColor: Colors.transparent,
+                      bottom: TabBar(
+                        controller: widget.tabController,
+                        indicatorColor: Colors.transparent,
+                        indicator: null,
+                        tabs: [
+                          Tab(
+                              height: 50,
+                              child: Text(
+                                "Parcours",
+                                style: AppTextStyles.textLSemiBold(
+                                    color: myLightColorScheme.primary),
+                              )),
+                          Tab(
+                              height: 50,
+                              child: Text(
+                                "Projets",
+                                style: AppTextStyles.textLSemiBold(
+                                    color: myLightColorScheme.primary),
+                              )),
+                          Tab(
+                              height: 50,
+                              child: Text(
+                                "Contact",
+                                style: AppTextStyles.textLSemiBold(
+                                    color: myLightColorScheme.primary),
+                              )),
+                        ],
+                      ),
                     ),
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    top: 0,
-                    left: (widthAppBar / 3) * animation.value,
-                    child: Padding(
-                      padding: const EdgeInsets.all(4),
-                      child: Container(
-                        width: (widthAppBar / 3) - 8,
-                        height: 42,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: myLightColorScheme.onPrimary.withOpacity(0.2),
+                    Positioned(
+                      bottom: 0,
+                      top: 0,
+                      left: (widthAppBar / 3) * animation.value,
+                      child: Padding(
+                        padding: const EdgeInsets.all(4),
+                        child: Container(
+                          width: (widthAppBar / 3) - 8,
+                          height: 42,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: myLightColorScheme.primary.withOpacity(0.2),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            )
-          ],
-        ));
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+        Container(
+          width: double.infinity,
+          height: 1,
+          color: myLightColorScheme.onPrimaryContainer.withOpacity(0.1),
+        ),
+      ],
+    );
   }
 }

@@ -66,6 +66,11 @@ class AppTextStyles {
     return _textStyle('ProximaNova', color, 24, FontWeight.w600, underline);
   }
 
+  static TextStyle textLargeTitleSemiBold(
+      {required Color color, bool underline = false}) {
+    return _textStyle('ProximaNova', color, 40, FontWeight.w600, underline);
+  }
+
   static TextStyle textXSBold({required Color color, bool underline = false}) {
     return _textStyle('ProximaNova', color, 12, FontWeight.w700, underline);
   }
