@@ -26,11 +26,10 @@ class _ProfessionalCategoriesWidgetState
   }
 
   final categories = [
-    'Introduction',
+    'En résumé',
     // 'Chronologie',
-    'Curriculum Vitae',
-    'Stack technique',
-    'Recommandations'
+    'Chronologie',
+    'Mes compétences',
   ];
   final assets = [
     AssetImage(MyAssets.icProfile),

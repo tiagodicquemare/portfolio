@@ -58,13 +58,23 @@ class _MyTabBarState extends State<MyTabBar> with TickerProviderStateMixin {
           height: 52,
           child: Row(
             children: [
-              const SizedBox(width: 16),
-              Image.asset(MyAssets.onlyPlekoLogo, width: 52),
-              const SizedBox(width: 8),
-              Text(
-                "Dicquemare Solution",
-                style: AppTextStyles.textLSemiBold(
-                    color: myLightColorScheme.primary),
+              GestureDetector(
+                onTap: () {
+                  widget.tabController.animateTo(0);
+                },
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const SizedBox(width: 16),
+                    Image.asset(MyAssets.onlyPlekoLogo, width: 52),
+                    const SizedBox(width: 8),
+                    Text(
+                      "Dicquemare Solution",
+                      style: AppTextStyles.textLSemiBold(
+                          color: myLightColorScheme.primary),
+                    ),
+                  ],
+                ),
               ),
               const Spacer(),
               SizedBox(

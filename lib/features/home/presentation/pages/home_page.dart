@@ -151,7 +151,7 @@ class _HomePageState extends State<HomePage>
         case 1:
           return Alignment.centerLeft;
         case 2:
-          return Alignment.center;
+          return const Alignment(0.5, 0);
         case 3:
           return Alignment.centerRight;
         default:
@@ -165,23 +165,26 @@ class _HomePageState extends State<HomePage>
           .add(PhoneAnimationStartEvent());
     }
     _lastAlignment = alignment;
+
     return AnimatedAlign(
-        alignment: getAlignment(),
-        duration: const Duration(milliseconds: 800),
-        curve: Curves.easeInOut,
-        onEnd: () {
-          setState(() {
-            isPhoneVisible = index != 2;
-            BlocProvider.of<PhoneContainerBloc>(blocContext)
-                .add(PhoneAnimationEndEvent());
-          });
-        },
-        child: Visibility(
-          visible: isPhoneVisible,
-          child: SizedBox(
-              width: widthPhone + 3,
-              height: heightPhone,
-              child: SmartphoneWidget()),
-        ));
+      alignment: alignment,
+      duration: const Duration(milliseconds: 800),
+      curve: Curves.easeInOut,
+      onEnd: () {
+        setState(() {
+          isPhoneVisible = index != 2;
+          BlocProvider.of<PhoneContainerBloc>(blocContext)
+              .add(PhoneAnimationEndEvent());
+        });
+      },
+      child: Visibility(
+        visible: isPhoneVisible,
+        child: SizedBox(
+          width: widthPhone + 3,
+          height: heightPhone,
+          child: SmartphoneWidget(),
+        ),
+      ),
+    );
   }
 }

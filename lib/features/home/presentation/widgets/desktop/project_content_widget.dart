@@ -31,15 +31,13 @@ class _ProjectContentWidgetState extends State<ProjectContentWidget> {
   Widget build(BuildContext context) {
     heightPhone = CoreUtils.getPhoneScreenHeight(context);
     widthPhone = CoreUtils.getPhoneScreenWidth(context);
-    final widthContent =
-        (MediaQuery.of(context).size.width / 2) - widthPhone / 2;
-    /*BlocProvider.of<PhoneContainerBloc>(context)
-        .add(ScreenshotChosenEvent(projects[selectedProjectIndex].screenshots));*/
+    final widthFirstPartContent =
+        (MediaQuery.of(context).size.width) - widthPhone * 2;
     return Container(
       child: Stack(
         children: [
           Positioned(
-              left: widthContent - widthPhone / 1.33,
+              left: widthFirstPartContent - widthPhone / 1.33,
               top: 32,
               bottom: 32,
               child: SwipeableProjectsCarousel(
@@ -55,19 +53,8 @@ class _ProjectContentWidgetState extends State<ProjectContentWidget> {
             top: 0,
             bottom: 0,
             child: SizedBox(
-              width: widthContent,
+              width: widthFirstPartContent,
               child: ProjectContentFirstPartWidget(
-                project: projects[selectedProjectIndex],
-              ),
-            ),
-          ),
-          Positioned(
-            top: 0,
-            bottom: 0,
-            right: 0,
-            child: SizedBox(
-              width: widthContent,
-              child: ProjectContentSecondPartWidget(
                 project: projects[selectedProjectIndex],
               ),
             ),

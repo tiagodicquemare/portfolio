@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dicquemare_solution/assets.dart';
 import 'package:dicquemare_solution/core/colors.dart';
 import 'package:dicquemare_solution/core/ui/text_styles.dart';
 import 'package:flutter/material.dart';
@@ -71,23 +72,23 @@ class _ContactFormWidgeState extends State<ContactFormWidget> {
     print("Locale is: ${Localizations.localeOf(context)}");
     var translator = AppLocalizations.of(context)!;
     return Padding(
-      padding: const EdgeInsets.all(24),
+      padding: EdgeInsets.symmetric(
+          vertical: 32, horizontal: MediaQuery.sizeOf(context).width * 0.08),
       child: Container(
         decoration: BoxDecoration(
-            color: myLightColorScheme.surfaceVariant,
-            borderRadius: BorderRadius.circular(12)),
+            color: Colors.transparent, borderRadius: BorderRadius.circular(12)),
         child: Padding(
           padding: const EdgeInsets.all(24),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(translator.contact_me_title,
-                  style: AppTextStyles.textTitle32(
+                  style: AppTextStyles.textLargeTitleSemiBold(
                       color: myLightColorScheme.onBackground)),
               const SizedBox(height: 24),
               Text(translator.contact_me_description,
                   style: AppTextStyles.textLRegular(
-                      color: myLightColorScheme.onBackground)),
+                      color: myLightColorScheme.outline)),
               const SizedBox(height: 36),
               Form(
                 key: _formKey,
@@ -96,6 +97,16 @@ class _ContactFormWidgeState extends State<ContactFormWidget> {
                     TextFormField(
                       controller: textEmailController,
                       decoration: InputDecoration(
+                          enabledBorder: const OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.black, width: 2),
+                            borderRadius: BorderRadius.all(Radius.circular(8)),
+                          ),
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: myLightColorScheme.outline, width: 2),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(8))),
                           labelText: translator.contact_me_hint_email),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -112,13 +123,27 @@ class _ContactFormWidgeState extends State<ContactFormWidget> {
                     TextFormField(
                       controller: textNameController,
                       decoration: InputDecoration(
-                          labelText: translator.contact_me_hint_name),
+                          labelText: translator.contact_me_hint_name,
+                          enabledBorder: const OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.black, width: 2),
+                            borderRadius: BorderRadius.all(Radius.circular(8)),
+                          ),
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: myLightColorScheme.outline, width: 2),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(8)))),
                       onChanged: (value) => name = value!,
                     ),
                     const SizedBox(height: 12),
                     TextFormField(
                       controller: textMessageController,
                       decoration: InputDecoration(
+                        enabledBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black, width: 2),
+                          borderRadius: BorderRadius.all(Radius.circular(8)),
+                        ),
                         labelText: translator.contact_me_hint_body,
                         border: const OutlineInputBorder(),
                         alignLabelWithHint: true,
@@ -131,7 +156,30 @@ class _ContactFormWidgeState extends State<ContactFormWidget> {
                     const SizedBox(height: 24),
                     ElevatedButton(
                       onPressed: _sendEmail,
-                      child: Text(translator.contact_me_hint_send_button),
+                      style: ElevatedButton.styleFrom(
+                        minimumSize:
+                            Size(MediaQuery.sizeOf(context).width * 0.25, 56),
+                        backgroundColor: Colors.green,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            MyAssets.icSend,
+                            width: 20,
+                          ),
+                          const SizedBox(width: 12),
+                          Text(
+                            translator.contact_me_hint_send_button,
+                            style: AppTextStyles.textLBold(color: Colors.white),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),

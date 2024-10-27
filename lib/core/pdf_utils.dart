@@ -1,6 +1,4 @@
 import 'dart:html' as html;
-import 'dart:html';
-import 'dart:typed_data';
 
 import 'package:flutter/services.dart';
 

@@ -3,7 +3,7 @@
     "contact_me_description": "Vous pouvez me contacter avec le formulaire ci-dessous ou sinon via email ou téléphone directement. Vous pouvez aussi me suivre sur les réseaux.",
     "contact_me_hint_email": "Email",
     "contact_me_hint_name": "Nom",
-    "contact_me_hint_body": "Corp d'email",
+    "contact_me_hint_body": "Parlons de votre projet",
     "contact_me_hint_error_email": "Veuillez entrer un email",
     "contact_me_hint_send_button": "Envoyer email"
 }

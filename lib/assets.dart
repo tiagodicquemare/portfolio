@@ -13,6 +13,7 @@ class MyAssets {
   static const String appleLogo = 'apple-logo.png';
   static const String profilePhoto = 'profile_photo.png';
   static const String icZoom = 'ic_zoom.png';
+  static const String icSend = 'ic_send.png';
 
   static const String icMail = 'ic_mail.png';
   static const String icPhone = 'ic_phone.png';
