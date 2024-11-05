@@ -9,7 +9,8 @@ class CoreUtils {
   }
 
   static getPhoneScreenHeight(BuildContext context) {
-    return MediaQuery.of(context).size.height - 64 - 56;
+    return MediaQuery.sizeOf(context).height * 0.8;
+    // return MediaQuery.of(context).size.height - 64 - 56;
   }
 
   static void launchURL(String url) async {

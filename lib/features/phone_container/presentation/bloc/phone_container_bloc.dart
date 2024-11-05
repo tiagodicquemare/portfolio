@@ -19,7 +19,7 @@ class PhoneContainerBloc
       emit(PhoneAnimationOngoing());
     });
     on<PhoneAnimationEndEvent>((event, emit) {
-      emit(PhoneContainerInitial());
+      emit(PhoneContainerLoaded());
     });
   }
 }

@@ -1,7 +1,6 @@
 import 'package:dicquemare_solution/core/carousel/carousel_slider.dart';
 import 'package:dicquemare_solution/core/utils.dart';
 import 'package:dicquemare_solution/features/home/domain/entities/project.dart';
-import 'package:dicquemare_solution/features/home/presentation/bloc/home_bloc.dart';
 import 'package:dicquemare_solution/features/phone_container/presentation/bloc/phone_container_bloc.dart';
 import 'package:dicquemare_solution/features/phone_container/presentation/pages/smart_phone_widget.dart';
 import 'package:flutter/material.dart';
@@ -39,23 +38,25 @@ class _SwipeableCardsCarouselState extends State<SwipeableProjectsCarousel> {
         listProjectCards = getProjectsWidgets(false);
       }
       return SizedBox(
-        width: (widthPhone + 3) * 2 + (widthPhone + 3) / 2,
+        width: widthPhone * 3 +
+            32 +
+            75, // 75 is the width untolerated by carousel library
         child: MyCarouselSlider(
             carouselController: _carouselController,
             options: CarouselOptions(
                 autoPlay: false,
                 height: heightPhone,
                 enlargeCenterPage: true,
-                viewportFraction: 0.4,
-                enlargeFactor: 0.7,
+                viewportFraction: 0.3,
+                enlargeFactor: 0.6,
                 onPageChanged: (index, reason) {
                   widget.onProjectSelected(index);
                   setState(() {
                     indexPageSelected = index;
                   });
                 },
-                enableInfiniteScroll: false),
-            items: listProjectCards),
+                enableInfiniteScroll: true),
+            items: state is PhoneContainerLoaded ? listProjectCards : []),
       );
     });
   }

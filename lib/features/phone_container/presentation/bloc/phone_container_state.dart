@@ -9,6 +9,8 @@ abstract class PhoneContainerState extends Equatable {
 
 class PhoneContainerInitial extends PhoneContainerState {}
 
+class PhoneContainerLoaded extends PhoneContainerState {}
+
 class PhoneAnimationOngoing extends PhoneContainerState {}
 
 class ShowAdditionalContactInfoState extends PhoneContainerState {}

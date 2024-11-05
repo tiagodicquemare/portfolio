@@ -4,6 +4,8 @@ import 'package:dicquemare_solution/core/ui/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/scheduler/ticker.dart';
 
+const MY_TAB_BAR_HEIGHT = 52.0;
+
 class MyTabBar extends StatefulWidget {
   final TabController tabController;
 
@@ -55,7 +57,7 @@ class _MyTabBarState extends State<MyTabBar> with TickerProviderStateMixin {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         SizedBox(
-          height: 52,
+          height: MY_TAB_BAR_HEIGHT,
           child: Row(
             children: [
               GestureDetector(

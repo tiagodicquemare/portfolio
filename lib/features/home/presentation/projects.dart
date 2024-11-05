@@ -32,14 +32,20 @@ List<Project> projects = [
   Project(
       assetLogo: MyAssets.lydiaLogo,
       name: "Lydia",
-      description: "Une description de mon travail à Lydia",
+      description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur egestas sem sit amet massa bibendum, at consequat nisl gravida. Nulla sed mollis velit. Fusce interdum interdum mi, at vehicula mauris porta sed.",
       startDate: DateTime(2021, 9, 7),
       endDate: DateTime(2022, 9, 7),
       websiteUrl: "https://lydia-app.com",
       playStoreUrl: "https://play.google.com/store/apps/details?id=com.lydia",
       appStoreUrl:
           "https://apps.apple.com/fr/app/lydia-paiement-mobile/id927139382",
-      technologies: [],
+      technologies: [
+        mapOfTechnologies["Android"]!,
+        mapOfTechnologies["Kotlin"]!,
+        mapOfTechnologies["Flutter"]!,
+        mapOfTechnologies["Dart"]!,
+      ],
       screenshots: [
         "lydia-screenshots/lydia_screenshot_1.png",
         "lydia-screenshots/lydia_screenshot_2.png",
@@ -50,7 +56,8 @@ List<Project> projects = [
   Project(
       assetLogo: MyAssets.plekoLogo,
       name: "Pleko",
-      description: "Une description de mon travail à Pleko",
+      description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur egestas sem sit amet massa bibendum, at consequat nisl gravida. Nulla sed mollis velit. Fusce interdum interdum mi, at vehicula mauris porta sed.",
       startDate: DateTime(2021, 11, 1),
       endDate: DateTime(2023, 10, 15),
       websiteUrl: "https://pleko.fr/",
@@ -73,7 +80,8 @@ List<Project> projects = [
   Project(
       assetLogo: MyAssets.myJunglyLogo,
       name: "My Jungly",
-      description: "Une description de mon travail à My Jungly",
+      description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur egestas sem sit amet massa bibendum, at consequat nisl gravida. Nulla sed mollis velit. Fusce interdum interdum mi, at vehicula mauris porta sed.",
       startDate: DateTime(2023, 1, 15),
       endDate: DateTime(2023, 11, 15),
       websiteUrl: "https://myjungly.com/agence/",

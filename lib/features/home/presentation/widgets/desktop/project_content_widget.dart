@@ -1,8 +1,10 @@
 import 'package:dicquemare_solution/assets.dart';
+import 'package:dicquemare_solution/core/ui/animated_tab_bar.dart';
 import 'package:dicquemare_solution/core/utils.dart';
 import 'package:dicquemare_solution/features/home/domain/entities/project.dart';
 import 'package:dicquemare_solution/features/home/presentation/bloc/home_bloc.dart';
 import 'package:dicquemare_solution/features/home/presentation/projects.dart';
+import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/project_content_widgets/project_description_widget.dart';
 import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/swipeable_project_widget.dart';
 import 'package:dicquemare_solution/features/phone_container/presentation/bloc/phone_container_bloc.dart';
 import 'package:dicquemare_solution/features/phone_container/presentation/pages/smart_phone_widget.dart';
@@ -32,14 +34,20 @@ class _ProjectContentWidgetState extends State<ProjectContentWidget> {
     heightPhone = CoreUtils.getPhoneScreenHeight(context);
     widthPhone = CoreUtils.getPhoneScreenWidth(context);
     final widthFirstPartContent =
-        (MediaQuery.of(context).size.width) - widthPhone * 2;
+        (MediaQuery.of(context).size.width) - widthPhone * 3 - 32;
     return Container(
       child: Stack(
         children: [
           Positioned(
-              left: widthFirstPartContent - widthPhone / 1.33,
-              top: 32,
-              bottom: 32,
+              left: widthFirstPartContent,
+              top: (MediaQuery.sizeOf(context).height -
+                      heightPhone -
+                      MY_TAB_BAR_HEIGHT) /
+                  2,
+              bottom: (MediaQuery.sizeOf(context).height -
+                      heightPhone -
+                      MY_TAB_BAR_HEIGHT) /
+                  2,
               child: SwipeableProjectsCarousel(
                 projects: projects,
                 onProjectSelected: (index) {
@@ -54,174 +62,13 @@ class _ProjectContentWidgetState extends State<ProjectContentWidget> {
             bottom: 0,
             child: SizedBox(
               width: widthFirstPartContent,
-              child: ProjectContentFirstPartWidget(
+              child: ProjectDescriptionWidget(
                 project: projects[selectedProjectIndex],
               ),
             ),
           ),
         ],
       ),
-    );
-  }
-}
-
-class ProjectContentFirstPartWidget extends StatefulWidget {
-  final Project project;
-  const ProjectContentFirstPartWidget({super.key, required this.project});
-  @override
-  State<StatefulWidget> createState() => _ProjectContenFirsttWidgetState();
-}
-
-class _ProjectContenFirsttWidgetState
-    extends State<ProjectContentFirstPartWidget> {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(24),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Image(
-            image: AssetImage(widget.project.assetLogo),
-            height: 48,
-          ),
-          const SizedBox(height: 16),
-          widget.project.websiteUrl != null
-              ? InkWell(
-                  onTap: () {
-                    if (widget.project.websiteUrl != null) {
-                      launchUrl(Uri.parse(widget.project.websiteUrl!));
-                    }
-                  },
-                  child: const Text(
-                    "Site web",
-                    style: TextStyle(
-                      color: Colors.blue,
-                      decoration: TextDecoration.underline,
-                    ),
-                  ),
-                )
-              : const SizedBox(),
-          const SizedBox(height: 24),
-          Text(widget.project.description)
-        ],
-      ),
-    );
-  }
-}
-
-class ProjectContentSecondPartWidget extends StatefulWidget {
-  final Project project;
-  const ProjectContentSecondPartWidget({super.key, required this.project});
-  @override
-  State<StatefulWidget> createState() => _ProjectContentSecondWidgetState();
-}
-
-class _ProjectContentSecondWidgetState
-    extends State<ProjectContentSecondPartWidget> {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(24),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          widget.project.playStoreUrl != null &&
-                  widget.project.appStoreUrl != null
-              ? buttonsPlaystoreAppStore()
-              : const SizedBox(),
-          const SizedBox(height: 32),
-          const Text("Technologies utilisées :"),
-          const SizedBox(height: 16),
-          Wrap(
-            spacing: 8.0,
-            runSpacing: 4.0,
-            children: widget.project.technologies
-                .map((tech) => ActionChip(
-                      label: Text('#${tech.name}'),
-                      onPressed: () => CoreUtils.launchURL(tech.url),
-                    ))
-                .toList(),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget buttonsPlaystoreAppStore() {
-    return Wrap(
-      alignment: WrapAlignment.start,
-      crossAxisAlignment: WrapCrossAlignment.center,
-      spacing: 8.0, // Space between the buttons horizontally
-      runSpacing: 8.0, // Space between the buttons vertically when wrapping
-      children: [
-        InkWell(
-          onTap: () {
-            if (widget.project.playStoreUrl != null) {
-              CoreUtils.launchURL(widget.project.playStoreUrl!);
-            }
-          },
-          child: Container(
-            decoration: const BoxDecoration(
-              color: Colors.black,
-              borderRadius: BorderRadius.all(Radius.circular(12)),
-            ),
-            child: const Padding(
-              padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-              child: Row(
-                mainAxisSize: MainAxisSize.min, // To wrap the content
-                children: [
-                  Image(
-                    image: AssetImage(MyAssets.playstoreLogo),
-                    height: 48,
-                  ),
-                  SizedBox(
-                    width: 8,
-                  ),
-                  Text(
-                    "Disponible sur \nPlaystore",
-                    style: TextStyle(color: Colors.white),
-                  )
-                ],
-              ),
-            ),
-          ),
-        ),
-        InkWell(
-          onTap: () {
-            if (widget.project.appStoreUrl != null) {
-              CoreUtils.launchURL(widget.project.appStoreUrl!);
-            }
-          },
-          child: Container(
-            decoration: const BoxDecoration(
-              color: Colors.black,
-              borderRadius: BorderRadius.all(Radius.circular(12)),
-            ),
-            child: const Padding(
-              padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-              child: Row(
-                mainAxisSize: MainAxisSize.min, // To wrap the content
-                children: [
-                  Image(
-                    image: AssetImage(MyAssets.appleLogo),
-                    height: 48,
-                  ),
-                  SizedBox(
-                    width: 8,
-                  ),
-                  Text(
-                    "Disponible sur \nl'App Store",
-                    style: TextStyle(color: Colors.white),
-                  )
-                ],
-              ),
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

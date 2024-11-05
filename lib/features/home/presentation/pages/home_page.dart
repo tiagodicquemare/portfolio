@@ -151,7 +151,7 @@ class _HomePageState extends State<HomePage>
         case 1:
           return Alignment.centerLeft;
         case 2:
-          return const Alignment(0.5, 0);
+          return const Alignment(0.58, 0);
         case 3:
           return Alignment.centerRight;
         default:
