@@ -109,4 +109,24 @@ class LanguagesEn extends Languages {
 
   @override
   String get chronologyPleko2021Post => "CTO";
+
+  @override
+  String get projectContentDelupay =>
+      "On behalf of the company MyJungly, I took over the development of the Delupay banking application commissioned by Delubac, a banking company from Ardèche. Delupay is an application that facilitates transactions between individuals and merchants with contactless payment via NFC or SMS. I also took charge of developing the dedicated merchant application Delupay Pro, which allows merchants to manage their business payments. The project was carried out with a team of diverse skills, and I was responsible for the Android mobile part.";
+
+  @override
+  String get projectContentLydia =>
+      "I had the opportunity to undertake two freelance missions around the Lydia application, which has over 7 million users in France. In each mission, I joined one of their teams to work jointly with various profiles. My main scope of work was around login/registration and application security. The main features I developed were the complete overhaul of the application's login and registration module, the creation of the referral offer, and the transition of the Lydia application into two applications: Sumeria and Lydia. It was an opportunity for me to work in a large functional team and a large development team.";
+
+  @override
+  String get projectContentPleko =>
+      "I had the opportunity to join an entrepreneurial adventure with colleagues from my studies. The project was the development and sale of an application to order customized housekeeping services carried out by students. In the development of the startup, I was led to work on various projects:\n\n- Development of the mobile application intended for clients\n- Partial development of the server necessary for the proper functioning of the mobile application\n- Training interns in web and mobile development for creating our website and an MVP for the application intended for students who performed the housekeeping services\n- Administrative and financial management of the startup\n- Daily customer and provider management\n\nWe were able to generate a monthly revenue of 3,000 euros with an investment of 0 euros.";
+
+  @override
+  String get projectContentBeepings =>
+      "With the company Freshdev, I worked on the Android application offered by Beepings. Beepings offers a GPS tracker connected to a mobile application to track your objects' position in real time. I mainly worked on the connection between the tracker and the mobile application using Bluetooth technology. The project was interesting for discovering how Bluetooth works, particularly BLE management with connected devices.";
+
+  @override
+  String get projectContentEndonora =>
+      "Endonora is a sports application that allows you to take running routes punctuated by physical exercises. I was responsible for the Android application and mainly developed the route management and automatic display of exercises based on the user's GPS position. The project was interesting for discovering location management and battery optimization on Android.";
 }

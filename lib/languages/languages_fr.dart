@@ -109,4 +109,24 @@ class LanguagesFr extends Languages {
 
   @override
   String get chronologyPleko2021Post => "CTO";
+
+  @override
+  String get projectContentDelupay =>
+      "Pour le compte de l'entreprise MyJungly j'ai assuré la reprise du développement de l'application bancaire Delupay commander par l'entreprise Delubac, une entreprise bancaire ardéchoise.\n\nDelupay est une application qui facilite les transactions entre particuliers et commerçants avec du paiement sans contact via NFC ou par QR code.\n\nJ'ai également réalisé entièrement l'application mobile dédiée aux commerçants, Delupay Pro, qui permet aux commerçants d'accepter et de gérer les paiements de leur commerce.";
+
+  @override
+  String get projectContentLydia =>
+      "J'ai réaliser deux missions freelance avec l'entreprise Lydia Solutions pour aider dans le développement de leur application qui compte plus de 7 millions d'utilisateurs en France.\n\nAu sein de une de leur squad j'ai principalement travailler sur la partie connexion, inscription et sécurité de l'application. J'ai également participer à la transition de l'application Lydia en deux applications distinctes: Sumeria et Lydia.\n\nCette expérience m'a permis de me mesurer à des problématiques de sécurité et de performance à grande échelle sur une application mobile.";
+
+  @override
+  String get projectContentPleko =>
+      "En fin d'étude, je me suis lancer dans une aventure entrepreneuriale avec des collègues d'études, elle s'est traduit dans la création de Pleko. Le projet consiste dans le développement et la mise en vente d'une application mobile pour commander des prestations de ménage sur mesure réalisées par des étudiants.\n\nDans son développement, j'ai été amené à travailler sur divers chantiers: \n\n\u2022 Le développement de l'application mobile en Flutter destinée aux clients\n\u2022 Le développement partiel du serveur nécessaire au bon fonctionnement de l'application mobile\n\u2022 La formation de stagiaires en développement web et mobile pour la réalisation de notre site web et d'un MVP pour l'application destinée aux étudiants qui effectuaient les prestations de ménage\n\u2022 La gestion administrative et financière de la startup\n\u2022 La gestion quotidienne de la clientèle et de nos prestataires";
+
+  @override
+  String get projectContentBeepings =>
+      "Avec l'entreprise Freshdev j'ai travailler sur l'application Android proposer par l'entreprise Beepings. Beepings propose un traker GPS connecter à une application mobile pour suivre en temps réel la position de vos objets. J'ai travailler principalement sur la connexion entre le tracker et l'application mobile grâce à la technologie Bluetooth. Le projet fut intéressant pour découvrir le fonctionneent bluetooth et plus particulièrement la gestion BLE avec des appareils connectés.";
+
+  @override
+  String get projectContentEndonora =>
+      "Endonora est une application sportive qui permet de faire des trajets sportifs en course à pied ponctués par des exercises physiques. Je me suis occupé de l'application Android et de développer principalement la gestion du trajet et de l'affichage automatique des exercices en fonction de la position GPS de l'utilisateur. Le projet fut intéressant pour découvrir la gestion de la localisation et de la gestion de la batterie sur Android.";
 }

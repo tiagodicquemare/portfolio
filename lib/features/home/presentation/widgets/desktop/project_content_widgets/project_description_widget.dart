@@ -1,5 +1,6 @@
 import 'package:dicquemare_solution/assets.dart';
 import 'package:dicquemare_solution/core/colors.dart';
+import 'package:dicquemare_solution/core/ui/image_or_svg_widget.dart';
 import 'package:dicquemare_solution/core/ui/text_styles.dart';
 import 'package:dicquemare_solution/core/utils.dart';
 import 'package:dicquemare_solution/features/home/domain/entities/project.dart';
@@ -12,68 +13,70 @@ class ProjectDescriptionWidget extends StatelessWidget {
   const ProjectDescriptionWidget({super.key, required this.project});
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 48),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Image(
-            image: AssetImage(project.assetLogo),
-            height: 48,
-          ),
-          const SizedBox(height: 16),
-          project.websiteUrl != null
-              ? InkWell(
-                  onTap: () {
-                    if (project.websiteUrl != null) {
-                      CoreUtils.launchURL(project.websiteUrl!);
-                    }
-                  },
-                  child: Text(
-                    project.websiteUrl ?? "",
-                    style: AppTextStyles.textMSemiBold(color: Colors.blue),
-                  ),
-                )
-              : const SizedBox(),
-          const SizedBox(height: 24),
-          Text(
-            project.description,
-            style: AppTextStyles.textMRegular(color: Colors.black),
-          ),
-          const SizedBox(height: 32),
-          Wrap(
-            spacing: 12,
-            runSpacing: 4.0,
-            children: project.technologies
-                .map(
-                  (tech) => ActionChip(
-                    backgroundColor: myLightColorScheme.primaryContainer,
-                    label: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: Text(
-                        tech.name,
-                        style: AppTextStyles.textMSemiBold(
-                            color: myLightColorScheme.onPrimaryContainer),
-                      ),
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(24, 48, 8, 48),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ImageOrSvgImage(
+              assetPath: project.assetLogo,
+              height: 48,
+            ),
+            const SizedBox(height: 8),
+            project.websiteUrl != null
+                ? InkWell(
+                    onTap: () {
+                      if (project.websiteUrl != null) {
+                        CoreUtils.launchURL(project.websiteUrl!);
+                      }
+                    },
+                    child: Text(
+                      project.websiteUrl ?? "",
+                      style: AppTextStyles.textMSemiBold(color: Colors.blue),
                     ),
-                    onPressed: () => CoreUtils.launchURL(tech.url),
-                  ),
-                )
-                .toList(),
-          ),
-          const SizedBox(height: 48),
-          project.playStoreUrl != null
-              ? buttonStore(context, "Play Store", MyAssets.icPlayStore, () {
-                  CoreUtils.launchURL(project.playStoreUrl!);
-                })
-              : const SizedBox(),
-          const SizedBox(height: 16),
-          project.appStoreUrl != null
-              ? buttonStore(context, "App Store", MyAssets.icAppStore, () {
-                  CoreUtils.launchURL(project.playStoreUrl!);
-                })
-              : const SizedBox(),
-        ],
+                  )
+                : const SizedBox(),
+            const SizedBox(height: 24),
+            Text(
+              project.description,
+              style: AppTextStyles.textMRegular(color: Colors.black),
+            ),
+            const SizedBox(height: 32),
+            Wrap(
+              spacing: 12,
+              runSpacing: 4.0,
+              children: project.technologies
+                  .map(
+                    (tech) => ActionChip(
+                      backgroundColor: myLightColorScheme.primaryContainer,
+                      label: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Text(
+                          tech.name,
+                          style: AppTextStyles.textMSemiBold(
+                              color: myLightColorScheme.onPrimaryContainer),
+                        ),
+                      ),
+                      onPressed: () => CoreUtils.launchURL(tech.url),
+                    ),
+                  )
+                  .toList(),
+            ),
+            const SizedBox(height: 32),
+            project.playStoreUrl != null
+                ? buttonStore(context, "Play Store", MyAssets.icPlayStore, () {
+                    CoreUtils.launchURL(project.playStoreUrl!);
+                  })
+                : const SizedBox(),
+            const SizedBox(height: 16),
+            project.appStoreUrl != null
+                ? buttonStore(context, "App Store", MyAssets.icAppStore, () {
+                    CoreUtils.launchURL(project.playStoreUrl!);
+                  })
+                : const SizedBox(),
+          ],
+        ),
       ),
     );
   }

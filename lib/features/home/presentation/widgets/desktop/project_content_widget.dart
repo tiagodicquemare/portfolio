@@ -36,7 +36,7 @@ class _ProjectContentWidgetState extends State<ProjectContentWidget> {
     heightPhone = CoreUtils.getPhoneScreenHeight(context);
     widthPhone = CoreUtils.getPhoneScreenWidth(context);
     final widthFirstPartContent =
-        (MediaQuery.of(context).size.width) - widthPhone * 3 - 32;
+        (MediaQuery.of(context).size.width) - widthPhone * 3 - 20;
     return Container(
       child: Stack(
         children: [

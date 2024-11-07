@@ -43,4 +43,11 @@ abstract class Languages {
   String get chronologyJMC2018Description;
   String get chronologyFreshDev2018Post;
   String get chronologyFreshDev2018Description;
+
+  // Project content
+  String get projectContentLydia;
+  String get projectContentDelupay;
+  String get projectContentBeepings;
+  String get projectContentPleko;
+  String get projectContentEndonora;
 }

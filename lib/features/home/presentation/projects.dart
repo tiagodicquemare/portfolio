@@ -1,32 +1,34 @@
 import 'package:dicquemare_solution/assets.dart';
 import 'package:dicquemare_solution/features/home/domain/entities/project.dart';
+import 'package:dicquemare_solution/languages/languages.dart';
 import 'package:flutter/material.dart';
 
 Map<String, Technologie> mapOfTechnologies = {
-  "Android": Technologie(
-      "Android",
-      "Android est un système d'exploitation mobile fondé sur le noyau Linux et développé par Google.",
-      "https://fr.wikipedia.org/wiki/Android"),
-  "Kotlin": Technologie(
-      "Kotlin",
-      "Kotlin est un langage de programmation orienté objet et fonctionnel, multiplateforme, concis et sûr de type statique développé par JetBrains en 2011 qui compile pour la machine virtuelle Java et qui peut aussi compiler vers le code source JavaScript ou LLVM.",
-      "https://kotlinlang.org/"),
-  "Flutter": Technologie(
-      "Flutter",
-      "Flutter est un kit de développement de logiciels d'interface utilisateur open-source créé par Google. Il est utilisé pour développer des applications pour Android, iOS, Linux, Mac, Windows, Google Fuchsia et le Web à partir d'une seule base de code.",
-      "https://flutter.dev/"),
-  "Dart": Technologie(
-      "Dart",
-      "Dart est un langage de programmation orienté objet développé par Google. Il est utilisé pour le développement d'applications mobiles, de serveurs et de sites web. Il est open source et multiplateforme.",
-      "https://dart.dev/"),
-  "UI/UX Design": Technologie(
-      "UI/UX Design",
-      "Android est un système d'exploitation mobile fondé sur le noyau Linux et développé par Google.",
-      "https://www.figma.com/"),
-  "Management": Technologie(
-      "Management",
-      "Android est un système d'exploitation mobile fondé sur le noyau Linux et développé par Google.",
-      "https://www.figma.com/"),
+  "Android": Technologie("Android", "https://fr.wikipedia.org/wiki/Android"),
+  "Kotlin": Technologie("Kotlin", "https://kotlinlang.org/"),
+  "Clean Architecture": Technologie(
+      "Clean Architecture", "https://developer.android.com/topic/architecture"),
+  "Dagger/Hilt": Technologie("Dagger/Hilt",
+      "https://developer.android.com/training/dependency-injection/hilt-android?hl=fr"),
+  "Jetpack Compose":
+      Technologie("Jetpack Compose", "https://developer.android.com/compose"),
+  "Coroutines": Technologie(
+      "Coroutines", "https://developer.android.com/kotlin/coroutines?hl=fr"),
+  "JUnit": Technologie("JUnit",
+      "https://developer.android.com/training/testing/instrumented-tests/androidx-test-libraries/runner?hl=fr"),
+  "NFC": Technologie(
+      "NFC", "https://fr.wikipedia.org/wiki/Near-field_communication"),
+  "QR Code": Technologie("QR Code", "https://fr.wikipedia.org/wiki/Code_QR"),
+  "Flutter/Dart": Technologie("Flutter", "https://flutter.dev/"),
+  "Mapbox": Technologie("Mapbox", "https://www.mapbox.com/"),
+  "Bloc/Cubit":
+      Technologie("Bloc/Cubit", "https://bloclibrary.dev/fr/bloc-concepts/"),
+  "Node.js": Technologie("Node.js", "https://nodejs.org/en"),
+  "TypeScript": Technologie("TypeScript", "https://www.typescriptlang.org/"),
+  "GraphQL": Technologie("GraphQL", "https://graphql.org/"),
+  "UI/UX Design": Technologie("UI/UX Design", "https://www.figma.com/"),
+  "Management":
+      Technologie("Management", "https://fr.wikipedia.org/wiki/Management"),
 };
 
 List<Project> projectsList(BuildContext context) {
@@ -34,7 +36,7 @@ List<Project> projectsList(BuildContext context) {
     Project(
       assetLogo: MyAssets.lydiaLogo,
       name: "Lydia Solutions",
-      description: "",
+      description: Languages.of(context).projectContentLydia,
       startDate: DateTime(2021, 9, 7),
       endDate: DateTime(2022, 9, 7),
       websiteUrl: "https://lydia-app.com",
@@ -44,8 +46,11 @@ List<Project> projectsList(BuildContext context) {
       technologies: [
         mapOfTechnologies["Android"]!,
         mapOfTechnologies["Kotlin"]!,
-        mapOfTechnologies["Flutter"]!,
-        mapOfTechnologies["Dart"]!,
+        mapOfTechnologies["Clean Architecture"]!,
+        mapOfTechnologies["Dagger/Hilt"]!,
+        mapOfTechnologies["Jetpack Compose"]!,
+        mapOfTechnologies["Coroutines"]!,
+        mapOfTechnologies["JUnit"]!,
       ],
       screenshots: [
         "lydia-screenshots/lydia_screenshot_1.png",
@@ -58,19 +63,18 @@ List<Project> projectsList(BuildContext context) {
     Project(
       assetLogo: MyAssets.plekoLogo,
       name: "Pleko",
-      description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur egestas sem sit amet massa bibendum, at consequat nisl gravida. Nulla sed mollis velit. Fusce interdum interdum mi, at vehicula mauris porta sed.",
+      description: Languages.of(context).projectContentPleko,
       startDate: DateTime(2021, 11, 1),
       endDate: DateTime(2023, 10, 15),
-      websiteUrl: "https://pleko.fr/",
-      playStoreUrl: "https://play.google.com/store/apps/details?id=com.lydia",
-      appStoreUrl:
-          "https://apps.apple.com/fr/app/lydia-paiement-mobile/id927139382",
       technologies: [
-        mapOfTechnologies["Android"]!,
-        mapOfTechnologies["Kotlin"]!,
-        mapOfTechnologies["Flutter"]!,
-        mapOfTechnologies["Dart"]!,
+        mapOfTechnologies["Flutter/Dart"]!,
+        mapOfTechnologies["Bloc/Cubit"]!,
+        mapOfTechnologies["Mapbox"]!,
+        mapOfTechnologies["Node.js"]!,
+        mapOfTechnologies["TypeScript"]!,
+        mapOfTechnologies["GraphQL"]!,
+        mapOfTechnologies["UI/UX Design"]!,
+        mapOfTechnologies["Management"]!,
       ],
       screenshots: [
         "pleko-screenshots/pleko_screenshot_1.png",
@@ -81,21 +85,25 @@ List<Project> projectsList(BuildContext context) {
       ],
     ),
     Project(
-      assetLogo: MyAssets.myJunglyLogo,
-      name: "My Jungly",
-      description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur egestas sem sit amet massa bibendum, at consequat nisl gravida. Nulla sed mollis velit. Fusce interdum interdum mi, at vehicula mauris porta sed.",
+      assetLogo: MyAssets.delubacLogo,
+      name: "Delupay",
+      description: Languages.of(context).projectContentDelupay,
       startDate: DateTime(2023, 1, 15),
-      endDate: DateTime(2023, 11, 15),
-      websiteUrl: "https://myjungly.com/agence/",
-      playStoreUrl: "https://play.google.com/store/apps/details?id=com.lydia",
+      endDate: DateTime(2023, 12, 01),
+      websiteUrl: "https://www.delubac.com/",
+      playStoreUrl:
+          "https://play.google.com/store/apps/details?id=com.app.delupay&hl=fr",
       appStoreUrl:
-          "https://apps.apple.com/fr/app/lydia-paiement-mobile/id927139382",
+          "https://apps.apple.com/fr/app/delupay-payer-avec-son-mobile/id6444056310",
       technologies: [
         mapOfTechnologies["Android"]!,
         mapOfTechnologies["Kotlin"]!,
-        mapOfTechnologies["Flutter"]!,
-        mapOfTechnologies["Dart"]!,
+        mapOfTechnologies["Clean Architecture"]!,
+        mapOfTechnologies["Dagger/Hilt"]!,
+        mapOfTechnologies["Jetpack Compose"]!,
+        mapOfTechnologies["Coroutines"]!,
+        mapOfTechnologies["QR Code"]!,
+        mapOfTechnologies["NFC"]!,
       ],
       screenshots: [
         "delupay-screenshots/delupay_screenshot_1.png",

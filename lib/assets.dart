@@ -16,6 +16,7 @@ class MyAssets {
   static const String icSend = 'ic_send.png';
   static const String icPlayStore = 'ic_play_store.svg';
   static const String icAppStore = 'ic_app_store.svg';
+  static const String delubacLogo = 'logo_delubac.svg';
 
   static const String icMail = 'ic_mail.png';
   static const String icPhone = 'ic_phone.png';
