@@ -85,36 +85,34 @@ class ProjectDescriptionWidget extends StatelessWidget {
         onTap.call();
       },
       focusColor: myLightColorScheme.primary.withOpacity(0.5),
-      child: Align(
-        child: FittedBox(
-          child: Container(
-            padding: EdgeInsets.symmetric(
-                horizontal: MediaQuery.sizeOf(context).width * 0.09,
-                vertical: 16),
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-                border: Border.all(color: myLightColorScheme.primary, width: 2),
-                color: Colors.transparent,
-                borderRadius: BorderRadius.circular(8)),
-            child: Wrap(
-              alignment: WrapAlignment.center,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              children: [
-                SvgPicture.asset(
-                  assetPath,
-                  width: 28,
-                  height: 28,
-                ),
-                const SizedBox(
-                  width: 16,
-                ),
-                Text(
-                  label,
-                  style: AppTextStyles.textMSemiBold(
-                      color: myLightColorScheme.primary),
-                )
-              ],
-            ),
+      child: FittedBox(
+        child: Container(
+          padding: EdgeInsets.symmetric(
+              horizontal: MediaQuery.sizeOf(context).width * 0.09,
+              vertical: 16),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+              border: Border.all(color: myLightColorScheme.primary, width: 2),
+              color: Colors.transparent,
+              borderRadius: BorderRadius.circular(8)),
+          child: Wrap(
+            alignment: WrapAlignment.center,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            children: [
+              SvgPicture.asset(
+                assetPath,
+                width: 28,
+                height: 28,
+              ),
+              const SizedBox(
+                width: 16,
+              ),
+              Text(
+                label,
+                style: AppTextStyles.textMSemiBold(
+                    color: myLightColorScheme.primary),
+              )
+            ],
           ),
         ),
       ),

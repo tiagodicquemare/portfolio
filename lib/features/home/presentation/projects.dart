@@ -1,5 +1,6 @@
 import 'package:dicquemare_solution/assets.dart';
 import 'package:dicquemare_solution/features/home/domain/entities/project.dart';
+import 'package:flutter/material.dart';
 
 Map<String, Technologie> mapOfTechnologies = {
   "Android": Technologie(
@@ -28,12 +29,12 @@ Map<String, Technologie> mapOfTechnologies = {
       "https://www.figma.com/"),
 };
 
-List<Project> projects = [
-  Project(
+List<Project> projectsList(BuildContext context) {
+  return [
+    Project(
       assetLogo: MyAssets.lydiaLogo,
-      name: "Lydia",
-      description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur egestas sem sit amet massa bibendum, at consequat nisl gravida. Nulla sed mollis velit. Fusce interdum interdum mi, at vehicula mauris porta sed.",
+      name: "Lydia Solutions",
+      description: "",
       startDate: DateTime(2021, 9, 7),
       endDate: DateTime(2022, 9, 7),
       websiteUrl: "https://lydia-app.com",
@@ -52,8 +53,9 @@ List<Project> projects = [
         "lydia-screenshots/lydia_screenshot_3.png",
         "lydia-screenshots/lydia_screenshot_4.png",
         "lydia-screenshots/lydia_screenshot_5.png"
-      ]),
-  Project(
+      ],
+    ),
+    Project(
       assetLogo: MyAssets.plekoLogo,
       name: "Pleko",
       description:
@@ -76,8 +78,9 @@ List<Project> projects = [
         "pleko-screenshots/pleko_screenshot_3.png",
         "pleko-screenshots/pleko_screenshot_4.png",
         "pleko-screenshots/pleko_screenshot_5.png"
-      ]),
-  Project(
+      ],
+    ),
+    Project(
       assetLogo: MyAssets.myJunglyLogo,
       name: "My Jungly",
       description:
@@ -104,5 +107,7 @@ List<Project> projects = [
         "delupay-screenshots/delupay_screenshot_7.png",
         "delupay-screenshots/delupay_screenshot_8.png",
         "delupay-screenshots/delupay_screenshot_9.png"
-      ])
-];
+      ],
+    ),
+  ];
+}

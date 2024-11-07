@@ -1,9 +1,0 @@
-{
-    "contact_me_title": "Contact",
-    "contact_me_description": "You can contact me using the form below or otherwise by email or telephone directly. You can also follow me on the networks.",
-    "contact_me_hint_email": "Email",
-    "contact_me_hint_name": "Name",
-    "contact_me_hint_body": "Body email",
-    "contact_me_hint_error_email": "Please enter an email",
-    "contact_me_hint_send_button": "Send email"
-}

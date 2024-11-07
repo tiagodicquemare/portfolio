@@ -1,7 +1,6 @@
 import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/course_widgets/about_me_widget.dart';
 import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/course_widgets/cv_widget.dart';
 import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/course_widgets/my_chronology_widget.dart';
-import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/course_widgets/recommendations_widget.dart';
 import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/course_widgets/technical_stack_widget.dart';
 import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/course_widgets/timeline_widget.dart';
 import 'package:flutter/material.dart';
@@ -22,8 +21,6 @@ class _CourseContentWidgetState extends State<CourseContentWidget> {
       return MyChronologyWidget();
     } else if (widget.selectedCategory == 3) {
       return TechnicalStackWidget();
-    } else if (widget.selectedCategory == 4) {
-      return RecommendationsWidget();
     } else {
       return Container();
     }

@@ -1,10 +1,10 @@
 import 'package:dicquemare_solution/NavigationRoutes.dart';
 import 'package:dicquemare_solution/core/injection.dart';
 import 'package:dicquemare_solution/features/home/presentation/pages/home_page.dart';
+import 'package:dicquemare_solution/languages/app_localizations_delegate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() async {
   debugPaintSizeEnabled = false;
@@ -54,7 +54,7 @@ class MyHomePage extends StatelessWidget {
                   .copyWith(secondary: Colors.blueGrey.shade700),
             ),
             localizationsDelegates: const [
-              AppLocalizations.delegate,
+              AppLocalizationsDelegate(),
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,

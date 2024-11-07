@@ -11,10 +11,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SmartphoneWidget extends StatelessWidget {
   Project? project;
+  String? screenshot;
   int selectedScreenshot = 0;
   bool selected;
 
-  SmartphoneWidget({this.project, this.selected = true});
+  SmartphoneWidget({this.project, this.screenshot, this.selected = true});
 
   @override
   Widget build(BuildContext context) {
@@ -48,23 +49,30 @@ class SmartphoneWidget extends StatelessWidget {
                     width: widthPhone - 12,
                     height: heightPhone - 12,
                     color: myLightColorScheme.surface,
-                    child: BlocBuilder<PhoneContainerBloc, PhoneContainerState>(
-                      builder: (context, state) {
-                        if (project != null) {
-                          return ScreenshotPhoneWidget(
-                              screenshots: project!.screenshots,
-                              selected: selected);
-                        } else if (state is ShowProfessionalCategoriesState) {
-                          return ProfessionalCategoriesWidget(
-                            category: state.category,
-                          );
-                        } else if (state is ShowAdditionalContactInfoState) {
-                          return ContactAdditionalInfoWidget();
-                        } else {
-                          return const SizedBox();
-                        }
-                      },
-                    ),
+                    child: screenshot != null
+                        ? Image.asset(
+                            screenshot!,
+                            fit: BoxFit.cover,
+                          )
+                        : BlocBuilder<PhoneContainerBloc, PhoneContainerState>(
+                            builder: (context, state) {
+                              if (project != null) {
+                                return ScreenshotPhoneWidget(
+                                    screenshots: project!.screenshots,
+                                    selected: selected);
+                              } else if (state
+                                  is ShowProfessionalCategoriesState) {
+                                return ProfessionalCategoriesWidget(
+                                  category: state.category,
+                                );
+                              } else if (state
+                                  is ShowAdditionalContactInfoState) {
+                                return ContactAdditionalInfoWidget();
+                              } else {
+                                return const SizedBox();
+                              }
+                            },
+                          ),
                   ),
                 ),
                 Positioned(
@@ -74,7 +82,7 @@ class SmartphoneWidget extends StatelessWidget {
                     child: Container(
                       width: 12,
                       height: 12,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           shape: BoxShape.circle, color: Colors.black),
                     ))
               ],
@@ -90,7 +98,7 @@ class SmartphoneWidget extends StatelessWidget {
               height: heightPhone / 16,
               width: 3,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                       topRight: Radius.circular(4),
                       bottomRight: Radius.circular(4)),
                   color: myLightColorScheme.outline),
@@ -102,7 +110,7 @@ class SmartphoneWidget extends StatelessWidget {
               height: heightPhone / 8,
               width: 3,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                       topRight: Radius.circular(4),
                       bottomRight: Radius.circular(4)),
                   color: myLightColorScheme.outline),

@@ -63,7 +63,7 @@ class TechnicalStackWidgetState extends State<TechnicalStackWidget> {
     double availableWidth = MediaQuery.of(context).size.width -
         CoreUtils.getPhoneScreenWidth(context) -
         24;
-    double availableHeight = CoreUtils.getPhoneScreenHeight(context) + 72;
+    double availableHeight = CoreUtils.getPhoneScreenHeight(context) + 84;
     double spacingHorizontal = 144;
     double spacingVertical = 64;
 

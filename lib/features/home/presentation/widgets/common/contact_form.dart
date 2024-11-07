@@ -3,9 +3,9 @@ import 'dart:convert';
 import 'package:dicquemare_solution/assets.dart';
 import 'package:dicquemare_solution/core/colors.dart';
 import 'package:dicquemare_solution/core/ui/text_styles.dart';
+import 'package:dicquemare_solution/languages/languages.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ContactFormWidget extends StatefulWidget {
   @override
@@ -69,8 +69,6 @@ class _ContactFormWidgeState extends State<ContactFormWidget> {
 
   @override
   Widget build(BuildContext context) {
-    print("Locale is: ${Localizations.localeOf(context)}");
-    var translator = AppLocalizations.of(context)!;
     return Padding(
       padding: EdgeInsets.symmetric(
           vertical: 32, horizontal: MediaQuery.sizeOf(context).width * 0.08),
@@ -82,11 +80,11 @@ class _ContactFormWidgeState extends State<ContactFormWidget> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(translator.contact_me_title,
+              Text(Languages.of(context).contactMeTitle,
                   style: AppTextStyles.textLargeTitleSemiBold(
                       color: myLightColorScheme.onBackground)),
               const SizedBox(height: 24),
-              Text(translator.contact_me_description,
+              Text(Languages.of(context).contactMeDescription,
                   style: AppTextStyles.textLRegular(
                       color: myLightColorScheme.outline)),
               const SizedBox(height: 36),
@@ -107,10 +105,10 @@ class _ContactFormWidgeState extends State<ContactFormWidget> {
                                   color: myLightColorScheme.outline, width: 2),
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(8))),
-                          labelText: translator.contact_me_hint_email),
+                          labelText: Languages.of(context).contactMeHintEmail),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return translator.contact_me_hint_error_email;
+                          return Languages.of(context).contactMeHintErrorEmail;
                         }
                         return null;
                       },
@@ -123,7 +121,7 @@ class _ContactFormWidgeState extends State<ContactFormWidget> {
                     TextFormField(
                       controller: textNameController,
                       decoration: InputDecoration(
-                          labelText: translator.contact_me_hint_name,
+                          labelText: Languages.of(context).contactMeHintName,
                           enabledBorder: const OutlineInputBorder(
                             borderSide:
                                 BorderSide(color: Colors.black, width: 2),
@@ -144,7 +142,7 @@ class _ContactFormWidgeState extends State<ContactFormWidget> {
                           borderSide: BorderSide(color: Colors.black, width: 2),
                           borderRadius: BorderRadius.all(Radius.circular(8)),
                         ),
-                        labelText: translator.contact_me_hint_body,
+                        labelText: Languages.of(context).contactMeHintBody,
                         border: const OutlineInputBorder(),
                         alignLabelWithHint: true,
                         fillColor: Colors.blue.withOpacity(0.1),
@@ -175,7 +173,7 @@ class _ContactFormWidgeState extends State<ContactFormWidget> {
                           ),
                           const SizedBox(width: 12),
                           Text(
-                            translator.contact_me_hint_send_button,
+                            Languages.of(context).contactMeHintSendButton,
                             style: AppTextStyles.textLBold(color: Colors.white),
                           ),
                         ],
