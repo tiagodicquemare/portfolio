@@ -129,4 +129,12 @@ class LanguagesFr extends Languages {
   @override
   String get projectContentEndonora =>
       "Endonora est une application sportive qui permet de faire des trajets sportifs en course à pied ponctués par des exercises physiques. Je me suis occupé de l'application Android et de développer principalement la gestion du trajet et de l'affichage automatique des exercices en fonction de la position GPS de l'utilisateur. Le projet fut intéressant pour découvrir la gestion de la localisation et de la gestion de la batterie sur Android.";
+
+  @override
+  String get testimonyMichael =>
+      "\"Tiago à su se rendre indispensable à notre équipe pendant toute la durée de sa mission.\nC'est un développeur assidu qui a su très rapidement s'adapter à la code base et nos best practices ainsi que participer à l'amélioration de ces derniers.\nOn peux également compter sur lui pour comprendre et challenger les besoins coté métier/produit, mais aussi partager ses connaissances auprès des autres collaborateurs.\nJe recommande à 100%.\"";
+
+  @override
+  String get testimonyRene =>
+      "\"J'ai eu le plaisir d'accompagner Tiago lorsqu'il tenait le rôle de Président de Junior MIAGE Concept Aix-Marseille. Lors de son mandat, Tiago a su grandement améliorer la structure, faire évoluer les processus, faire grandir ses membres et développer de nouvelles compétences et offres.\nTiago sait écouter, et prendre des décisions en ayant récupéré tous les éléments nécessaires. Il est passionné, sérieux, ,travailleur, honnête et a d'énormes qualités humaines qui font de lui un excellent consultant. Je ferais appel à lui sans hésiter dés que l'occasion se présentera.\"";
 }

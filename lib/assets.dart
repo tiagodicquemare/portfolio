@@ -40,6 +40,10 @@ class MyAssets {
   static const String screenshotFrenchCV = 'screenshot_cv_french.png';
   static const String screenshotEnglishCV = 'screenshot_cv_english.png';
 
+  ///////*** Testimonies Image ***//////
+  static const String michaelPhoto = 'photos_testimonies/michael_photo.jpeg';
+  static const String renePhoto = 'photos_testimonies/rene_photo.jpeg';
+
   /////*** Content images ***//////
   static const String androidContentBackground =
       'content_images/android_content_background.png';

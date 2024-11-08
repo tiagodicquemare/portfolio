@@ -63,6 +63,7 @@ dependencies:
   intl_translation: ^0.20.0
   equatable: ^2.0.5
   flutter_svg: ^2.0.11
+  smooth_page_indicator: ^1.2.0+3
 
 dev_dependencies:
   flutter_test:
@@ -89,3 +90,4 @@ assets:
 - assets/pleko-screenshots
 - assets/delupay-screenshots
 - assets/content_images
+- assets/photos_testimonies

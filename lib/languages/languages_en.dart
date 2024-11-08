@@ -129,4 +129,12 @@ class LanguagesEn extends Languages {
   @override
   String get projectContentEndonora =>
       "Endonora is a sports application that allows you to take running routes punctuated by physical exercises. I was responsible for the Android application and mainly developed the route management and automatic display of exercises based on the user's GPS position. The project was interesting for discovering location management and battery optimization on Android.";
+
+  @override
+  String get testimonyMichael =>
+      "Tiago made himself indispensable to our team throughout his assignment.\nHe is a diligent developer who was able to quickly adapt to the codebase and our best practices, and also contributed to their improvement.\nWe can also count on him to understand and challenge business/product needs, as well as share his knowledge with other colleagues.\nI recommend him 100%.";
+
+  @override
+  String get testimonyRene =>
+      "I had the pleasure of supporting Tiago when he held the role of President of Junior MIAGE Concept Aix-Marseille. During his term, Tiago greatly improved the structure, evolved processes, helped his members grow, and developed new skills and offerings.\nTiago knows how to listen and make decisions after gathering all the necessary information. He is passionate, serious, hardworking, honest, and has enormous human qualities that make him an excellent consultant. I will not hesitate to call on him as soon as the opportunity arises.";
 }

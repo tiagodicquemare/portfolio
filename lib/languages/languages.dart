@@ -50,4 +50,8 @@ abstract class Languages {
   String get projectContentBeepings;
   String get projectContentPleko;
   String get projectContentEndonora;
+
+  // Testimony widget
+  String get testimonyMichael;
+  String get testimonyRene;
 }
