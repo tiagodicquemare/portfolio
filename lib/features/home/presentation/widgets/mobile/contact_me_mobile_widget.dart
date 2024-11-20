@@ -1,4 +1,5 @@
 import 'package:dicquemare_solution/features/home/presentation/widgets/common/contact_form.dart';
+import 'package:dicquemare_solution/features/home/presentation/widgets/common/contact_header_widget.dart';
 import 'package:dicquemare_solution/features/phone_container/presentation/widgets/contact_additional_info.dart';
 
 import 'package:flutter/material.dart';
@@ -13,11 +14,19 @@ class _ContactMeMobileWidgetState extends State<ContactMeMobileWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ContactAdditionalInfoWidget(),
-        const SizedBox(
-          height: 24,
+        ContactFormWidget(
+          withHeader: true,
         ),
-        ContactFormWidget()
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Container(
+            height: 1,
+            color: Colors.grey,
+          ),
+        ),
+        ContactAdditionalInfoWidget(
+          crossAxisAlignment: CrossAxisAlignment.center,
+        ),
       ],
     );
   }
