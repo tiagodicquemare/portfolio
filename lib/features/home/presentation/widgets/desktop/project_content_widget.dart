@@ -23,7 +23,6 @@ class _ProjectContentWidgetState extends State<ProjectContentWidget> {
   double heightPhone = 600;
   double widthPhone = 350;
   int selectedProjectIndex = 0;
-  bool firstInit = true;
   List<Project> get projects => projectsList(context);
 
   @override

@@ -7,6 +7,7 @@ import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/c
 import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/course_content_widget.dart';
 import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/project_content_widget.dart';
 import 'package:dicquemare_solution/features/home/presentation/widgets/mobile/contact_me_mobile_widget.dart';
+import 'package:dicquemare_solution/features/home/presentation/widgets/mobile/project_content_mobile_widget.dart';
 import 'package:dicquemare_solution/features/phone_container/presentation/bloc/phone_container_bloc.dart';
 import 'package:dicquemare_solution/features/phone_container/presentation/pages/smart_phone_widget.dart';
 import 'package:flutter/material.dart';
@@ -70,57 +71,62 @@ class _HomePageState extends State<HomePage>
       children: <Widget>[
         MyTabBar(tabController: _tabController),
         Expanded(
-          child: GreenGradientBackground(
-            child: mobile
-                ? containerHomeMobileContent(_tabController.index + 1)
-                : containerHomeDesktopContent(_tabController.index + 1),
+          child: BlocProvider(
+            create: (blocContext) => sl<PhoneContainerBloc>(),
+            child: BlocBuilder<PhoneContainerBloc, PhoneContainerState>(
+              builder: (blocContext, state) {
+                return GreenGradientBackground(
+                  child: mobile
+                      ? containerHomeMobileContent(
+                          blocContext, _tabController.index + 1)
+                      : containerHomeDesktopContent(
+                          blocContext, state, _tabController.index + 1),
+                );
+              },
+            ),
           ),
         ),
       ],
     );
   }
 
-  Widget containerHomeMobileContent(int index) {
+  Widget containerHomeMobileContent(BuildContext context, int index) {
     if (index == 1) {
       return CourseContentWidget(
         selectedCategory: selectedProfessionalCategory,
       );
     } else if (index == 2) {
-      return ProjectContentWidget();
+      return ProjectContentMobileWidget();
     } else {
       return SingleChildScrollView(child: ContactMeMobileWidget());
     }
   }
 
-  Widget containerHomeDesktopContent(int index) {
-    return BlocProvider(
-        create: (blocContext) => sl<PhoneContainerBloc>(),
-        child: BlocBuilder<PhoneContainerBloc, PhoneContainerState>(
-            builder: (blocContext, state) {
-          if (state is ShowProfessionalCategoriesState) {
-            selectedProfessionalCategory = state.category;
-          }
-          if (index == 1) {
-            BlocProvider.of<PhoneContainerBloc>(blocContext).add(
-                ShowProfessionalCategoriesEvent(
-                    category: selectedProfessionalCategory));
-          } else if (index == 3) {
-            BlocProvider.of<PhoneContainerBloc>(blocContext)
-                .add(ShowAdditionalContactInfoEvent());
-          }
-          return Stack(
-            children: [
-              extraContentDependingOnScreen(index),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [animatedRectangle(blocContext, index)],
-                ),
-              )
-            ],
-          );
-        }));
+  Widget containerHomeDesktopContent(
+      BuildContext blocContext, PhoneContainerState state, int index) {
+    if (state is ShowProfessionalCategoriesState) {
+      selectedProfessionalCategory = state.category;
+    }
+    if (index == 1) {
+      BlocProvider.of<PhoneContainerBloc>(blocContext).add(
+          ShowProfessionalCategoriesEvent(
+              category: selectedProfessionalCategory));
+    } else if (index == 3) {
+      BlocProvider.of<PhoneContainerBloc>(blocContext)
+          .add(ShowAdditionalContactInfoEvent());
+    }
+    return Stack(
+      children: [
+        extraContentDependingOnScreen(index),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [animatedRectangle(blocContext, index)],
+          ),
+        )
+      ],
+    );
   }
 
   Widget extraContentDependingOnScreen(int index) {
@@ -157,6 +163,12 @@ class _HomePageState extends State<HomePage>
         default:
           return Alignment.centerLeft;
       }
+    }
+
+    if (index == 2) {
+      isPhoneVisible = false;
+      BlocProvider.of<PhoneContainerBloc>(blocContext)
+          .add(PhoneAnimationEndEvent());
     }
 
     final alignment = getAlignment();

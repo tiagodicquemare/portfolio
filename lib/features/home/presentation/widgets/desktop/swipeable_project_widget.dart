@@ -10,10 +10,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SwipeableProjectsCarousel extends StatefulWidget {
   List<Project> projects;
+  bool mobileDesign;
   Function(int) onProjectSelected;
 
   SwipeableProjectsCarousel(
-      {required this.projects, required this.onProjectSelected});
+      {required this.projects,
+      required this.onProjectSelected,
+      this.mobileDesign = false});
   @override
   _SwipeableCardsCarouselState createState() => _SwipeableCardsCarouselState();
 }
@@ -32,7 +35,7 @@ class _SwipeableCardsCarouselState extends State<SwipeableProjectsCarousel> {
 
     return BlocBuilder<PhoneContainerBloc, PhoneContainerState>(
         builder: (context, state) {
-      if (state is PhoneAnimationOngoing) {
+      if (state is PhoneAnimationOngoing && !widget.mobileDesign) {
         listProjectCards = getProjectsWidgets(true);
       } else {
         listProjectCards = getProjectsWidgets(false);
@@ -56,7 +59,9 @@ class _SwipeableCardsCarouselState extends State<SwipeableProjectsCarousel> {
                   });
                 },
                 enableInfiniteScroll: true),
-            items: state is PhoneContainerLoaded ? listProjectCards : []),
+            items: state is PhoneContainerLoaded || widget.mobileDesign
+                ? listProjectCards
+                : []),
       );
     });
   }
