@@ -1,21 +1,21 @@
-import 'package:dicquemare_solution/assets.dart';
 import 'package:dicquemare_solution/core/colors.dart';
 import 'package:dicquemare_solution/core/ui/text_styles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/scheduler/ticker.dart';
 
-const MY_TAB_BAR_HEIGHT = 52.0;
-
-class MyTabBar extends StatefulWidget {
+class AnimatedTabBar extends StatefulWidget {
+  final double width;
   final TabController tabController;
 
-  MyTabBar({Key? key, required this.tabController}) : super(key: key);
+  const AnimatedTabBar(
+      {Key? key, required this.width, required this.tabController})
+      : super(key: key);
 
   @override
-  _MyTabBarState createState() => _MyTabBarState();
+  AnimatedTabBarState createState() => AnimatedTabBarState();
 }
 
-class _MyTabBarState extends State<MyTabBar> with TickerProviderStateMixin {
+class AnimatedTabBarState extends State<AnimatedTabBar>
+    with TickerProviderStateMixin {
   late Animation<double> animation;
   late AnimationController animationController;
 
@@ -44,104 +44,60 @@ class _MyTabBarState extends State<MyTabBar> with TickerProviderStateMixin {
   }
 
   @override
-  void dispose() {
-    animationController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    var widthAppBar = MediaQuery.of(context).size.width / 2.5;
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        SizedBox(
-          height: MY_TAB_BAR_HEIGHT,
-          child: Row(
-            children: [
-              GestureDetector(
-                onTap: () {
-                  widget.tabController.animateTo(0);
-                },
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const SizedBox(width: 16),
-                    Image.asset(MyAssets.onlyPlekoLogo, width: 52),
-                    const SizedBox(width: 8),
-                    Text(
-                      "Dicquemare Solution",
+    return SizedBox(
+      width: widget.width,
+      child: Stack(
+        children: [
+          AppBar(
+            backgroundColor: Colors.transparent,
+            bottom: TabBar(
+              controller: widget.tabController,
+              indicatorColor: Colors.transparent,
+              indicator: null,
+              tabs: [
+                Tab(
+                    height: 50,
+                    child: Text(
+                      "Parcours",
                       style: AppTextStyles.textLSemiBold(
                           color: myLightColorScheme.primary),
-                    ),
-                  ],
+                    )),
+                Tab(
+                    height: 50,
+                    child: Text(
+                      "Projets",
+                      style: AppTextStyles.textLSemiBold(
+                          color: myLightColorScheme.primary),
+                    )),
+                Tab(
+                    height: 50,
+                    child: Text(
+                      "Contact",
+                      style: AppTextStyles.textLSemiBold(
+                          color: myLightColorScheme.primary),
+                    )),
+              ],
+            ),
+          ),
+          Positioned(
+            bottom: 0,
+            top: 0,
+            left: (widget.width / 3) * widget.tabController.animation!.value,
+            child: Padding(
+              padding: const EdgeInsets.all(4),
+              child: Container(
+                width: (widget.width / 3) - 8,
+                height: 42,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: myLightColorScheme.primary.withOpacity(0.2),
                 ),
               ),
-              const Spacer(),
-              SizedBox(
-                width: widthAppBar,
-                child: Stack(
-                  children: <Widget>[
-                    AppBar(
-                      backgroundColor: Colors.transparent,
-                      bottom: TabBar(
-                        controller: widget.tabController,
-                        indicatorColor: Colors.transparent,
-                        indicator: null,
-                        tabs: [
-                          Tab(
-                              height: 50,
-                              child: Text(
-                                "Parcours",
-                                style: AppTextStyles.textLSemiBold(
-                                    color: myLightColorScheme.primary),
-                              )),
-                          Tab(
-                              height: 50,
-                              child: Text(
-                                "Projets",
-                                style: AppTextStyles.textLSemiBold(
-                                    color: myLightColorScheme.primary),
-                              )),
-                          Tab(
-                              height: 50,
-                              child: Text(
-                                "Contact",
-                                style: AppTextStyles.textLSemiBold(
-                                    color: myLightColorScheme.primary),
-                              )),
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 0,
-                      top: 0,
-                      left: (widthAppBar / 3) * animation.value,
-                      child: Padding(
-                        padding: const EdgeInsets.all(4),
-                        child: Container(
-                          width: (widthAppBar / 3) - 8,
-                          height: 42,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: myLightColorScheme.primary.withOpacity(0.2),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              )
-            ],
+            ),
           ),
-        ),
-        Container(
-          width: double.infinity,
-          height: 1,
-          color: myLightColorScheme.onPrimaryContainer.withOpacity(0.1),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

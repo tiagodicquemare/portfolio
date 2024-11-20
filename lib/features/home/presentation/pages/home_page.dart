@@ -1,12 +1,13 @@
 import 'package:dicquemare_solution/core/colors.dart';
 import 'package:dicquemare_solution/core/injection.dart';
-import 'package:dicquemare_solution/core/ui/animated_tab_bar.dart';
+import 'package:dicquemare_solution/core/ui/my_tab_bar.dart';
 import 'package:dicquemare_solution/core/ui/green_gradient_background.dart';
 import 'package:dicquemare_solution/core/utils.dart';
 import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/contact_me_widget.dart';
 import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/course_content_widget.dart';
 import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/project_content_widget.dart';
 import 'package:dicquemare_solution/features/home/presentation/widgets/mobile/contact_me_mobile_widget.dart';
+import 'package:dicquemare_solution/features/home/presentation/widgets/mobile/course_content_mobile_widget.dart';
 import 'package:dicquemare_solution/features/home/presentation/widgets/mobile/project_content_mobile_widget.dart';
 import 'package:dicquemare_solution/features/phone_container/presentation/bloc/phone_container_bloc.dart';
 import 'package:dicquemare_solution/features/phone_container/presentation/pages/smart_phone_widget.dart';
@@ -28,6 +29,7 @@ class _HomePageState extends State<HomePage>
   bool isPhoneVisible = true;
   AlignmentGeometry? _lastAlignment;
   int selectedProfessionalCategory = 1;
+  bool lastDispositionIsMobile = false;
 
   @override
   void initState() {
@@ -91,10 +93,9 @@ class _HomePageState extends State<HomePage>
   }
 
   Widget containerHomeMobileContent(BuildContext context, int index) {
+    lastDispositionIsMobile = true;
     if (index == 1) {
-      return CourseContentWidget(
-        selectedCategory: selectedProfessionalCategory,
-      );
+      return CourseContentMobileWidget();
     } else if (index == 2) {
       return ProjectContentMobileWidget();
     } else {
@@ -104,6 +105,8 @@ class _HomePageState extends State<HomePage>
 
   Widget containerHomeDesktopContent(
       BuildContext blocContext, PhoneContainerState state, int index) {
+    bool currentLastDispositionIsMobile = lastDispositionIsMobile;
+    lastDispositionIsMobile = false;
     if (state is ShowProfessionalCategoriesState) {
       selectedProfessionalCategory = state.category;
     }
@@ -122,7 +125,10 @@ class _HomePageState extends State<HomePage>
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [animatedRectangle(blocContext, index)],
+            children: [
+              animatedRectangle(
+                  blocContext, index, currentLastDispositionIsMobile)
+            ],
           ),
         )
       ],
@@ -151,7 +157,8 @@ class _HomePageState extends State<HomePage>
     }
   }
 
-  Widget animatedRectangle(BuildContext blocContext, int index) {
+  Widget animatedRectangle(BuildContext blocContext, int index,
+      bool currentLastDispositionIsMobile) {
     Alignment getAlignment() {
       switch (index) {
         case 1:
@@ -165,18 +172,20 @@ class _HomePageState extends State<HomePage>
       }
     }
 
-    if (index == 2) {
-      isPhoneVisible = false;
-      BlocProvider.of<PhoneContainerBloc>(blocContext)
-          .add(PhoneAnimationEndEvent());
-    }
-
     final alignment = getAlignment();
     if (_lastAlignment != alignment) {
       BlocProvider.of<PhoneContainerBloc>(blocContext)
           .add(PhoneAnimationStartEvent());
     }
     _lastAlignment = alignment;
+
+    // handle transition between mobile and desktop versions
+    print("currentLastDispositionIsMobile: $currentLastDispositionIsMobile");
+    if (index == 2 && currentLastDispositionIsMobile) {
+      isPhoneVisible = false;
+      BlocProvider.of<PhoneContainerBloc>(blocContext)
+          .add(PhoneAnimationEndEvent());
+    }
 
     return AnimatedAlign(
       alignment: alignment,

@@ -25,47 +25,49 @@ class TestimonyWidget extends StatelessWidget {
                 final testimony = testimonies[index];
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 120.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Container(
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                        ),
-                        child: ClipOval(
-                          child: Image.asset(
-                            testimony.assetPhoto,
-                            height: 120,
-                            width: 120,
-                            fit: BoxFit.cover,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Container(
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                          ),
+                          child: ClipOval(
+                            child: Image.asset(
+                              testimony.assetPhoto,
+                              height: 120,
+                              width: 120,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 24.0),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Text(
-                          testimony.message,
-                          style: const TextStyle(fontSize: 16.0),
-                          textAlign: TextAlign.center,
+                        const SizedBox(height: 24.0),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Text(
+                            testimony.message,
+                            style: const TextStyle(fontSize: 16.0),
+                            textAlign: TextAlign.center,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 24.0),
-                      Text(
-                        testimony.name,
-                        style: AppTextStyles.textMRegular(
-                            color: myLightColorScheme.primary),
-                      ),
-                      const SizedBox(height: 12.0),
-                      Text(
-                        '${testimony.profession}, ${testimony.company}',
-                        style: TextStyle(
-                          fontSize: 14.0,
-                          color: Colors.grey[600],
+                        const SizedBox(height: 24.0),
+                        Text(
+                          testimony.name,
+                          style: AppTextStyles.textMRegular(
+                              color: myLightColorScheme.primary),
                         ),
-                      ),
-                      const SizedBox(height: 48.0),
-                    ],
+                        const SizedBox(height: 12.0),
+                        Text(
+                          '${testimony.profession}, ${testimony.company}',
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.grey[600],
+                          ),
+                        ),
+                        const SizedBox(height: 48.0),
+                      ],
+                    ),
                   ),
                 );
               },

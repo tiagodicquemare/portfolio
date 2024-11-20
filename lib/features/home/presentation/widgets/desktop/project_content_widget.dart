@@ -1,5 +1,5 @@
 import 'package:dicquemare_solution/assets.dart';
-import 'package:dicquemare_solution/core/ui/animated_tab_bar.dart';
+import 'package:dicquemare_solution/core/ui/my_tab_bar.dart';
 import 'package:dicquemare_solution/core/utils.dart';
 import 'package:dicquemare_solution/features/home/domain/entities/project.dart';
 import 'package:dicquemare_solution/features/home/presentation/bloc/home_bloc.dart';
