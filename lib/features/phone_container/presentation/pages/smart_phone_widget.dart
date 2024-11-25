@@ -14,13 +14,21 @@ class SmartphoneWidget extends StatelessWidget {
   String? screenshot;
   int selectedScreenshot = 0;
   bool selected;
+  double scaleDownSize;
 
-  SmartphoneWidget({this.project, this.screenshot, this.selected = true});
+  SmartphoneWidget({
+    this.project,
+    this.screenshot,
+    this.selected = true,
+    this.scaleDownSize = 1,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final widthPhone = CoreUtils.getPhoneScreenWidth(context);
-    final heightPhone = CoreUtils.getPhoneScreenHeight(context);
+    final widthPhone = CoreUtils.getPhoneScreenWidth(context) *
+        (CoreUtils.isSmallScreen(context) ? scaleDownSize : 1);
+    final heightPhone = CoreUtils.getPhoneScreenHeight(context) *
+        (CoreUtils.isSmallScreen(context) ? scaleDownSize : 1);
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

@@ -1,5 +1,6 @@
 import 'package:dicquemare_solution/core/colors.dart';
 import 'package:dicquemare_solution/core/ui/text_styles.dart';
+import 'package:dicquemare_solution/core/utils.dart';
 import 'package:dicquemare_solution/features/home/domain/entities/testimony.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -16,7 +17,7 @@ class TestimonyWidget extends StatelessWidget {
         children: [
           Container(
             height: MediaQuery.sizeOf(context).height * 0.6,
-            width: MediaQuery.sizeOf(context).width * 0.6,
+            width: MediaQuery.sizeOf(context).width * 1,
             child: PageView.builder(
               itemCount: testimonies.length,
               controller: _pageController,
@@ -24,7 +25,9 @@ class TestimonyWidget extends StatelessWidget {
               itemBuilder: (context, index) {
                 final testimony = testimonies[index];
                 return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 120.0),
+                  padding: EdgeInsets.symmetric(
+                      horizontal:
+                          CoreUtils.isSmallScreen(context) ? 24 : 160.0),
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -73,6 +76,7 @@ class TestimonyWidget extends StatelessWidget {
               },
             ),
           ),
+          const SizedBox(height: 24.0),
           SmoothPageIndicator(
             controller: _pageController,
             count: testimonies.length,

@@ -25,38 +25,38 @@ class LanguagesFr extends Languages {
 
   @override
   String get aboutMeDescription =>
-      "Bienvenue sur mon site web codé en Flutter. Passionné par l'entrepreneuriat et le développement mobile, j'aspire à développer des solutions informatiques allant de la conception à la mise en production. Ayant une expérience de plus de 6 ans dans le développement mobile, j'ai pu travailler avec des startups et des entreprises de renom générant des millions de téléchargements. Je suis à votre disposition et j'ai hâte de discuter de votre projet.";
+      "Bienvenue sur mon site web codé en Flutter. Passionné par l'entrepreneuriat et le développement mobile, j'aspire à développer des solutions informatiques allant de la conception à la mise en production. Ayant une expérience de plus de 6 ans dans le développement mobile, j'ai pu travailler avec des startups et des entreprises de renom générant des millions de téléchargements.\nVoici que j'ai à vous proposer :";
 
   @override
   String get aboutMeFirstPointDescription =>
-      "Je serai à votre écoute pour comprendre vos besoins et vous conseiller sur les meilleures solutions à adopter. J'apporterai également une attention particulière à la conception de votre application pour qu'elle soit ergonomique et intuitive.";
+      "Je serais à votre écoute pour vous conseiller dans le choix des meilleures solutions techniques et design.";
 
   @override
   String get aboutMeFirstPointTitle => "Conseil & Design";
 
   @override
   String get aboutMeFourthPointDescription =>
-      "Je propose aussi des solutions d'optimisation et d'analyse de votre application grâce à des outils de monitoring et des intégrations IA. Des solutions qui ont pour but d'optimiser la rentabilité de votre application.";
+      "Générer des cartes interactives pour vos applications mobiles avec les meilleurs outils du marché.";
 
   @override
-  String get aboutMeFourthPointTitle => "Optimisation & Analyse";
+  String get aboutMeFourthPointTitle => "Mapping & Navigation";
 
   @override
   String get aboutMePost => "Développeur Mobile\nAndroid & Flutter";
 
   @override
   String get aboutMeSecondPointDescription =>
-      "Je ferai le développement sur mesure de votre application mobile en utilisant les dernières technologies disponibles sur Android ou Flutter. Tout en assurant que l'application soit efficace et peu énergivore dans son fonctionnement.";
+      "Un développement sur mesure de votre application mobile avec un accompagnement dans son déploiement.";
 
   @override
-  String get aboutMeSecondPointTitle => "Développement";
+  String get aboutMeSecondPointTitle => "Développement et déploiement";
 
   @override
   String get aboutMeThirdPointDescription =>
-      "Je m'occupe du déploiement et de la distribution de votre application sur le Play Store et l'App Store. J'assure également la maintenance de votre application pour garantir son bon fonctionnement.";
+      "Connecter votre application mobile avec des objets connectés en Bluetooth pour offrir une expérience utilisateur unique.";
 
   @override
-  String get aboutMeThirdPointTitle => "Déploiement & Maintenance";
+  String get aboutMeThirdPointTitle => "Connexion IoT";
 
   @override
   String get aboutMeTitle => "Tiago Dicquemare";

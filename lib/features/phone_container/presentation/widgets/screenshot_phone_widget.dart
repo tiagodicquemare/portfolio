@@ -1,4 +1,5 @@
 import 'package:dicquemare_solution/core/ui/text_styles.dart';
+import 'package:dicquemare_solution/core/utils.dart';
 import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/project_content_widgets/highlight_project_screenshot.dart';
 import 'package:flutter/material.dart';
 
@@ -56,11 +57,15 @@ class _ScreenshotPhoneWidgetState extends State<ScreenshotPhoneWidget> {
                         color: Colors.black.withOpacity(0.7),
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 48, vertical: 20),
+                      padding: EdgeInsets.symmetric(
+                          horizontal:
+                              CoreUtils.isSmallScreen(context) ? 16 : 48,
+                          vertical: CoreUtils.isSmallScreen(context) ? 8 : 20),
                       child: Text("Voir plus",
-                          style:
-                              AppTextStyles.textMSemiBold(color: Colors.white)),
+                          style: CoreUtils.isSmallScreen(context)
+                              ? AppTextStyles.textSSemiBold(color: Colors.white)
+                              : AppTextStyles.textMSemiBold(
+                                  color: Colors.white)),
                     ),
                   ),
                 ),

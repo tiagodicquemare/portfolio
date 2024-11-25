@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dicquemare_solution/assets.dart';
 import 'package:dicquemare_solution/core/colors.dart';
 import 'package:dicquemare_solution/core/ui/text_styles.dart';
+import 'package:dicquemare_solution/core/utils.dart';
 import 'package:dicquemare_solution/features/home/presentation/widgets/common/contact_header_widget.dart';
 import 'package:dicquemare_solution/languages/languages.dart';
 import 'package:flutter/material.dart';
@@ -77,7 +78,9 @@ class _ContactFormWidgeState extends State<ContactFormWidget> {
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.symmetric(
-            vertical: 32, horizontal: MediaQuery.sizeOf(context).width * 0.08),
+            vertical: CoreUtils.isSmallScreen(context) ? 16 : 32,
+            horizontal: MediaQuery.sizeOf(context).width *
+                (CoreUtils.isSmallScreen(context) ? 0.02 : 0.08)),
         child: Container(
           decoration: BoxDecoration(
               color: Colors.transparent,

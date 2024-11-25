@@ -10,7 +10,6 @@ class CoreUtils {
 
   static getPhoneScreenHeight(BuildContext context) {
     return MediaQuery.sizeOf(context).height * 0.8;
-    // return MediaQuery.of(context).size.height - 64 - 56;
   }
 
   static void launchURL(String url) async {
@@ -33,6 +32,10 @@ class CoreUtils {
         webPosition: "center",
       );
     });
+  }
+
+  static bool isSmallScreen(BuildContext context) {
+    return MediaQuery.sizeOf(context).width < 824;
   }
 }
 

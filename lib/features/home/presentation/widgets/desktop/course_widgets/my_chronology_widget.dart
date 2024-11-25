@@ -3,6 +3,7 @@ import 'package:dicquemare_solution/core/colors.dart';
 import 'package:dicquemare_solution/core/ext/date_ext.dart';
 import 'package:dicquemare_solution/core/pdf_utils.dart';
 import 'package:dicquemare_solution/core/ui/text_styles.dart';
+import 'package:dicquemare_solution/core/utils.dart';
 import 'package:dicquemare_solution/languages/languages.dart';
 import 'package:flutter/material.dart';
 
@@ -79,7 +80,8 @@ class MyChronologyWidget extends StatelessWidget {
     }
     return Padding(
       padding: EdgeInsets.symmetric(
-          horizontal: MediaQuery.sizeOf(context).width * 0.07),
+          horizontal: MediaQuery.sizeOf(context).width *
+              (CoreUtils.isSmallScreen(context) ? 0.05 : 0.07)),
       child: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(

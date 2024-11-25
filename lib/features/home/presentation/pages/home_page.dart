@@ -71,7 +71,10 @@ class _HomePageState extends State<HomePage>
     widthPhone = CoreUtils.getPhoneScreenWidth(context);
     return Column(
       children: <Widget>[
-        MyTabBar(tabController: _tabController),
+        MyTabBar(
+          tabController: _tabController,
+          isMobile: mobile,
+        ),
         Expanded(
           child: BlocProvider(
             create: (blocContext) => sl<PhoneContainerBloc>(),
@@ -180,7 +183,6 @@ class _HomePageState extends State<HomePage>
     _lastAlignment = alignment;
 
     // handle transition between mobile and desktop versions
-    print("currentLastDispositionIsMobile: $currentLastDispositionIsMobile");
     if (index == 2 && currentLastDispositionIsMobile) {
       isPhoneVisible = false;
       BlocProvider.of<PhoneContainerBloc>(blocContext)

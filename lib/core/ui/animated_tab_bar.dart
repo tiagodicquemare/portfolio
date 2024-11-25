@@ -1,13 +1,18 @@
 import 'package:dicquemare_solution/core/colors.dart';
 import 'package:dicquemare_solution/core/ui/text_styles.dart';
+import 'package:dicquemare_solution/core/utils.dart';
 import 'package:flutter/material.dart';
 
 class AnimatedTabBar extends StatefulWidget {
   final double width;
   final TabController tabController;
+  final List<String> tabsText;
 
   const AnimatedTabBar(
-      {Key? key, required this.width, required this.tabController})
+      {Key? key,
+      required this.width,
+      required this.tabController,
+      required this.tabsText})
       : super(key: key);
 
   @override
@@ -59,23 +64,20 @@ class AnimatedTabBarState extends State<AnimatedTabBar>
                 Tab(
                     height: 50,
                     child: Text(
-                      "Parcours",
-                      style: AppTextStyles.textLSemiBold(
-                          color: myLightColorScheme.primary),
+                      widget.tabsText[0],
+                      style: tabTextStyle(context),
                     )),
                 Tab(
                     height: 50,
                     child: Text(
-                      "Projets",
-                      style: AppTextStyles.textLSemiBold(
-                          color: myLightColorScheme.primary),
+                      widget.tabsText[1],
+                      style: tabTextStyle(context),
                     )),
                 Tab(
                     height: 50,
                     child: Text(
-                      "Contact",
-                      style: AppTextStyles.textLSemiBold(
-                          color: myLightColorScheme.primary),
+                      widget.tabsText[2],
+                      style: tabTextStyle(context),
                     )),
               ],
             ),
@@ -99,5 +101,11 @@ class AnimatedTabBarState extends State<AnimatedTabBar>
         ],
       ),
     );
+  }
+
+  TextStyle tabTextStyle(BuildContext context) {
+    return CoreUtils.isSmallScreen(context)
+        ? AppTextStyles.textSSemiBold(color: myLightColorScheme.primary)
+        : AppTextStyles.textLSemiBold(color: myLightColorScheme.primary);
   }
 }

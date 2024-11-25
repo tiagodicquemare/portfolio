@@ -28,8 +28,10 @@ class _SwipeableCardsCarouselState extends State<SwipeableProjectsCarousel> {
 
   @override
   Widget build(BuildContext context) {
-    final heightPhone = CoreUtils.getPhoneScreenHeight(context);
-    final widthPhone = CoreUtils.getPhoneScreenWidth(context);
+    final widthPhone = CoreUtils.getPhoneScreenWidth(context) *
+        (CoreUtils.isSmallScreen(context) ? 0.5 : 1);
+    final heightPhone = CoreUtils.getPhoneScreenHeight(context) *
+        (CoreUtils.isSmallScreen(context) ? 0.5 : 1);
 
     List<Widget> listProjectCards = getProjectsWidgets(false);
 
@@ -41,9 +43,9 @@ class _SwipeableCardsCarouselState extends State<SwipeableProjectsCarousel> {
         listProjectCards = getProjectsWidgets(false);
       }
       return SizedBox(
-        width: widthPhone * 3 +
+        width: (widthPhone * 3 +
             32 +
-            75, // 75 is the width untolerated by carousel library
+            75), // 75 is the width untolerated by carousel library
         child: MyCarouselSlider(
             carouselController: _carouselController,
             options: CarouselOptions(
@@ -89,6 +91,7 @@ class _SwipeableCardsCarouselState extends State<SwipeableProjectsCarousel> {
             child: SmartphoneWidget(
               project: project,
               selected: indexPageSelected == index,
+              scaleDownSize: 0.5,
             ));
       }).toList();
     }

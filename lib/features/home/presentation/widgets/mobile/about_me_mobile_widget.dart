@@ -1,24 +1,12 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:dicquemare_solution/assets.dart';
 import 'package:dicquemare_solution/core/colors.dart';
 import 'package:dicquemare_solution/core/ui/text_styles.dart';
 import 'package:dicquemare_solution/core/utils.dart';
+import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/course_widgets/about_me_widget.dart';
 import 'package:dicquemare_solution/languages/languages.dart';
 import 'package:flutter/material.dart';
 
-class AboutMePoint {
-  String title;
-  String description;
-  String assetPath;
-
-  AboutMePoint(
-      {required this.title,
-      required this.description,
-      required this.assetPath});
-}
-
-class AboutMeWidget extends StatelessWidget {
+class AboutMeMobileWidget extends StatelessWidget {
   bool firstInit = true;
   List<AboutMePoint> aboutMePoints = [];
   @override
@@ -51,7 +39,21 @@ class AboutMeWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             const SizedBox(
-              height: 32,
+              height: 20,
+            ),
+            Container(
+              width: MediaQuery.sizeOf(context).width * 0.6,
+              height: MediaQuery.sizeOf(context).height * 0.25,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15.0),
+                image: const DecorationImage(
+                  fit: BoxFit.fitHeight,
+                  image: AssetImage(MyAssets.profilePhoto),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 12,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -75,7 +77,7 @@ class AboutMeWidget extends StatelessWidget {
                         style: AppTextStyles.textXXXLSemiBold(
                             color: myLightColorScheme.onSurface),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 12,
                       ),
                       Padding(
@@ -84,7 +86,7 @@ class AboutMeWidget extends StatelessWidget {
                                 CoreUtils.isSmallScreen(context) ? 16 : 48),
                         child: Text(
                           Languages.of(context).aboutMeDescription,
-                          textAlign: TextAlign.center,
+                          textAlign: TextAlign.start,
                           style: AppTextStyles.textMRegular(
                               color: myLightColorScheme.onBackground),
                         ),
@@ -92,37 +94,24 @@ class AboutMeWidget extends StatelessWidget {
                     ],
                   ),
                 ),
-                Container(
-                  width: MediaQuery.sizeOf(context).width * 0.17,
-                  height: MediaQuery.sizeOf(context).height * 0.3,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15.0),
-                    image: DecorationImage(
-                      fit: BoxFit.fitHeight,
-                      image: AssetImage(MyAssets.profilePhoto),
-                    ),
-                  ),
-                ),
               ],
             ),
             const SizedBox(
               height: 20,
             ),
-            Row(
-              children: [
-                buildSkillItem(context, aboutMePoints[0]),
-                buildSkillItem(context, aboutMePoints[1]),
-              ],
-            ),
+            buildSkillItem(context, aboutMePoints[0]),
             const SizedBox(
-              height: 20,
+              height: 16,
             ),
-            Row(
-              children: [
-                buildSkillItem(context, aboutMePoints[2]),
-                buildSkillItem(context, aboutMePoints[3]),
-              ],
+            buildSkillItem(context, aboutMePoints[1]),
+            const SizedBox(
+              height: 16,
             ),
+            buildSkillItem(context, aboutMePoints[2]),
+            const SizedBox(
+              height: 16,
+            ),
+            buildSkillItem(context, aboutMePoints[3]),
             const SizedBox(
               height: 32,
             )
@@ -133,41 +122,37 @@ class AboutMeWidget extends StatelessWidget {
   }
 
   Widget buildSkillItem(BuildContext context, AboutMePoint entry) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.32,
-      child: Row(
-        children: [
-          Image.asset(
-            entry.assetPath,
-            width: 80,
-          ),
-          const SizedBox(
-            width: 16,
-          ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.3 - 96,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  entry.title,
-                  style: AppTextStyles.textXXLSemiBold(
-                    color: myLightColorScheme.onTertiaryContainer,
-                  ),
+    return Row(
+      children: [
+        Image.asset(
+          entry.assetPath,
+          width: 80,
+        ),
+        const SizedBox(
+          width: 12,
+        ),
+        Expanded(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                entry.title,
+                style: AppTextStyles.textXXLSemiBold(
+                  color: myLightColorScheme.onTertiaryContainer,
                 ),
-                Flexible(
-                  child: Text(
-                    entry.description,
-                    style: AppTextStyles.textMRegular(
-                        color: myLightColorScheme.onBackground),
-                  ),
-                )
-              ],
-            ),
-          )
-        ],
-      ),
+              ),
+              Flexible(
+                child: Text(
+                  entry.description,
+                  style: AppTextStyles.textMRegular(
+                      color: myLightColorScheme.onBackground),
+                ),
+              )
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

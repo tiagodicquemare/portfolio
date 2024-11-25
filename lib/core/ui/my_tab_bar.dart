@@ -9,14 +9,17 @@ const MY_TAB_BAR_HEIGHT = 52.0;
 
 class MyTabBar extends StatefulWidget {
   final TabController tabController;
+  final bool isMobile;
 
-  MyTabBar({Key? key, required this.tabController}) : super(key: key);
+  MyTabBar({Key? key, required this.tabController, required this.isMobile})
+      : super(key: key);
 
   @override
   _MyTabBarState createState() => _MyTabBarState();
 }
 
 class _MyTabBarState extends State<MyTabBar> {
+  List<String> tabsText = const ["Parcours", "Projets", "Contact"];
   @override
   Widget build(BuildContext context) {
     var widthAppBar = MediaQuery.of(context).size.width / 2.5;
@@ -48,10 +51,13 @@ class _MyTabBarState extends State<MyTabBar> {
                 ),
               ),
               const Spacer(),
-              AnimatedTabBar(
-                tabController: widget.tabController,
-                width: widthAppBar,
-              ),
+              widget.isMobile
+                  ? createMobileMenuBurger()
+                  : AnimatedTabBar(
+                      tabController: widget.tabController,
+                      width: widthAppBar,
+                      tabsText: tabsText,
+                    ),
             ],
           ),
         ),
@@ -59,6 +65,35 @@ class _MyTabBarState extends State<MyTabBar> {
           width: double.infinity,
           height: 1,
           color: myLightColorScheme.onPrimaryContainer.withOpacity(0.1),
+        ),
+      ],
+    );
+  }
+
+  Widget createMobileMenuBurger() {
+    return PopupMenuButton<String>(
+      icon: Icon(Icons.menu),
+      onSelected: (String result) {
+        if (result == tabsText[0]) {
+          widget.tabController.animateTo(0);
+        } else if (result == tabsText[1]) {
+          widget.tabController.animateTo(1);
+        } else if (result == tabsText[2]) {
+          widget.tabController.animateTo(2);
+        }
+      },
+      itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+        PopupMenuItem<String>(
+          value: tabsText[0],
+          child: Text(tabsText[0]),
+        ),
+        PopupMenuItem<String>(
+          value: tabsText[1],
+          child: Text(tabsText[1]),
+        ),
+        PopupMenuItem<String>(
+          value: tabsText[2],
+          child: Text(tabsText[2]),
         ),
       ],
     );
