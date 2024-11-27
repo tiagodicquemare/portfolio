@@ -2,6 +2,7 @@ import 'package:dicquemare_solution/assets.dart';
 import 'package:dicquemare_solution/core/colors.dart';
 import 'package:dicquemare_solution/core/ui/animated_tab_bar.dart';
 import 'package:dicquemare_solution/core/ui/text_styles.dart';
+import 'package:dicquemare_solution/languages/languages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/scheduler/ticker.dart';
 
@@ -19,11 +20,15 @@ class MyTabBar extends StatefulWidget {
 }
 
 class _MyTabBarState extends State<MyTabBar> {
-  List<String> tabsText = const ["Parcours", "Projets", "Contact"];
+  List<String> tabsText = [];
   @override
   Widget build(BuildContext context) {
     var widthAppBar = MediaQuery.of(context).size.width / 2.5;
-
+    tabsText = [
+      Languages.of(context).tabBarMyJourney,
+      Languages.of(context).tabBarProjects,
+      Languages.of(context).tabBarContact,
+    ];
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -40,7 +45,7 @@ class _MyTabBarState extends State<MyTabBar> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     const SizedBox(width: 16),
-                    Image.asset(MyAssets.onlyPlekoLogo, width: 52),
+                    Image.asset(MyAssets.logo, width: 40),
                     const SizedBox(width: 8),
                     Text(
                       "Dicquemare Solution",

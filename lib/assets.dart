@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 @immutable
 class MyAssets {
-  static const String baseRoot = "assets";
+  static const String logo = 'logo.png';
   static const String lydiaLogo = 'lydia-logo.png';
   static const String myJunglyLogo = 'my-jungly-logo.webp';
   static const String plekoLogo = 'pleko-logo.png';
@@ -35,8 +35,8 @@ class MyAssets {
 
   static const String icArrow = 'ic_arrow.png';
 
-  static const String frenchCV = 'CV_Tiago.pdf';
-  static const String englishCV = 'Tiago_CV.pdf';
+  static const String frenchCV = 'french_cv.pdf';
+  static const String englishCV = 'english_cv.pdf';
   static const String screenshotFrenchCV = 'screenshot_cv_french.png';
   static const String screenshotEnglishCV = 'screenshot_cv_english.png';
 

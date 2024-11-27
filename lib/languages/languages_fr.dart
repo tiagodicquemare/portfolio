@@ -137,4 +137,52 @@ class LanguagesFr extends Languages {
   @override
   String get testimonyRene =>
       "\"J'ai eu le plaisir d'accompagner Tiago lorsqu'il tenait le rôle de Président de Junior MIAGE Concept Aix-Marseille. Lors de son mandat, Tiago a su grandement améliorer la structure, faire évoluer les processus, faire grandir ses membres et développer de nouvelles compétences et offres.\nTiago sait écouter, et prendre des décisions en ayant récupéré tous les éléments nécessaires. Il est passionné, sérieux, ,travailleur, honnête et a d'énormes qualités humaines qui font de lui un excellent consultant. Je ferais appel à lui sans hésiter dés que l'occasion se présentera.\"";
+
+  @override
+  String get aboutMeTabBarChronology => "Chronologie";
+
+  @override
+  String get aboutMeTabBarMe => "En résumé";
+
+  @override
+  String get aboutMeTabBarTestimony => "Témoignages";
+
+  @override
+  String get tabBarContact => "Contact";
+
+  @override
+  String get tabBarMyJourney => "Mon parcours";
+
+  @override
+  String get tabBarProjects => "Projets";
+
+  @override
+  String get chronologyEnglishCVButton => "CV Anglais";
+
+  @override
+  String get chronologyFrenchCVButton => "CV Français";
+
+  @override
+  String get chronologyTitle => "Mon parcours";
+
+  @override
+  String get projectContentSeeMore => "Voir plus";
+
+  @override
+  String contactFollowMeOn(String socialMedia) {
+    return "Suivez moi sur $socialMedia";
+  }
+
+  @override
+  String get contactSendEmailError => "Erreur dans l'envoi de l'email.";
+
+  @override
+  String get contactSendEmailSuccess => "Email envoyé !";
+
+  @override
+  String get aboutMePhoneDescription =>
+      "Voici mon site web interactif, cliquez sur une catégorie pour en savoir plus.";
+
+  @override
+  String get aboutMePhoneWelcome => "Bienvenue !";
 }

@@ -1,6 +1,7 @@
 import 'package:dicquemare_solution/core/ui/text_styles.dart';
 import 'package:dicquemare_solution/core/utils.dart';
 import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/project_content_widgets/highlight_project_screenshot.dart';
+import 'package:dicquemare_solution/languages/languages.dart';
 import 'package:flutter/material.dart';
 
 class ScreenshotPhoneWidget extends StatefulWidget {
@@ -61,7 +62,7 @@ class _ScreenshotPhoneWidgetState extends State<ScreenshotPhoneWidget> {
                           horizontal:
                               CoreUtils.isSmallScreen(context) ? 16 : 48,
                           vertical: CoreUtils.isSmallScreen(context) ? 8 : 20),
-                      child: Text("Voir plus",
+                      child: Text(Languages.of(context).projectContentSeeMore,
                           style: CoreUtils.isSmallScreen(context)
                               ? AppTextStyles.textSSemiBold(color: Colors.white)
                               : AppTextStyles.textMSemiBold(

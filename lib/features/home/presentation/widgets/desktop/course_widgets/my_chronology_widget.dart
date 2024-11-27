@@ -96,7 +96,7 @@ class MyChronologyWidget extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Text(
-                      "Mon parcours",
+                      Languages.of(context).chronologyTitle,
                       textAlign: TextAlign.center,
                       style: AppTextStyles.textLargeTitleSemiBold(
                           color: myLightColorScheme.tertiary),
@@ -138,7 +138,7 @@ class MyChronologyWidget extends StatelessWidget {
                               width: 8,
                             ),
                             Text(
-                              "CV Français",
+                              Languages.of(context).chronologyFrenchCVButton,
                               style: AppTextStyles.textMSemiBold(
                                   color: myLightColorScheme.primary),
                             )
@@ -179,7 +179,7 @@ class MyChronologyWidget extends StatelessWidget {
                               width: 8,
                             ),
                             Text(
-                              "CV Anglais",
+                              Languages.of(context).chronologyEnglishCVButton,
                               style: AppTextStyles.textMSemiBold(
                                   color: myLightColorScheme.primary),
                             )
@@ -192,7 +192,7 @@ class MyChronologyWidget extends StatelessWidget {
               ),
               const SizedBox(height: 24),
               Text(
-                "Chronologie",
+                Languages.of(context).chronologyTitle,
                 style: AppTextStyles.textXLSemiBold(
                     color: myLightColorScheme.outline),
               ),

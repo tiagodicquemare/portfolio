@@ -86,6 +86,7 @@ fonts:
        
 assets:
 - assets/
+- assets/images/
 - assets/lydia-screenshots
 - assets/pleko-screenshots
 - assets/delupay-screenshots

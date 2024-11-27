@@ -1,5 +1,6 @@
 import 'package:dicquemare_solution/assets.dart';
 import 'package:dicquemare_solution/core/utils.dart';
+import 'package:dicquemare_solution/languages/languages.dart';
 import 'package:flutter/material.dart';
 
 class ContactAdditionalInfoWidget extends StatelessWidget {
@@ -30,17 +31,18 @@ class ContactAdditionalInfoWidget extends StatelessWidget {
             Divider(),
             const SizedBox(height: 8),
             _buildContactItem(
-                "Suivez moi sur LinkedIn", AssetImage(MyAssets.icLinkedin), () {
+                Languages.of(context).contactFollowMeOn("LinkedIn"),
+                const AssetImage(MyAssets.icLinkedin), () {
               CoreUtils.launchURL("https://www.linkedin.com/in/tdicquemare/");
             }),
             const SizedBox(height: 16),
-            _buildContactItem(
-                "Suivez moi sur Malt", AssetImage(MyAssets.icMalt), () {
+            _buildContactItem(Languages.of(context).contactFollowMeOn("Malt"),
+                const AssetImage(MyAssets.icMalt), () {
               CoreUtils.launchURL("https://www.malt.fr/profile/tdicquemare");
             }),
             const SizedBox(height: 16),
-            _buildContactItem(
-                "Suivez moi sur GitHub", AssetImage(MyAssets.icGithub), () {
+            _buildContactItem(Languages.of(context).contactFollowMeOn("GitHub"),
+                const AssetImage(MyAssets.icGithub), () {
               CoreUtils.launchURL("https://github.com/tiagodicquemare");
             }),
           ],

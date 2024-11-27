@@ -2,6 +2,7 @@ import 'package:dicquemare_solution/assets.dart';
 import 'package:dicquemare_solution/core/colors.dart';
 import 'package:dicquemare_solution/core/ui/text_styles.dart';
 import 'package:dicquemare_solution/features/phone_container/presentation/bloc/phone_container_bloc.dart';
+import 'package:dicquemare_solution/languages/languages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -25,20 +26,19 @@ class _ProfessionalCategoriesWidgetState
     selectedCategory = widget.category - 1;
   }
 
-  final categories = [
-    'En résumé',
-    // 'Chronologie',
-    'Mon parcours',
-    'Témoignages',
-  ];
   final assets = [
-    AssetImage(MyAssets.icProfile),
-    AssetImage(MyAssets.icScroll),
-    AssetImage(MyAssets.icCog),
-    AssetImage(MyAssets.icRecommendation)
+    const AssetImage(MyAssets.icProfile),
+    const AssetImage(MyAssets.icScroll),
+    const AssetImage(MyAssets.icCog),
+    const AssetImage(MyAssets.icRecommendation)
   ];
   @override
   Widget build(BuildContext context) {
+    final categories = [
+      Languages.of(context).aboutMeTabBarMe,
+      Languages.of(context).aboutMeTabBarChronology,
+      Languages.of(context).aboutMeTabBarTestimony,
+    ];
     return Padding(
       padding: const EdgeInsets.all(16),
       child: SingleChildScrollView(
@@ -49,14 +49,13 @@ class _ProfessionalCategoriesWidgetState
             const SizedBox(
               height: 48,
             ),
-            Text("Bienvenue !",
+            Text(Languages.of(context).aboutMePhoneWelcome,
                 style: AppTextStyles.textTitle26Bold(
                     color: myLightColorScheme.onSurface)),
             const SizedBox(
               height: 24,
             ),
-            Text(
-                "Voici mon CV interactif, cliquez sur une catégorie pour en savoir plus.",
+            Text(Languages.of(context).aboutMePhoneDescription,
                 style: AppTextStyles.textLRegular(
                     color: myLightColorScheme.onSurface)),
             const SizedBox(

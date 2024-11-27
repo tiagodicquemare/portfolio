@@ -4,6 +4,7 @@ import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/c
 import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/course_widgets/my_chronology_widget.dart';
 import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/course_widgets/testimony_widget.dart';
 import 'package:dicquemare_solution/features/home/presentation/widgets/mobile/about_me_mobile_widget.dart';
+import 'package:dicquemare_solution/languages/languages.dart';
 import 'package:flutter/material.dart';
 
 class CourseContentMobileWidget extends StatefulWidget {
@@ -48,7 +49,11 @@ class CourseContentMobileState extends State<CourseContentMobileWidget>
             height: MY_TAB_BAR_HEIGHT,
             child: AnimatedTabBar(
                 width: MediaQuery.sizeOf(context).width * 0.9,
-                tabsText: const ["En résumé", "Mon parcours", "Témoignages"],
+                tabsText: [
+                  Languages.of(context).aboutMeTabBarMe,
+                  Languages.of(context).aboutMeTabBarChronology,
+                  Languages.of(context).aboutMeTabBarTestimony
+                ],
                 tabController: _tabController)),
         Expanded(child: _childrenViews[_tabController.index])
       ],

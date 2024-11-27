@@ -28,7 +28,7 @@ class _ContactFormWidgeState extends State<ContactFormWidget> {
   String body = '';
   bool isCaptchaVerified = false;
 
-  void _sendEmail() async {
+  void _sendEmail(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
       print("Sending email... $email / $name / $body");
       var data = {
@@ -52,12 +52,24 @@ class _ContactFormWidgeState extends State<ContactFormWidget> {
       );
 
       if (response.statusCode == 200) {
-        // Handle successful email sending
         print("Email sent!");
+        showMessage(context, Languages.of(context).contactSendEmailSuccess);
       } else {
-        // Handle failure
         print("Failed to send email.");
+        showMessage(context, Languages.of(context).contactSendEmailError);
       }
+    }
+  }
+
+  void showMessage(BuildContext context, String title) {
+    final snackBar = SnackBar(
+      content: Text(
+        title,
+        style: AppTextStyles.textMSemiBold(color: Colors.white),
+      ),
+    );
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
   }
 
@@ -163,7 +175,7 @@ class _ContactFormWidgeState extends State<ContactFormWidget> {
                       ),
                       const SizedBox(height: 24),
                       ElevatedButton(
-                        onPressed: _sendEmail,
+                        onPressed: () => _sendEmail(context),
                         style: ElevatedButton.styleFrom(
                           minimumSize:
                               Size(MediaQuery.sizeOf(context).width * 0.25, 56),

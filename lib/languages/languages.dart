@@ -6,6 +6,11 @@ abstract class Languages {
     return Localizations.of<Languages>(context, Languages) ?? LanguagesEn();
   }
 
+  // Tab bar Titles
+  String get tabBarMyJourney;
+  String get tabBarProjects;
+  String get tabBarContact;
+
   // Contact me widget
   String get contactMeTitle;
   String get contactMeDescription;
@@ -14,6 +19,9 @@ abstract class Languages {
   String get contactMeHintBody;
   String get contactMeHintErrorEmail;
   String get contactMeHintSendButton;
+  String get contactSendEmailSuccess;
+  String get contactSendEmailError;
+  String contactFollowMeOn(String socialMedia);
 
   // About me widget
   String get aboutMeTitle;
@@ -27,8 +35,14 @@ abstract class Languages {
   String get aboutMeThirdPointDescription;
   String get aboutMeFourthPointTitle;
   String get aboutMeFourthPointDescription;
+  String get aboutMeTabBarMe;
+  String get aboutMeTabBarChronology;
+  String get aboutMeTabBarTestimony;
+  String get aboutMePhoneWelcome;
+  String get aboutMePhoneDescription;
 
   // Chronology widget
+  String get chronologyTitle;
   String get chronologyLydia2024Post;
   String get chronologyLydia2024Description;
   String get chronologyMyJungly2023Post;
@@ -43,6 +57,8 @@ abstract class Languages {
   String get chronologyJMC2018Description;
   String get chronologyFreshDev2018Post;
   String get chronologyFreshDev2018Description;
+  String get chronologyFrenchCVButton;
+  String get chronologyEnglishCVButton;
 
   // Project content
   String get projectContentLydia;
@@ -50,6 +66,7 @@ abstract class Languages {
   String get projectContentBeepings;
   String get projectContentPleko;
   String get projectContentEndonora;
+  String get projectContentSeeMore;
 
   // Testimony widget
   String get testimonyMichael;

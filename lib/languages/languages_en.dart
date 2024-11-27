@@ -25,38 +25,38 @@ class LanguagesEn extends Languages {
 
   @override
   String get aboutMeDescription =>
-      "Welcome to my website coded in Flutter. Passionate about entrepreneurship and mobile development, I aspire to develop IT solutions from design to production. With over 6 years of experience in mobile development, I have worked with startups and renowned companies generating millions of downloads. I am at your disposal and look forward to discussing your project.";
+      "Welcome to my website coded in Flutter. Passionate about entrepreneurship and mobile development, I aspire to develop IT solutions ranging from conception to production. With over 6 years of experience in mobile development, I have worked with startups and renowned companies generating millions of downloads.\nHere's what I have to offer you:";
 
   @override
   String get aboutMeFirstPointDescription =>
-      "First and foremost, I will listen to understand your needs and advise you on the best solutions to adopt. I will also pay particular attention to the design of your application to ensure it is ergonomic and intuitive.";
+      "I will listen to you to advise on choosing the best technical and design solutions.";
 
   @override
-  String get aboutMeFirstPointTitle => "Advice & Design";
+  String get aboutMeFirstPointTitle => "Consulting & Design";
 
   @override
   String get aboutMeFourthPointDescription =>
-      "I also offer optimization and analysis solutions for your application through monitoring tools and AI integrations. Solutions aimed at optimizing the profitability of your application.";
+      "Generate interactive maps for your mobile applications with the best tools on the market.";
 
   @override
-  String get aboutMeFourthPointTitle => "Optimization & Analysis";
+  String get aboutMeFourthPointTitle => "Mapping & Navigation";
 
   @override
   String get aboutMePost => "Mobile Developer\nAndroid & Flutter";
 
   @override
   String get aboutMeSecondPointDescription =>
-      "I will custom develop your mobile application using the latest technologies available on Android or Flutter. As a guarantee of quality, I make sure that the application is efficient and consumes little energy in its operation and that its structure is sustainable over time.";
+      "Customized development of your mobile application with support in its deployment.";
 
   @override
-  String get aboutMeSecondPointTitle => "Development";
+  String get aboutMeSecondPointTitle => "Development and Deployment";
 
   @override
   String get aboutMeThirdPointDescription =>
-      "I take care of the deployment and distribution of your application on the Play Store and App Store. I also ensure the maintenance of your application to guarantee its proper functioning.";
+      "Connect your mobile application with Bluetooth-connected devices to offer a unique user experience.";
 
   @override
-  String get aboutMeThirdPointTitle => "Deployment & Maintenance";
+  String get aboutMeThirdPointTitle => "IoT Connection";
 
   @override
   String get aboutMeTitle => "Tiago Dicquemare";
@@ -137,4 +137,52 @@ class LanguagesEn extends Languages {
   @override
   String get testimonyRene =>
       "I had the pleasure of supporting Tiago when he held the role of President of Junior MIAGE Concept Aix-Marseille. During his term, Tiago greatly improved the structure, evolved processes, helped his members grow, and developed new skills and offerings.\nTiago knows how to listen and make decisions after gathering all the necessary information. He is passionate, serious, hardworking, honest, and has enormous human qualities that make him an excellent consultant. I will not hesitate to call on him as soon as the opportunity arises.";
+
+  @override
+  String get aboutMeTabBarChronology => "Chronology";
+
+  @override
+  String get aboutMeTabBarMe => "Summary";
+
+  @override
+  String get aboutMeTabBarTestimony => "Testimonies";
+
+  @override
+  String get tabBarContact => "Contact";
+
+  @override
+  String get tabBarMyJourney => "About me";
+
+  @override
+  String get tabBarProjects => "Projects";
+
+  @override
+  String get chronologyEnglishCVButton => "English CV";
+
+  @override
+  String get chronologyFrenchCVButton => "French CV";
+
+  @override
+  String get chronologyTitle => "My journey";
+
+  @override
+  String get projectContentSeeMore => "See more";
+
+  @override
+  String contactFollowMeOn(String socialMedia) {
+    return "Follow me on $socialMedia";
+  }
+
+  @override
+  String get contactSendEmailError => "Error sending email.";
+
+  @override
+  String get contactSendEmailSuccess => "Email sent!";
+
+  @override
+  String get aboutMePhoneDescription =>
+      "Here is my interactive Website, click on a category to learn more.";
+
+  @override
+  String get aboutMePhoneWelcome => "Welcome !";
 }
