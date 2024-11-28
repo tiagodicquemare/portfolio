@@ -2,6 +2,7 @@ import 'package:dicquemare_solution/NavigationRoutes.dart';
 import 'package:dicquemare_solution/core/injection.dart';
 import 'package:dicquemare_solution/features/home/presentation/pages/home_page.dart';
 import 'package:dicquemare_solution/languages/app_localizations_delegate.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -35,6 +36,15 @@ class NavigationService {
   static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 }
 
+class AppScrollBehavior extends MaterialScrollBehavior {
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+        PointerDeviceKind.trackpad,
+      };
+}
+
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key, required this.title});
   final String title;
@@ -45,6 +55,7 @@ class MyHomePage extends StatelessWidget {
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
         child: MaterialApp(
             navigatorKey: NavigationService.navigatorKey,
+            scrollBehavior: AppScrollBehavior(),
             title: 'Dicquemare Solution',
             debugShowCheckedModeBanner: false,
             theme: ThemeData(

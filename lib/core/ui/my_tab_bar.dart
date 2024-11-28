@@ -37,7 +37,7 @@ class _MyTabBarState extends State<MyTabBar> {
           height: MY_TAB_BAR_HEIGHT,
           child: Row(
             children: [
-              GestureDetector(
+              InkWell(
                 onTap: () {
                   widget.tabController.animateTo(0);
                 },

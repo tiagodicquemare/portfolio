@@ -1,4 +1,5 @@
 import 'package:dicquemare_solution/assets.dart';
+import 'package:dicquemare_solution/core/ui/text_styles.dart';
 import 'package:dicquemare_solution/core/utils.dart';
 import 'package:dicquemare_solution/languages/languages.dart';
 import 'package:flutter/material.dart';
@@ -63,11 +64,11 @@ class ContactAdditionalInfoWidget extends StatelessWidget {
             image: image,
             height: 24,
           ),
-          const SizedBox(width: 16),
+          const SizedBox(width: 12),
           Flexible(
             child: Text(
               title,
-              style: TextStyle(fontSize: 16),
+              style: AppTextStyles.textMRegular(color: Colors.black),
             ),
           )
         ],
