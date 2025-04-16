@@ -5,6 +5,7 @@ import 'package:dicquemare_solution/core/ui/green_gradient_background.dart';
 import 'package:dicquemare_solution/core/utils.dart';
 import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/contact_me_widget.dart';
 import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/course_content_widget.dart';
+import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/landing_widget.dart';
 import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/project_content_widget.dart';
 import 'package:dicquemare_solution/features/home/presentation/widgets/mobile/contact_me_mobile_widget.dart';
 import 'package:dicquemare_solution/features/home/presentation/widgets/mobile/course_content_mobile_widget.dart';
@@ -98,7 +99,7 @@ class _HomePageState extends State<HomePage>
   Widget containerHomeMobileContent(BuildContext context, int index) {
     lastDispositionIsMobile = true;
     if (index == 1) {
-      return CourseContentMobileWidget();
+      return LandingWidget();
     } else if (index == 2) {
       return ProjectContentMobileWidget();
     } else {
@@ -143,10 +144,7 @@ class _HomePageState extends State<HomePage>
       return Positioned.fill(
         child: Padding(
           padding: EdgeInsets.only(left: widthPhone + 24),
-          child: Container(
-              child: CourseContentWidget(
-            selectedCategory: selectedProfessionalCategory,
-          )),
+          child: LandingWidget()
         ),
       );
     } else if (index == 2) {
