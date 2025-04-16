@@ -2,7 +2,6 @@ import 'package:dicquemare_solution/assets.dart';
 import 'package:dicquemare_solution/core/ui/hoverable_horizontal_line.dart';
 import 'package:dicquemare_solution/core/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:timelines/timelines.dart';
 
 class TimeLineWidget extends StatefulWidget {
   @override
@@ -14,13 +13,14 @@ class TimeLineState extends State<TimeLineWidget> {
   var dateBody = "";
   var descriptionBody = "";
   AssetImage? bodyImage;
+
   @override
   Widget build(BuildContext context) {
     double availableWidth = MediaQuery.of(context).size.width -
         CoreUtils.getPhoneScreenWidth(context) -
         96 -
         24;
-    print("First available width -> $availableWidth");
+
     return Padding(
       padding: const EdgeInsets.all(48),
       child: Column(
@@ -33,49 +33,37 @@ class TimeLineState extends State<TimeLineWidget> {
                 "Chronologie",
                 style: TextStyle(fontSize: 32),
               ),
-              const SizedBox(
-                width: 24,
-              ),
+              const SizedBox(width: 24),
               const Text(
                 "Educatif",
                 style: TextStyle(fontSize: 16),
               ),
-              const SizedBox(
-                width: 8,
-              ),
+              const SizedBox(width: 8),
               buildDot(color: Colors.green),
               buildHorizontalSolidLine(48, color: Colors.green),
               buildDot(color: Colors.green),
-              const SizedBox(
-                width: 24,
-              ),
+              const SizedBox(width: 24),
               const Text(
                 "Professionnelle",
                 style: TextStyle(fontSize: 16),
               ),
-              const SizedBox(
-                width: 8,
-              ),
+              const SizedBox(width: 8),
               buildDot(color: Colors.blue),
               buildHorizontalSolidLine(48, color: Colors.blue),
               buildDot(color: Colors.blue),
-              const SizedBox(
-                width: 24,
-              ),
+              const SizedBox(width: 24),
               const Text(
                 "Entreprenariale",
                 style: TextStyle(fontSize: 16),
               ),
-              const SizedBox(
-                width: 8,
-              ),
+              const SizedBox(width: 8),
               buildDot(color: Colors.red),
               buildHorizontalSolidLine(48, color: Colors.red),
               buildDot(color: Colors.red),
             ],
           ),
           const SizedBox(height: 32),
-          buildTimeline(availableWidth, [
+          buildCustomTimeline(availableWidth, [
             DotDateEvent(DateTime(2015, 09),
                 linkDot: true, color: Colors.green, dotText: "09/2015"),
             DotDateEvent(DateTime(2017, 09),
@@ -92,7 +80,7 @@ class TimeLineState extends State<TimeLineWidget> {
                 linkDot: true, color: Colors.green, dotText: "09/2020"),
           ]),
           const SizedBox(height: 24),
-          buildTimeline(availableWidth, [
+          buildCustomTimeline(availableWidth, [
             DotDateEvent(DateTime(2015, 07), linkDot: false, showDot: false),
             DotDateEvent(
               DateTime(2017, 04),
@@ -113,7 +101,7 @@ class TimeLineState extends State<TimeLineWidget> {
             DotDateEvent(DateTime(2024, 01), linkDot: true, dotText: "01/2024"),
           ]),
           const SizedBox(height: 24),
-          buildTimeline(availableWidth, [
+          buildCustomTimeline(availableWidth, [
             DotDateEvent(DateTime(2015, 07),
                 linkDot: false, showDot: false, color: Colors.red),
             DotDateEvent(DateTime(2018, 01),
@@ -153,7 +141,7 @@ class TimeLineState extends State<TimeLineWidget> {
     );
   }
 
-  Widget buildTimeline(
+  Widget buildCustomTimeline(
     double availableWidth,
     List<DotDateEvent> listImportantDates,
   ) {
@@ -162,10 +150,11 @@ class TimeLineState extends State<TimeLineWidget> {
     final endDate = DateTime(2024, 01);
     final numberOfMonths =
         (endDate.year - startDate.year) * 12 + endDate.month - startDate.month;
+    
     List<Widget> listWidgets = [];
     int index = 0;
-    print("Available width -> $availableWidth //// Total width -> $totalWidth");
     var lastPosition = 0;
+
     for (DotDateEvent dateEvent in listImportantDates) {
       final positionInTimeline = (dateEvent.date.year - startDate.year) * 12 +
           dateEvent.date.month -
@@ -179,135 +168,100 @@ class TimeLineState extends State<TimeLineWidget> {
             reverse: dateEvent.reverse,
             text: dateEvent.lineText,
             color: dateEvent.color, onTap: () {
-          setState(() {
-            titleBody = dateEvent.titleBody;
-            dateBody = dateEvent.dateBody;
-            descriptionBody = dateEvent.descriptionBody;
-            bodyImage = dateEvent.bodyImage;
-          });
+          _updateBody(dateEvent);
         }));
       } else if (!dateEvent.linkDot) {
-        listWidgets.add(SizedBox(
-          width: widthLine,
-        ));
+        listWidgets.add(SizedBox(width: widthLine));
       }
 
       if (dateEvent.showDot) {
-        listWidgets
-            .add(buildDot(color: dateEvent.color, date: dateEvent.dotText));
+        listWidgets.add(buildDot(color: dateEvent.color, date: dateEvent.dotText));
       } else {
-        listWidgets.add(const SizedBox(
-          width: 18,
-        ));
+        listWidgets.add(const SizedBox(width: 18));
       }
 
       index++;
     }
-    return SizedBox(
-      width: availableWidth,
-      child: Row(
-        children: [...listWidgets],
-      ),
+
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: listWidgets,
     );
   }
 
-  Widget buildDot({String date = "", Color color = Colors.blue}) {
-    return SizedOverflowBox(
-      size: const Size(18, 50),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            date,
-            maxLines: 1,
-            overflow: TextOverflow.visible,
+  Widget buildDot({Color? color, String? date}) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          width: 18,
+          height: 18,
+          decoration: BoxDecoration(
+            color: color ?? Colors.black,
+            shape: BoxShape.circle,
           ),
-          const SizedBox(
-            height: 12,
+        ),
+        if (date != null && date.isNotEmpty)
+          Padding(
+            padding: const EdgeInsets.only(top: 4),
+            child: Text(
+              date,
+              style: const TextStyle(fontSize: 12),
+            ),
           ),
-          Container(
-            width: 18,
-            height: 18,
-            decoration: BoxDecoration(shape: BoxShape.circle, color: color),
-          ),
-          const SizedBox(
-            height: 12,
-          ),
-          Text(
-            date,
-            maxLines: 1,
-            overflow: TextOverflow.visible,
-            style: TextStyle(color: Colors.transparent),
-          ),
-        ],
-      ),
+      ],
     );
   }
 
   Widget buildHorizontalSolidLine(double width,
-      {String text = "",
-      Color color = Colors.blue,
-      bool textOnTop = true,
-      bool reverse = false,
-      Function()? onTap}) {
-    return SizedOverflowBox(
-      size: Size(width, 50),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Flexible(
-            child: Text(text,
-                maxLines: 2,
-                style: TextStyle(
-                    color: reverse ? Colors.transparent : Colors.black)),
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          HoverContainer(
-            width: width,
-            color: color,
-            onTap: onTap,
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          Flexible(
-            child: Text(
-              text,
-              maxLines: 2,
-              style: TextStyle(
-                  color: !reverse ? Colors.transparent : Colors.black),
-            ),
-          ),
-        ],
+      {bool reverse = false,
+      String? text,
+      Color? color,
+      VoidCallback? onTap}) {
+    return GestureDetector(
+      onTap: onTap,
+      child: HoverContainer(
+        width: width,
+        color: color ?? Colors.black,
+        onTap: onTap,
       ),
     );
+  }
+
+  void _updateBody(DotDateEvent dateEvent) {
+    setState(() {
+      titleBody = dateEvent.titleBody ?? "";
+      dateBody = dateEvent.dateBody ?? "";
+      descriptionBody = dateEvent.descriptionBody ?? "";
+      bodyImage = dateEvent.bodyImage;
+    });
   }
 }
 
 class DotDateEvent {
-  DateTime date;
-  String dotText = "";
-  String lineText = "";
-  bool linkDot = true;
-  bool showDot = true;
-  bool reverse = false;
-  Color color = Colors.blue;
-  String titleBody = "";
-  String dateBody = "";
-  String descriptionBody = "";
-  AssetImage? bodyImage;
+  final DateTime date;
+  final bool linkDot;
+  final bool showDot;
+  final bool reverse;
+  final Color? color;
+  final String? dotText;
+  final String? lineText;
+  final String? titleBody;
+  final String? dateBody;
+  final String? descriptionBody;
+  final AssetImage? bodyImage;
 
-  DotDateEvent(this.date,
-      {this.dotText = "",
-      this.lineText = "",
-      this.linkDot = true,
-      this.showDot = true,
-      this.reverse = false,
-      this.color = Colors.blue,
-      this.titleBody = "",
-      this.dateBody = "",
-      this.descriptionBody = "",
-      this.bodyImage});
+  DotDateEvent(
+    this.date, {
+    this.linkDot = true,
+    this.showDot = true,
+    this.reverse = false,
+    this.color,
+    this.dotText,
+    this.lineText,
+    this.titleBody,
+    this.dateBody,
+    this.descriptionBody,
+    this.bodyImage,
+  });
 }
