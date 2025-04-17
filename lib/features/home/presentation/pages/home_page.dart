@@ -5,7 +5,7 @@ import 'package:dicquemare_solution/core/ui/green_gradient_background.dart';
 import 'package:dicquemare_solution/core/utils.dart';
 import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/contact_me_widget.dart';
 import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/course_content_widget.dart';
-import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/landing_widget.dart';
+import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/landing_widgets/landing_widget.dart';
 import 'package:dicquemare_solution/features/home/presentation/widgets/desktop/project_content_widget.dart';
 import 'package:dicquemare_solution/features/home/presentation/widgets/mobile/contact_me_mobile_widget.dart';
 import 'package:dicquemare_solution/features/home/presentation/widgets/mobile/course_content_mobile_widget.dart';
@@ -59,8 +59,6 @@ class _HomePageState extends State<HomePage>
       body: LayoutBuilder(
         builder: (context, constraints) {
           double minWidth = 1200;
-          double minHeight = 800;
-
           return _buildContent(context, constraints.maxWidth < minWidth);
         },
       ),
